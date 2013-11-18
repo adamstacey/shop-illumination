@@ -1,0 +1,7 @@
+parameters:
+#    shop_illumination_demo.example.class: ShopIllumination\DemoBundle\Example
+
+services:
+#    shop_illumination_demo.example:
+#        class: %shop_illumination_demo.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

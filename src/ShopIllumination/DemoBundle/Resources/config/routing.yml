@@ -1,0 +1,3 @@
+shop_illumination_demo_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: ShopIlluminationDemoBundle:Default:index }

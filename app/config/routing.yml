@@ -1,0 +1,4 @@
+shop_illumination_demo:
+    resource: "@ShopIlluminationDemoBundle/Resources/config/routing.yml"
+    prefix:   /
+
