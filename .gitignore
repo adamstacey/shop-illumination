@@ -1,3 +1,14 @@
+# OS generated files
+.DS_Store*
+ehthumbs.db
+Icon?
+Thumbs.db
+.idea
+
+# Bootstrap
+app/bootstrap*
+
+# Symfony directories
 /web/bundles/
 /app/bootstrap.php.cache
 /app/cache/*
