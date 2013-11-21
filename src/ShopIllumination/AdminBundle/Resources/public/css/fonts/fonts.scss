@@ -1,0 +1,317 @@
+@import "compass";
+@import "../includes/base";
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+.strikethrough {
+    text-decoration: line-through;
+}
+
+.important {
+    text-transform: uppercase;
+    color: $colourRed;
+    font-weight: bold;
+}
+
+.small {
+    color: $colourGreyDark;
+    @include fontSize($fontSizeExtraSmall);
+}
+
+.colour-black {
+    color: $colourBlack;
+}
+
+.colour-white {
+    color: $colourWhite;
+}
+
+.colour-grey-extra-extra-light {
+    color: $colourGreyExtraExtraLight;
+}
+
+.colour-grey-extra-light {
+    color: $colourGreyExtraLight;
+}
+
+.colour-grey-light {
+    color: $colourGreyLight;
+}
+
+.colour-grey-medium {
+    color: $colourGreyMedium;
+}
+
+.colour-grey {
+    color: $colourGrey;
+}
+
+.colour-grey-dark {
+    color: $colourGreyDark;
+}
+
+.colour-dark-red-extra-light {
+    color: $colourDarkRedExtraLight;
+}
+
+.colour-dark-red-light {
+    color: $colourDarkRedLight;
+}
+
+.colour-dark-red-medium {
+    color: $colourDarkRedMedium;
+}
+
+.colour-dark-red {
+    color: $colourDarkRed;
+}
+
+.colour-dark-red-dark {
+    color: $colourDarkRedDark;
+}
+
+.colour-red-extra-light {
+    color: $colourRedExtraLight;
+}
+
+.colour-red-light {
+    color: $colourRedLight;
+}
+
+.colour-red-medium {
+    color: $colourRedMedium;
+}
+
+.colour-red {
+    color: $colourRed;
+}
+
+.colour-red-dark {
+    color: $colourRedDark;
+}
+
+.colour-brown-extra-light {
+    color: $colourBrownExtraLight;
+}
+
+.colour-brown-light {
+    color: $colourBrownLight;
+}
+
+.colour-brown-medium {
+    color: $colourBrownMedium;
+}
+
+.colour-brown {
+    color: $colourBrown;
+}
+
+.colour-brown-dark {
+    color: $colourBrownDark;
+}
+
+.colour-dark-orange-extra-light {
+    color: $colourDarkOrangeExtraLight;
+}
+
+.colour-dark-orange-light {
+    color: $colourDarkOrangeLight;
+}
+
+.colour-dark-orange-medium {
+    color: $colourDarkOrangeMedium;
+}
+
+.colour-dark-orange {
+    color: $colourDarkOrange;
+}
+
+.colour-dark-orange-dark {
+    color: $colourDarkOrangeDark;
+}
+
+.colour-orange-extra-light {
+    color: $colourOrangeExtraLight;
+}
+
+.colour-orange-light {
+    color: $colourOrangeLight;
+}
+
+.colour-orange-medium {
+    color: $colourOrangeMedium;
+}
+
+.colour-orange {
+    color: $colourOrange;
+}
+
+.colour-orange-dark {
+    color: $colourOrangeDark;
+}
+
+.colour-yellow-extra-light {
+    color: $colourYellowExtraLight;
+}
+
+.colour-yellow-light {
+    color: $colourYellowLight;
+}
+
+.colour-yellow-medium {
+    color: $colourYellowMedium;
+}
+
+.colour-yellow {
+    color: $colourYellow;
+}
+
+.colour-yellow-dark {
+    color: $colourYellowDark;
+}
+
+.colour-lime-green-extra-light {
+    color: $colourLimeGreenExtraLight;
+}
+
+.colour-lime-green-light {
+    color: $colourLimeGreenLight;
+}
+
+.colour-lime-green-medium {
+    color: $colourLimeGreenMedium;
+}
+
+.colour-lime-green {
+    color: $colourLimeGreen;
+}
+
+.colour-lime-green-dark {
+    color: $colourLimeGreenDark;
+}
+
+.colour-green-extra-light {
+    color: $colourGreenExtraLight;
+}
+
+.colour-green-light {
+    color: $colourGreenLight;
+}
+
+.colour-green-medium {
+    color: $colourGreenMedium;
+}
+
+.colour-green {
+    color: $colourGreen;
+}
+
+.colour-green-dark {
+    color: $colourGreenDark;
+}
+
+.colour-purple-extra-light {
+    color: $colourPurpleExtraLight;
+}
+
+.colour-purple-light {
+    color: $colourPurpleLight;
+}
+
+.colour-purple-medium {
+    color: $colourPurpleMedium;
+}
+
+.colour-purple {
+    color: $colourPurple;
+}
+
+.colour-purple-dark {
+    color: $colourPurpleDark;
+}
+
+.lh100pc {
+    line-height: 100% !important;
+}
+
+.lh120pc {
+    line-height: 120% !important;
+}
+
+.lh125pc {
+    line-height: 125% !important;
+}
+
+.lh150pc {
+    line-height: 150% !important;
+}
+
+.fs9 {
+    @include fontSize(9);
+}
+
+.fs10 {
+    @include fontSize(10);
+}
+
+.fs11 {
+    @include fontSize(11);
+}
+
+.fs12 {
+    @include fontSize(12);
+}
+
+.fs13 {
+    @include fontSize(13);
+}
+
+.fs14 {
+    @include fontSize(14);
+}
+
+.fs15 {
+    @include fontSize(15);
+}
+
+.fs16 {
+    @include fontSize(16);
+}
+
+.fs18 {
+    @include fontSize(18);
+}
+
+.fs20 {
+    @include fontSize(20);
+}
+
+.fs22 {
+    @include fontSize(22);
+}
+
+.fs24 {
+    @include fontSize(24);
+}
+
+.fs28 {
+    @include fontSize(28);
+}
+
+.fs30 {
+    @include fontSize(30);
+}
+
+.fs32 {
+    @include fontSize(32);
+}
+
+.fs36 {
+    @include fontSize(36);
+}
+
+.fs48 {
+    @include fontSize(48);
+}

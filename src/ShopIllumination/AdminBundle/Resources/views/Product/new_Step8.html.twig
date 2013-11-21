@@ -1,0 +1,41 @@
+<form class="form" id="form-add" method="post" novalidate="novalidate" action="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params') | craue_removeDynamicStepNavigationParameter(flow)) }}" {{ form_enctype(form) }}>
+    <div class="widget-group clearfix">
+        <div class="widget widget-1-of-1">
+            <div class="ui-widget mbl">
+                <header class="ui-widget-header ui-corner-top">
+                    <span class="nav-icon ui-button-icon-primary ui-icon icon-white icon-945"></span>
+                    <h2>{{ flow.getCurrentStepLabel() }}</h2>
+                </header>
+                <section class="ui-widget-content ui-corner-bottom">
+                    {% include 'ShopIlluminationAdminBundle:Includes:formErrors.html.twig' %}
+                    <fieldset>
+                        <div class="accordion mbm">
+                            <div class="accordion-item">
+                                <h3>Descriptions for Product</h3>
+                                <div class="pbm">
+                                    {% for description in form.descriptions %}
+                                        {{ form_rest(description) }}
+                                    {% endfor %}
+                                    {% do form.descriptions.setRendered() %}
+                                </div>
+                            </div>
+                            {% for variant in form.variants %}
+                                <div class="accordion-item">
+                                    <h3>Descriptions for {{ variant.vars.value.productCode }} ({{ variant.vars.value.prices.0.listPrice|currency(variant.vars.value.prices.0.currencyCode, false, true, '') }})</h3>
+                                    <div class="pbm">
+                                        {{ form_row(variant.type) }}
+                                        {{ form_rest(variant) }}
+                                    </div>
+                                </div>
+                            {% endfor %}
+                            {% do form.variants.setRendered() %}
+                        </div>
+                        {{ form_rest(form) }}
+                    </fieldset>
+                    {% include 'CraueFormFlowBundle:FormFlow:stepField.html.twig' %}
+                    {% include 'ShopIlluminationAdminBundle:Product:newControls.html.twig' %}
+                </section>
+            </div>
+        </div>
+    </div>
+</form>

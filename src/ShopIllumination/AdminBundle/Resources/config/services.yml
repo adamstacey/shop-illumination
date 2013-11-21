@@ -1,0 +1,131 @@
+services:
+  # Twig Extensions
+  shop_illumination_admin.twig.currency_extension:
+    class: ShopIllumination\AdminBundle\Twig\CurrencyExtension
+    tags:
+      - { name: twig.extension }
+  shop_illumination_admin.twig.routing_extension:
+    class: ShopIllumination\AdminBundle\Twig\RoutingExtension
+    arguments: [@doctrine, @router, @shop_illumination_admin.manager.routing]
+    tags:
+      - { name: twig.extension }
+
+  # Imagine Filters
+  shop_illumination_admin.filter.loader.square_thumbnail:
+    class: ShopIllumination\AdminBundle\Imagine\Filter\Loader\SquareThumbnailFilterLoader
+    tags:
+      - { name: imagine.filter.loader, filter: square_thumbnail}
+
+  # Third Party services
+  shop_illumination_admin.google.google:
+    class: ShopIllumination\AdminBundle\ThirdParty\Google\Google
+    arguments: [%google_api_key%, %google_dev_token%]
+
+  # Managers
+  shop_illumination_admin.manager.product:
+    class: ShopIllumination\AdminBundle\Manager\ProductManager
+    arguments: [@doctrine, @shop_illumination_admin.manager.seo, @shop_illumination_admin.manager.image, @shop_illumination_admin.manager.document]
+  shop_illumination_admin.manager.department:
+      class: ShopIllumination\AdminBundle\Manager\DepartmentManager
+      arguments: [@doctrine, @shop_illumination_admin.manager.seo]
+  shop_illumination_admin.manager.file:
+      class: ShopIllumination\AdminBundle\Manager\FileManager
+      arguments: [@doctrine]
+  shop_illumination_admin.manager.image:
+    class: ShopIllumination\AdminBundle\Manager\ImageManager
+    arguments: [@doctrine, @shop_illumination_admin.manager.file]
+  shop_illumination_admin.manager.document:
+      class: ShopIllumination\AdminBundle\Manager\DocumentManager
+      arguments: [@doctrine, @shop_illumination_admin.manager.file]
+  shop_illumination_admin.manager.routing:
+      class: ShopIllumination\AdminBundle\Manager\RoutingManager
+      arguments: [@doctrine]
+  shop_illumination_admin.manager.seo:
+    class: ShopIllumination\AdminBundle\Manager\SeoManager
+    arguments: [@doctrine]
+
+  # Indexers
+  shop_illumination_admin.indexer.product:
+    class: ShopIllumination\AdminBundle\Indexer\ProductIndexer
+    arguments: [@solarium.client.si_brickhunter_products, @doctrine]
+
+  # Listeners
+  shop_illumination_admin.listener.product:
+      class: ShopIllumination\AdminBundle\EventListener\ProductListener
+      arguments: [@shop_illumination_admin.manager.product, @shop_illumination_admin.indexer.product]
+      tags:
+          - { name: doctrine.event_listener, event: prePersist, method: prePersist }
+          - { name: doctrine.event_listener, event: postPersist, method: postPersist }
+          - { name: doctrine.event_listener, event: preUpdate, method: preUpdate }
+          - { name: doctrine.event_listener, event: postUpdate, method: postUpdate }
+          - { name: doctrine.event_listener, event: preRemove, method: preRemove}
+  shop_illumination_admin.listener.variant:
+      class: ShopIllumination\AdminBundle\EventListener\VariantListener
+      arguments: [@shop_illumination_admin.manager.product, @shop_illumination_admin.indexer.product]
+      tags:
+          - { name: doctrine.event_listener, event: prePersist, method: prePersist }
+          - { name: doctrine.event_listener, event: postPersist, method: postPersist }
+          - { name: doctrine.event_listener, event: preUpdate, method: preUpdate }
+          - { name: doctrine.event_listener, event: postUpdate, method: postUpdate }
+          - { name: doctrine.event_listener, event: postRemove, method: postRemove}
+  shop_illumination_admin.listener.image:
+      class: ShopIllumination\AdminBundle\EventListener\ImageListener
+      arguments: [@shop_illumination_admin.manager.image]
+      tags:
+          - { name: doctrine.event_listener, event: prePersist, method: prePersist }
+          - { name: doctrine.event_listener, event: postPersist, method: postPersist }
+          - { name: doctrine.event_listener, event: preUpdate, method: preUpdate }
+          - { name: doctrine.event_listener, event: postUpdate, method: postUpdate }
+          - { name: doctrine.event_listener, event: preRemove, method: preRemove}
+          - { name: doctrine.event_listener, event: postRemove, method: preRemove}
+  shop_illumination_admin.listener.document:
+        class: ShopIllumination\AdminBundle\EventListener\DocumentListener
+        arguments: [@shop_illumination_admin.manager.document]
+        tags:
+            - { name: doctrine.event_listener, event: prePersist, method: prePersist }
+            - { name: doctrine.event_listener, event: postPersist, method: postPersist }
+            - { name: doctrine.event_listener, event: preUpdate, method: preUpdate }
+            - { name: doctrine.event_listener, event: postUpdate, method: postUpdate }
+            - { name: doctrine.event_listener, event: preRemove, method: preRemove}
+            - { name: doctrine.event_listener, event: postRemove, method: preRemove}
+
+  # Form Services
+  shop_illumination_admin.form.new_department:
+     class: ShopIllumination\AdminBundle\Form\Department\NewDepartmentType
+     tags:
+       - { name: form.type, alias: site_new_department }
+  shop_illumination_admin.form.flow.new_department:
+      class: ShopIllumination\AdminBundle\Form\Department\NewDepartmentFlow
+      parent: craue.form.flow
+      scope: request
+      calls:
+        - [ setFormType, [@shop_illumination_admin.form.new_department]]
+      arguments: [@doctrine, @shop_illumination_admin.manager.seo]
+  shop_illumination_admin.form.new_product:
+    class: ShopIllumination\AdminBundle\Form\Product\NewProductType
+    tags:
+      - { name: form.type, alias: site_new_product }
+  shop_illumination_admin.form.flow.new_product:
+    class: ShopIllumination\AdminBundle\Form\Product\NewProductFlow
+    parent: craue.form.flow
+    scope: request
+    calls:
+      - [ setFormType, [@shop_illumination_admin.form.new_product]]
+    arguments: [@shop_illumination_admin.manager.seo, @shop_illumination_admin.manager.product, @shop_illumination_admin.google.google]
+  shop_illumination_admin.form.flow.clone_product:
+    class: ShopIllumination\AdminBundle\Form\Product\CloneProductFlow
+    parent: craue.form.flow
+    scope: request
+    calls:
+      - [ setFormType, [@shop_illumination_admin.form.new_product]]
+    arguments: [@shop_illumination_admin.manager.seo, @shop_illumination_admin.manager.product, @shop_illumination_admin.google.google]
+  shop_illumination_admin.form.new_variant:
+    class: ShopIllumination\AdminBundle\Form\Variant\NewVariantType
+    tags:
+      - { name: form.type, alias: site_new_variant }
+  shop_illumination_admin.form.flow.new_variant:
+    class: ShopIllumination\AdminBundle\Form\Variant\NewVariantFlow
+    parent: craue.form.flow
+    scope: request
+    calls:
+      - [ setFormType, [@shop_illumination_admin.form.new_variant]]

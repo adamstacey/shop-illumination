@@ -1,0 +1,465 @@
+{% extends 'ShopIlluminationAdminBundle:Product:base.html.twig' %}
+{% import 'ShopIlluminationAdminBundle:Product/Includes:helpers.html.twig' as helpers %}
+
+{% if variant is null %}
+    {% set description = product.description.description %}
+    {% if description == '' %}
+        {% set description = product.description.metaDescription %}
+    {% endif %}
+    {% set pageTitle = product.description.pageTitle %}
+    {% set header = product.description.header %}
+    {% set brandDescription = product.description.brandDescription %}
+    {% set metaDescription = product.description.metaDescription %}
+    {% set metaKeywords = product.description.metaKeywords %}
+    {% set features = common_features %}
+{% else %}
+    {% set pageTitle = variant.description.pageTitle %}
+    {% set header = variant.description.header %}
+    {% set description = variant.description.description %}
+    {% set brandDescription = variant.brandDescription.description %}
+    {% set metaDescription = variant.description.metaDescription %}
+    {% set metaKeywords = variant.description.metaKeywords %}
+    {% if description == '' %}
+        {% set pageTitle = product.description.pageTitle %}
+        {% set header = product.description.header %}
+        {% set description = product.description.description %}
+        {% set brandDescription = product.brandDescription.description %}
+        {% set metaDescription = product.description.metaDescription %}
+        {% set metaKeywords = product.description.metaKeywords %}
+    {% endif %}
+    {% if description == '' %}
+        {% set description = variant.description.metaDescription %}
+    {% endif %}
+    {% if description == '' %}
+        {% set description = product.description.metaDescription %}
+    {% endif %}
+    {% if pageTitle == '' %}
+        {% set pageTitle = product.description.pageTitle %}
+    {% endif %}
+    {% if brandDescription == '' %}
+        {% set brandDescription = product.brandDescription.description %}
+    {% endif %}
+    {% if metaDescription == '' %}
+        {% set metaDescription = product.description.metaDescription %}
+    {% endif %}
+    {% set features = [] %}
+    {% for vtf in variant.features %}
+        {% set features = features|merge({(vtf.featureGroup.name): (vtf.feature.name)}) %}
+    {% endfor %}
+{% endif %}
+
+{% block title %}{{ pageTitle }} | {{ parent() }}{% endblock %}
+
+{% block metatags %}
+    <meta name="description" content="{{ metaDescription }}">
+    <meta name="keywords" content="{{ metaKeywords }}">
+{% endblock %}
+
+{% block top_reviews %}{% endblock %}
+
+{% block admin_submenu %}
+    <a class="button button-small icon-grey mrs" data-icon-primary="icon-473" href="Javascript:history.go(-1);">Back</a>
+    <a class="button button-small icon-grey mrs" data-icon-primary="icon-278" href="{{ path('listing_products') }}">Products</a>
+    <a class="button button-small icon-grey mrs" data-icon-primary="icon-1122" href="{{ path('products_new') }}">New Product</a>
+    <a class="button button-small icon-grey mrs" data-icon-primary="icon-94" href="{{ path('products_edit', {'productId': product.id}) }}">Edit Product</a>
+    <a class="button button-small icon-grey mrs" data-icon-primary="icon-51" href="{{ path('products_clone', {'productId': product.id}) }}">Clone Product</a>
+    <a class="button button-small icon-red mrs" data-icon-primary="icon-851" href="{{ path('products_delete', {'productId': product.id}) }}">Delete Product</a>
+{% endblock %}
+
+{% block body %}
+    <script>
+        $(document).ready(function() {
+            $(".actionViewFullTechnicalSpecification").on("click", function() {
+                $(".tabs").tabs("option", "active", 1);
+            });
+        });
+    </script>
+    <section class="product">
+        <div itemscope itemtype="http://schema.org/Brand">
+            <meta itemprop="name" content = "{{ product.brand.description.header }}"/>
+            <meta itemprop="url" content = "{{ product.brand.url }}"/>
+            <meta itemprop="logo" content = "{{ asset(product.brand.description.logoImage.publicPath | apply_filter('logo_medium')) }}"/>
+            <meta itemprop="description" content = "{{ product.brand.description.metaDescription }}"/>
+        </div>
+        {% block product_block %}
+            {% block department_breadcrumb %}
+                <div class="widget-group mbs clearfix">
+                    <a class="fr button button-small icon-grey mrm mts" data-icon-primary="icon-473" href="{{ (product.department.department.url ? path('routing', {'url': product.department.department.url}) : path('homepage')) }}">Continue Shopping</a>
+                    <div class="widget widget-1-of-1">
+                        <ul class="breadcrumbs" itemprop="breadcrumb">
+                            <li style="z-index: {{ departments|length }};"><a href="{{ path('homepage') }}">Kitchen Appliances</a></li>
+                            {% for department in departments|reverse %}
+                                {% if department.level != 0  %}
+                                    <li style="z-index: {{ loop.revindex }};" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+                                        <a href="{{ path('routing', {'url': department.url}) }}" itemprop="url"><span itemprop="title">{{ department.description.menuTitle }}</span></a>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            {% endblock %}
+            {% block product_info %}
+                {% if features['Colour'] is defined %}
+                    {% set colour = features['Colour'] %}
+                {% endif %}
+                <div itemscope itemtype="http://schema.org/Product">
+                    <div class="widget-group clearfix product">
+                        <div class="widget widget-1-of-1">
+                            <div class="ui-widget">
+                                <section class="ui-widget-content ui-corner-all clearfix">
+                                    <div class="widget-group clearfix">
+                                        <div class="widget widget-1-of-3">
+                                            <div class="product-images pr">
+                                                {% if product_images | length > 0 %}
+                                                    <ul class="etalage">
+                                                        {% for image in product_images %}
+                                                            <li>
+                                                                <img class="etalage_thumb_image" src="{{ asset(image.publicPath | apply_filter('product_large')) }}" data-src="{{ asset(image.publicPath | apply_filter('product_large')) }}" alt="{{ product.description.header }}" />
+                                                                <img class="etalage_source_image" src="{{ asset(image.publicPath | apply_filter('product_large')) }}" alt="{{ product.description.header }}" />
+                                                            </li>
+                                                        {% endfor %}
+                                                    </ul>
+                                                {% endif %}
+                                                {% set hobDepartmentIds = [936, 937, 1120, 939, 940, 951, 952, 1123, 1124, 953, 1125, 948, 1126, 949, 950, 1127, 1056, 177, 66, 941, 942, 943, 944, 68, 1057, 1058, 67, 80, 92, 1170] %}
+                                                {% if product.cheaperAlternative %}
+                                                    {{ render_esi(controller('ShopIlluminationAdminBundle:Listing:cheaperAlternative', { 'productId': product.id })) }}
+                                                {% elseif product.department.department.id in hobDepartmentIds %}
+                                                    <div class="sash sash-tr sash-orange">30% OFF<br />PAN SETS</div>
+                                                {% endif %}
+                                                <div class="clear"></div>
+                                                {% if product.brand.id == 7 %}{# CDA #}
+                                                    <div class="sash sash-large sash-tl sash-red">10% OFF</div>
+                                                {% elseif product.brand.id == 59 %}{# Caple #}
+                                                    <div class="sash sash-large sash-tl sash-red">10% OFF</div>
+                                                {% endif %}
+                                            </div>
+                                            <p class="mtm colour-turquoise">+ Click images to enlarge</p>
+                                            <p class="pbn">
+                                                &lt; <a href="{{ path('routing', {'url': product.brand.url}) }}"">View All {{ product.brand.description.name }}</a><br />
+                                                &lt; <a href="{{ path('routing', {'url': product.department.department.url}) }}">View All {{ product.department.department.description.name }} Range</a><br />
+                                                {% set url = get_listing_url('brand_with_department', product.brand.id, product.department.id) %}
+                                                {% if not url %}
+                                                    &lt; <a href="{{ path('listing_department_brand', {'departmentId': product.department.id, 'brandId': product.brand.id}) }}">View All {{ product.brand.description.name }} {{ product.department.department.description.name }} Range</a>
+                                                {% else %}
+                                                    &lt; <a href="{{ path('routing', {'url': url}|merge(app.request.query.all)) }}">View All {{ product.brand.description.name }} {{ product.department.department.description.name }} Range</a>
+                                                {% endif %}
+                                            </p>
+                                        </div>
+                                        <div class="widget widget-1-of-2">
+                                            <h1 itemprop="name">{{ header ~ (((colour != '') and (colour != 'N/A')) ? ' - ' ~ colour : '') }}</h1>
+                                            {% if variant is null %}
+                                                {% set variant = product.variants[0] %}
+                                            {% endif %}
+                                            <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                                                <div class="price tal">
+                                                    {% if (variant.priceRange.low == variant.priceRange.high) and (variant.priceRange.low != variant.recommendedRetailPriceRange.low) and (variant.recommendedRetailPriceRange.low > 0) %}
+                                                        <span itemprop="price" class="price">{{ variant.priceRange.low|currency('GBP', true, true, '')|raw }}</span>
+                                                        <div class="clear"></div>
+                                                        <span itemprop="price" class="was-price">was <span class="strikethrough">{{ variant.recommendedRetailPriceRange.low|currency('GBP', false, true, '')|raw }}</span> save {{ (variant.recommendedRetailPriceRange.low - variant.priceRange.low)|currency('GBP', false, true, '')|raw }} ({{ (((variant.recommendedRetailPriceRange.low - variant.priceRange.low) / variant.recommendedRetailPriceRange.low) * 100)|number_format(0) }}%)</span>
+                                                    {% else %}
+                                                        <span itemprop="price" class="price">
+                                                            {% if variant.priceRange.low != variant.priceRange.high %}
+                                                                <span class="currency-prefix">from </span>
+                                                                <div class="clear"></div>
+                                                            {% endif %}
+                                                            {{ variant.priceRange.low|currency('GBP', true, true, '')|raw }}
+                                                        </span>
+                                                        <meta itemprop="priceCurrency" content="{{ variant.price.currencyCode | raw }}"/>
+                                                    {% endif %}
+                                                </div>
+                                                <div class="price tal">
+                                                    <span class="currency-tax">(inc. VAT)</span>
+                                                </div>
+                                            </div>
+                                            {% if product.variant.deliveryBand == 2 %}
+                                                <ul class="tick-list mbm">
+                                                    <li><span class="colour-grey"><strong>FREE Delivery</strong> to most UK areas</span></li>
+                                                </ul>
+                                            {% elseif (product.variant.deliveryBand == 3) or (product.variant.deliveryBand == 4) or (product.variant.deliveryBand == 5) %}
+                                                <ul class="tick-list mbm">
+                                                    <li><span class="colour-grey"><strong>FREE Kerbside Delivery</strong> to most UK areas</span></li>
+                                                </ul>
+                                            {% endif %}
+                                            <p class="summary pan">Product Code: <strong>{{ variant.productCode }}</strong></p>
+                                            <div id="purchasingLoading{{ variant.id }}" class="pas tac ui-helper-hidden "><img src="{{ asset('bundles/shopilluminationadmin/images/loaders/ajax-loader.gif') }}" height="20" border="0" alt="loading" /></div>
+                                            <div class="basket-product-info pbm" data-variantId="{{ variant.id }}">
+                                                {% include 'ShopIlluminationAdminBundle:Product:basketInfo.html.twig' with {'productId': product.id, 'variantId': variant.id} %}
+                                            </div>
+                                            {{ helpers.addToBasket(variant) }}
+                                            <img src="{{ asset('bundles/shopilluminationadmin/images/icons/small-cards.png') }}" class="mbs mts" border="0" alt="Cards we accept" />
+                                            {% if pan_offers %}
+                                                <div class="basket-message-success mtn mbm">
+                                                    <p>For each hob and Stellar pan set you buy together you get <strong class="colour-red">30%</strong> off the pans! Add a Stellar pan set to get the discount automatically applied in your basket.</p>
+                                                    <div class="widget-group clearfix pbm product">
+                                                        {% for pan_offer in pan_offers %}
+                                                            <div class="widget widget-1-of-2">
+                                                                <div class="widget-group">
+                                                                    <div class="widget widget-3-of-5">
+                                                                        <div class="pr">
+                                                                            <div class="product-image-container man pr">
+                                                                                <a href="{{ pan_offer.url != '' ? path('routing', {'url': pan_offer.url}) : '' }}">
+                                                                                    <img class="product-image" itemprop="image" src="{{ asset(pan_offer.images[0].publicPath | apply_filter('product_thumbnail')) }}" border="0" alt="{{ pan_offer.description.header|raw }}" width="100%" />
+                                                                                </a>
+                                                                                <div class="sash sash-small sash-tl sash-red">30% OFF</div>
+                                                                                <div class="small-basket-product-info" data-variantId="{{ pan_offer.variants[0].id }}">
+                                                                                    {% include 'ShopIlluminationAdminBundle:Product:smallBasketInfo.html.twig' with {'productId': pan_offer.id, 'variantId': pan_offer.variants[0].id} %}
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="widget widget-2-of-5">
+                                                                        <div class="tal pts">
+                                                                            <div class="tal lh100pc">
+                                                                                <a class="colour-grey-dark fs9 lh100pc" href="{{ path('routing', {'url': pan_offer.url}) }}">{{ pan_offer.description.header|raw }}</a>
+                                                                            </div>
+                                                                            <div class="tal">
+                                                                                <a href="{{ path('routing', {'url': pan_offer.url}) }}">
+                                                                                    {% set recommendedRetailPrice = pan_offer.priceRange.high %}
+                                                                                    {% set listPrice = recommendedRetailPrice - (recommendedRetailPrice * 0.3) %}
+                                                                                    <span itemprop="price" class="price-small">{{ listPrice|currency('GBP', true, true, '')|raw }}</span>
+                                                                                    <span itemprop="price" class="was-price-small">was <span class="strikethrough">{{ recommendedRetailPrice|currency('GBP', true, true, '')|raw }}</span></span>
+                                                                                </a>
+                                                                            </div>
+                                                                            <div class="tal ptm">
+                                                                                <div id="purchasingLoading{{ pan_offer.variants[0].id }}" class="fr ui-helper-hidden fr"><img src="{{ asset('bundles/shopilluminationadmin/images/loaders/ajax-loader.gif') }}" height="10" border="0" alt="loading" /></div>
+                                                                                <a href="Javascript:void(0);" class="colour-green actionQuickAddToBasket uppercase" data-quantity="1" data-product-id="{{ pan_offer.id }}" data-variant-id="{{ pan_offer.variants[0].id }}" data-basket-url="{{ path('basket_ajax_add_to_basket') }}"><strong>Buy &gt;&gt;</strong></a>
+                                                                                <div class="clear"></div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        {% endfor %}
+                                                    </div>
+                                                </div>
+                                            {% endif %}
+                                            <section>
+                                                <div class="tabs pbn">
+                                                    <ul>
+                                                        <li><a href="#overview">Overview</a></li>
+                                                        {% if features|length > 0 %}<li><a href="#specification">Specification</a></li>{% endif %}
+                                                        <li><a href="#delivery">Delivery</a></li>
+                                                        <li><a href="#security">Security</a></li>
+                                                        <li><a href="#whyBuyFromUs">Why buy?</a></li>
+                                                    </ul>
+                                                    <div id="overview">
+                                                        <section>
+                                                            {%  if '</p>' in description %}
+                                                                {{ description|raw }}
+                                                            {% else %}
+                                                                <p class="summary man" itemprop="description">{{ description|raw }}</p>
+                                                            {% endif %}
+                                                            {% if brandDescription != '' %}
+                                                                <h5 class="mtm">Manufacturers Description</h5>
+                                                                {{ brandDescription|raw }}
+                                                            {% endif %}
+                                                            {% if not product.accessory %}
+                                                                {% if guarantees|length > 0 %}
+                                                                    <div class="pbm">
+                                                                        <h5 class="mtm mbn">Manufacturers Guarantees</h5>
+                                                                        {% for guarantee in guarantees %}
+                                                                            <button type="button" class="fill mts button button-small icon-turquoise" data-icon-primary="icon-826"><strong>{{ guarantee.length.displayName }}:</strong> {{ guarantee.type.guaranteeType }}</button>
+                                                                        {% endfor %}
+                                                                    </div>
+                                                                {% endif %}
+                                                            {% endif %}
+                                                        </section>
+                                                    </div>
+                                                    {% if features|length > 0 %}
+                                                        <div id="specification">
+                                                            <section class="pbm">
+                                                                <table class="data-table">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>Feature</th>
+                                                                            <th></th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        {% for index, value in features %}
+                                                                            {% if value.featureGroup is defined %}
+                                                                                {% if value.feature.name != '*** NOT SET ***' %}
+                                                                                    <tr class="{{ cycle(['odd', 'even'], loop.index) }}">
+                                                                                        <td width="1" class="nowrap tar">{{ value.featureGroup.name }}</td>
+                                                                                        <td><strong>{{ value.feature.name }}</strong></td>
+                                                                                    </tr>
+                                                                                {% endif %}
+                                                                            {% else %}
+                                                                                {% if value != '*** NOT SET ***' %}
+                                                                                    <tr class="{{ cycle(['odd', 'even'], loop.index) }}">
+                                                                                        <td width="1" class="nowrap tar">{{ index }}</td>
+                                                                                        <td><strong>{{ value }}</strong></td>
+                                                                                    </tr>
+                                                                                {% endif %}
+                                                                            {% endif %}
+                                                                        {% endfor %}
+                                                                    </tbody>
+                                                                </table>
+                                                            </section>
+                                                        </div>
+                                                    {% endif %}
+                                                    <div id="delivery">
+                                                        <section>
+                                                            <h5>FAST Delivery</h5>
+                                                            <p>Earliest delivery from {{ delivery_from_date }}.</p>
+                                                            <h5>FREE Delivery</h5>
+                                                            <p>Delivery is FREE on most orders to the majority of the UK.</p>
+                                                            <h5>We Deliver Anywhere</h5>
+                                                            <p>We deliver nationwide across the UK and most of our products can also be delivered to Ireland and the Channel Islands.</p>
+                                                            <h5>DON'T Wait in all day!</h5>
+                                                            <p>We can deliver anywhere to suit you; to your work place, friend or neighbour, (not always wise on bulky items).</p>
+                                                            <h5>Delivery Instructions</h5>
+                                                            <p>You can add in your special delivery instructions within the check-out process.</p>
+                                                            <h5>Forward Order Now &amp; Save £££</h5>
+                                                            <p>If you're ordering large bulky items, but don't want a big delivery too soon, then we will store them in our secure warehouse for you. Simply order now at today's low prices and within our check-out process you can select a future week commencing date to suit you.</p>
+                                                            <p class="mtl small colour-grey"><strong>Note:</strong> Worktops are excluded from our free delivery and delivery is restricted to some areas.<br /><strong>Note:</strong> Estimated dates are subject to availability, selected delivery options and locations.</p>
+                                                        </section>
+                                                    </div>
+                                                    <div id="security">
+                                                        <section>
+                                                            <h5>Our website is 100% secure</h5>
+                                                            <p>Our website has undertaken a number of strict independent tests to ensure it is fully secure. We have a Trusted Shop seal to verify this. You can view the Trusted Shop seal at the bottom right of this page.</p>
+                                                            <h5>We have a choice of payment options</h5>
+                                                            <p>You can use a number of payment options to buy from our website. These include all forms of credit or debit card and PayPal.</p>
+                                                            <h5>We offer a 5 star service you can trust</h5>
+                                                            <p>We take pride in offering a high level of customer service. This can be evidenced in obtaining a 5 out of 5 feedback rating from over 1,000 independent customer reviews. These are all customers who have used our service and have been asked independently by Trustpilot to provide feedback on our service. You can see a selection of our feedback in the reviews section.</p>
+                                                        </section>
+                                                    </div>
+                                                    <div id="whyBuyFromUs">
+                                                        <section>
+                                                            <ul class="pll pbm">
+                                                                <li>Family business with committed staff that care.</li>
+                                                                <li>Staff have monthly manufacturers product training to help you.</li>
+                                                                <li>We are NOT your average e-seller. We always go the extra mile.</li>
+                                                                <li>Guaranteed best all-round prices online.</li>
+                                                                <li>Our 5 star customer reviews say it all...</li>
+                                                            </ul>
+                                                            <p>
+                                                                <strong><a target="_blank" href="http://www.trustpilot.co.uk/review/www.kitchenappliancecentre.co.uk">See our Trustpilot reviews</a></strong><br />
+                                                                <strong><a target="_blank" href="http://www.amazon.co.uk/gp/aag/details/ref=aag_m_ss?ie=UTF8&asin=B002OHTQJ8&isAmazonFulfilled=0&isCBA=&marketplaceID=A1F83G8C2ARO7P&seller=A1VS6OP0OJ7K3J#aag_legalInfo">See our Amazon reviews</a></strong><br />
+                                                                <strong><a target="_blank" href="http://feedback.ebay.co.uk/ws/eBayISAPI.dll?ViewFeedback2&userid=kitchenappliancecentre&ftab=AllFeedback">See our eBay reviews</a></strong>
+                                                            </p>
+                                                        </section>
+                                                    </div>
+                                                </div>
+                                            </section>
+                                        </div>
+                                        <div class="widget widget-1-of-6">
+                                            <img width="100%" src="{{ asset(product.brand.description.logoImage.publicPath | apply_filter('logo_large')) }}" alt="{{ product.brand.description.name }}" />
+                                            <div class="ksp">
+                                                <span class="fr ui-button-icon-primary ui-icon-small icon-small-turquoise icon-small-1368"></span>
+                                                <h4>Trustpilot</h4>
+                                                <p>Rated 5 out of 5 by our customers!</p>
+                                            </div>
+                                            <div class="ksp">
+                                                <span class="fr ui-button-icon-primary ui-icon-small icon-small-turquoise icon-small-874"></span>
+                                                <h4>Free Delivery</h4>
+                                                <p>To most UK areas on selected items</p>
+                                            </div>
+                                            <div class="ksp">
+                                                <span class="fr ui-button-icon-primary ui-icon-small icon-small-turquoise icon-small-999"></span>
+                                                <h4>Low Prices</h4>
+                                                <p>Our prices are already discounted for you!</p>
+                                            </div>
+                                            <div class="ksp">
+                                                <span class="fr ui-button-icon-primary ui-icon-small icon-small-turquoise icon-small-1158"></span>
+                                                <h4>Easy Returns</h4>
+                                                <p>Online shopping made simple</p>
+                                            </div>
+                                            <div class="ksp">
+                                                <span class="fr ui-button-icon-primary ui-icon-small icon-small-turquoise icon-small-518"></span>
+                                                <h4>Save More</h4>
+                                                <p>Buy more items and save even more</p>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                    </div>
+                                    {% if related_products|length > 0 %}
+                                        {% include 'ShopIlluminationAdminBundle:Product:relatedProducts.html.twig' with {'products': related_products} %}
+                                    {% endif %}
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endblock %}
+        {% endblock %}
+    </section>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var variants = JSON.parse('{{ variants|json_encode|raw }}');
+            var currentVariant = null;
+
+            // Get the current variant
+            for(var i=0; i<variants.length; i++) {
+                if(variants[i].variantId == '{{ variant.id }}') {
+                    currentVariant = variants[i];
+                }
+            }
+
+            $(".variant-filter").change(function() {
+                var possibleVariants = variants.slice(0);
+
+                for (var index = 0; index<possibleVariants.length; index++)
+                {
+                    var variant = possibleVariants[index];
+                    if(variant)
+                    {
+                        for (var featureGroup in variant.features) {
+                            var feature = variant.features[featureGroup];
+
+                            // Attempt to find filter field
+                            var $input = $('.variant-filter[data-group="'+featureGroup+'"]');
+                            if($input && $input.length > 0) {
+                                var value = $input.find(':selected').val();
+                                if (value != feature) {
+                                    delete possibleVariants[index];
+                                }
+                            }
+                        }
+                    }
+                }
+
+                // Remove any empty elements from array
+                var undef;
+                var temp = [];
+                for (var i=0; i < possibleVariants.length; i++) {
+                    if ( possibleVariants[i] !== undef) {
+                        temp.push(possibleVariants[i])
+                    }
+                }
+                possibleVariants = temp;
+
+                $(".variant-filters .form-element").removeClass("error");
+
+                if(possibleVariants.length === 1) {
+                    if(currentVariant !== null && currentVariant.variantId != possibleVariants[0].variantId) {
+                        window.location = routes['routing'].replace('-1', possibleVariants[0].url);
+                    }
+                } else if(possibleVariants.length > 1) {
+                    $.each($('.variant-filter'), function(i, filter) {
+                        var variantExists = false;
+                        $.each(possibleVariants, function(j, variant) {
+                            var group = $(filter).data("group");
+                            if(variant.features[group] == $(this).val()) {
+                                variantExists = true;
+                            }
+                        });
+
+                        if(variantExists) {
+                            $(filter).parent().parent().parent().addClass('error');
+                        }
+                    });
+                } else {
+                    $(this).parent().parent().parent().addClass('error');
+                }
+
+            });
+        });
+    </script>
+{% endblock %}

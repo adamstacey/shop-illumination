@@ -5,6 +5,11 @@ use Symfony\Component\Config\Loader\LoaderInterface;
 
 class AppKernel extends Kernel
 {
+	public function getCharset()
+    {
+    	return 'utf-8';
+    }
+    
     public function registerBundles()
     {
         $bundles = array(
@@ -16,7 +21,22 @@ class AppKernel extends Kernel
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
-            new ShopIllumination\DemoBundle\ShopIlluminationDemoBundle(),
+            new JMS\AopBundle\JMSAopBundle(),
+            new JMS\DiExtraBundle\JMSDiExtraBundle($this),
+            new JMS\SerializerBundle\JMSSerializerBundle($this),
+            new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
+            new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
+            new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
+            new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
+            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+            new Nelmio\SolariumBundle\NelmioSolariumBundle(),
+            new Craue\FormFlowBundle\CraueFormFlowBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
+            new Avalanche\Bundle\ImagineBundle\AvalancheImagineBundle(),
+            new Gregwar\FormBundle\GregwarFormBundle(),
+            new ShopIllumination\AdminBundle\ShopIlluminationAdminBundle(),
+            new ShopIllumination\UserBundle\ShopIlluminationUserBundle(),
+            new Trsteel\CkeditorBundle\TrsteelCkeditorBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

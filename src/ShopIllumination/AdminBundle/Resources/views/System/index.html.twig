@@ -1,0 +1,20 @@
+{% extends 'ShopIlluminationAdminBundle::base.html.twig' %}
+{% block title %}Dashboard {{ parent() }}{% endblock %}
+{% block header %}
+    <header>
+        <span class="mrm ui-button-icon-primary ui-icon icon-black icon-146"></span>
+        <h1>{{ company_name }} Dashboard</h1>
+    </header>
+{% endblock %}
+{% block body %}
+    <div class="widget-group clearfix">
+        <div class="widget widget-1-of-1">
+            <div class="ui-widget">
+                <section class="ui-widget-content ui-corner-all">
+                    <p>Your dashboard will go here.</p>
+                    <p class="man">While you are waiting for things to be integrated from the existing framework, why not check out the demo area, which gives you a feel what things will lool like: <a href="{{ path('demo_index') }}">Demo Area</a></p>
+                </section>
+            </div>
+        </div>
+	</div>
+{% endblock %}

@@ -1,0 +1,993 @@
+@import "compass";
+@import "../includes/base";
+
+.product-container {
+    padding: $spacingMedium;
+    margin: 0 $spacingLarge $spacingLarge 0;
+
+    border: 1px solid $colourGreyExtraLight;
+    @include boxShadow($colourGreyExtraLight, 0, 0, $spacingMedium);
+}
+
+.product h1 {
+    padding: 0;
+    margin: 0 0 $spacingMedium 0;
+
+    @include fontSize($fontSizeExtraLarge);
+}
+
+.product a {
+    text-decoration: none !important;
+}
+
+.product h4, .product h4 a, .product-title {
+    @include fontSize(13);
+    line-height: 30px;
+    padding: 0;
+    color: $colourGreyDark;
+    font-weight: bold;
+    margin: 0;
+}
+
+.product h5 {
+    padding: 0 $spacingMedium;
+    line-height: 30px;
+    @include fontSize(12);
+    @include highlightedVerticalGradientGreyLight;
+    font-weight: bold;
+    color: $colourBlack;
+    @include textShadow($colourWhite, 0, 1px);
+    @include equalBorderRadius($radiusSize);
+}
+
+.product ul {
+    margin: 0 0 10px 20px;
+}
+
+.product ul li {
+    @include fontSize($fontSizeExtraSmall);
+    line-height: 120%;
+}
+
+.product img.brand-logo-image {
+    margin: 0 0 0 $spacingMedium;
+}
+
+.product img.small-brand-logo-image {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.product .price,
+.product .price-small,
+.product .price-smaller {
+    color: $colourRed !important;
+}
+
+.product .price-small,
+.product .price-smaller {
+    width: 100%;
+
+    display: block;
+    text-align: left;
+}
+
+.product .price-small {
+    height: 25px;
+}
+
+.product .price-smaller {
+    height: 18px;
+}
+
+.product .price-tax {
+    width: 100%;
+    height: 10px;
+    padding: 0 0 2px 0;
+
+    display: block;
+}
+
+.product .price a,
+.product .price-small a,
+.product .price-smaller a {
+    color: $colourRed !important;
+}
+
+.product .price span,
+.product .price-small span,
+.product .price-smaller span {
+    display: inline-block;
+    vertical-align: top;
+    line-height: 100%;
+}
+
+.product .price .currency-prefix {
+    @include fontSize($fontSizeLarge);
+}
+
+.product .price-small .currency-prefix {
+    @include fontSize(11);
+}
+
+.product .price-smaller .currency-prefix {
+    @include fontSize(9);
+}
+
+.product .price .currency-sign,
+.product .price-small .currency-sign {
+    padding-top: $spacingExtraSmall;
+
+    font-family: $impactFontFamily;
+}
+
+.product .price .currency-sign {
+  @include fontSize($fontSizeExtraExtraLarge);
+}
+
+.product .price-small .currency-sign {
+  @include fontSize(14);
+}
+
+.product .price-smaller .currency-sign {
+    @include fontSize(11);
+}
+
+.product .price .currency-integer,
+.product .price-small .currency-integer {
+    font-family: $impactFontFamily;
+}
+
+.product .price .currency-integer {
+  @include fontSize(32);
+}
+
+.product .price-small .currency-integer {
+  @include fontSize(25);
+}
+
+.product .price-smaller .currency-integer {
+    @include fontSize(18);
+}
+
+.product .price .currency-decimal,
+.product .price-small .currency-decimal {
+    padding-top: $spacingExtraSmall;
+
+    font-family: $impactFontFamily;
+}
+
+.product .price .currency-decimal {
+  @include fontSize($fontSizeExtraLarge);
+}
+
+.product .price-small .currency-decimal {
+  @include fontSize(12);
+}
+
+.product .price-smaller .currency-decimal {
+    @include fontSize(9);
+}
+
+.product .price .currency-tax,
+.product .price-small .currency-tax,
+.product .price-tax .currency-tax {
+    color: $colourGrey;
+    @include fontSize($fontSizeExtraExtraSmall);
+}
+
+table.data-table .price .currency-prefix {
+    @include fontSize($fontSizeMedium);
+}
+
+table.data-table .price .currency-sign {
+    @include fontSize(20);
+}
+
+table.data-table .price .currency-integer {
+    @include fontSize(28);
+}
+
+table.data-table .price .currency-decimal {
+    @include fontSize($fontSizeLarge);
+}
+
+table.data-table .price .currency-tax {
+    @include fontSize($fontSizeExtraExtraSmall);
+}
+
+.product .was-price-small {
+    width: 100%;
+    height: 10px;
+    padding: 0 0 2px 0;
+
+    display: block;
+
+    line-height: 10px;
+    @include fontSize(10);
+    color: $colourRed !important;
+}
+
+.product .was-price-small span {
+    line-height: 10px;
+    @include fontSize(10);
+    color: $colourRed !important;
+}
+
+.product-listing-name {
+    height: 28px;
+    overflow: hidden;
+}
+
+.product-listing-name,
+.product-listing-name a {
+    @include fontSize($fontSizeSmall);
+    color: $colourGrey;
+    line-height: 14px;
+}
+
+.product-listing-bullets {
+    margin: 2px 0 0 0;
+    height: 48px;
+    overflow: hidden;
+    padding: 3px;
+
+    background-color: $colourGreyExtraExtraLight;
+    @include equalBorderRadius($radiusSize);
+}
+
+.product-listing-bullets ul {
+    margin: 0 0 0 $spacingLarge;
+    @include fontSize($fontSizeExtraSmall);
+    color: $colourGrey;
+    line-height: 12px;
+}
+
+.product-listing-bullets ul,
+.product-listing-bullets ul li {
+    @include fontSize($fontSizeExtraSmall);
+    color: $colourGrey;
+    line-height: 12px;
+}
+
+.product-listing-colour {
+    @include fontSize($fontSizeSmall);
+    color: $primaryColour;
+    font-weight: bold;
+    line-height: 14px;
+    height: 14px;
+    overflow: hidden;
+}
+
+.product .logo {
+    height: 50px;
+    margin: 0 $spacingMedium $spacingMedium 0;
+
+    @include boxGlow($colourGreyLight, $spacingMedium, 0, 1);
+}
+
+.product .summary {
+    @include fontSize(13);
+    color: $textColour;
+    line-height: 150%;
+}
+
+.product-back-button {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+.product-information {
+    margin: 0 $spacingLarge 0 0;
+    padding: $spacingSmall 0 0 0;
+
+    float: left;
+}
+
+.product-information ul {
+    margin: 0 0 0 $spacingMedium;
+    padding: 0;
+}
+
+.product-information ul li {
+    padding: 0;
+    margin: 0;
+
+    list-style: none;
+    line-height: 18px;
+    @include fontSize($fontSizeMedium);
+    color: $colourBlack;
+}
+
+.product-options {
+    float: right;
+    padding: $spacingSmall 0 0 0;
+}
+
+.product p,
+.product-description p {
+    padding: 0 0 $spacingMedium 0;
+    margin: 0;
+
+    line-height: 120%;
+    @include fontSize($fontSizeExtraSmall);
+}
+
+.product .product-description li {
+    color: $colourGrey;
+    line-height: 100%;
+}
+
+.buy-now {
+    text-align: right;
+}
+
+.product .product-description ul {
+    margin-bottom: $spacingMedium;
+}
+
+.product .features-link {
+    padding: $spacingSmall $spacingMedium;
+    margin: $spacingMedium 0;
+
+    @include boxShadow($colourBlack, 0, 0, 2px, 0, 0.3);
+    line-height: 100%;
+    @include verticalGradientGreyDark;
+    color: $colourWhite;
+    @include textShadow($colourBlack, 0, 1px);
+    cursor: pointer;
+    border: 1px solid $colourGrey;
+}
+
+.product .features {
+    padding: 0 0 10px 0;
+    display: none;
+}
+
+.product dt {
+    width: 99px;
+    margin: 0 0 3px 0;
+    padding: $spacingSmall;
+
+    float: left;
+
+    @include fontSize($fontSizeSmall);
+    line-height: 100%;
+    border-left: 1px solid $colourGreyLight;
+    border-top: 1px solid $colourGreyLight;
+    border-bottom: 1px solid $colourGreyLight;
+    text-align: right;
+}
+
+.product dt.even {
+    background: $colourGreyExtraExtraLight;
+}
+
+.product dt.odd {
+    background: $colourGreyExtraLight;
+}
+
+.product dd {
+    width: 136px;
+    padding: $spacingSmall;
+    margin: 0 0 3px 0;
+
+    float: left;
+    line-height: 100%;
+    @include fontSize($fontSizeSmall);
+    border-right: 1px solid $colourGreyLight;
+    border-top: 1px solid $colourGreyLight;
+    border-bottom: 1px solid $colourGreyLight;
+}
+
+.product .product-compare {
+    margin: $spacingMedium 0;
+}
+
+.product .product-short-description {
+    padding: $spacingMedium 0 0 0;
+}
+
+.product .product-short-description p {
+    padding: 0;
+    margin: 0 !important;
+    width: 180px;
+    height: 24px;
+
+    line-height: 12px !important;
+    @include fontSize($fontSizeSmall);
+    overflow: hidden;
+}
+
+.product-header {
+    padding-left: $spacingExtraLarge;
+}
+
+.product ul.breadcrumbs li {
+    padding: 4px $spacingSmall 3px 13px;
+}
+
+.product-listing {
+    margin: 0 auto;
+
+    position: relative;
+
+    border: 3px solid $colourGreyLight;
+    @include boxGlow($colourGrey, $spacingMedium, 0, 1);
+}
+
+.product-listing img {
+    display: block;
+}
+
+.product-listing .name {
+    padding: 0 $spacingSmall;
+
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    line-height: 150%;
+    @include alphaBackground($colourBlack, 0.5);
+    color: $colourWhite;
+    text-align: center;
+    @include selectNone;
+}
+
+.product-listing .new {
+    height: 28px;
+    width: 28px;
+
+    position: absolute;
+    right: -8px;
+    top: -8px;
+
+    display: block;
+
+    @include highlightedVerticalGradientDarkRed;
+    @include boxGlow($colourRed, 5px);
+    border: 1px solid $colourWhite;
+    @include fontSize($fontSizeExtraSmall);
+    @include equalBorderRadius(15px);
+    line-height: 28px;
+    color: $colourWhite;
+    text-align: center;
+    @include selectNone;
+}
+
+.listing-top-item {
+  height: 28px;
+  width: 28px;
+
+  position: absolute;
+  left: -4px;
+  top: -4px;
+
+  display: block;
+
+  @include highlightedVerticalGradientDarkRed;
+  @include boxGlow($colourRed, 5px);
+  border: 1px solid $colourWhite;
+  @include fontSize($fontSizeMedium);
+  @include equalBorderRadius(15px);
+  line-height: 28px;
+  color: $colourWhite;
+  text-align: center;
+  @include selectNone;
+}
+
+.product-sorting-container, .product-filtering-container {
+    padding: $spacingSmall 0;
+
+    @include verticalGradientWhite;
+}
+
+.product-sorting-container-top, .product-filtering-container {
+    margin: -#{$spacingMedium} -#{$spacingMedium} $spacingMedium -#{$spacingMedium};
+
+    border-bottom: 2px solid $colourGrey;
+    border-radius: 4px 4px 0 0;
+}
+
+.product-sorting-container-bottom {
+    margin: $spacingMedium -#{$spacingMedium} -#{$spacingMedium} -#{$spacingMedium};
+
+    border-top: 2px solid $colourGrey;
+    border-radius: 0 0 4px 4px;
+}
+
+.product-sorting-container > div > span, .product-filtering-container > div > span {
+    padding: 0 $spacingSmall 0 0;
+
+    line-height: 40px;
+    @include fontSize($fontSizeSmall);
+}
+
+.product-sorting-container .selector {
+    margin: 0 $spacingSmall 0 0;
+}
+
+.product-sorting-container .selector span {
+    @include fontSize($fontSizeSmall);
+}
+
+.product-sorting-container .ui-button {
+    padding: 3px 0;
+    margin: 0 0 -4px -4px;
+}
+
+.product-sorting-container .ui-button span {
+    padding: 0 8px;
+}
+
+.product-sorting-container .ui-button .ui-icon {
+    padding: 0;
+}
+
+.filters .ui-widget header h2 {
+    letter-spacing: 0;
+    @include fontSize(13);
+    font-family: $primaryFontFamily;
+}
+
+.filter-header-buttons-container {
+    position: absolute;
+    top: 3px;
+    right: 3px;
+}
+
+.filter-header-buttons-container .ui-button {
+    padding: 0 2px;
+}
+
+.filter,
+.price-range-filter {
+    padding: 0;
+
+    background: $colourGreyExtraLight;
+    border-radius: 0 0 4px 4px;
+}
+
+.price-range-filter {
+    padding: $spacingSmall $spacingLarge;
+}
+
+.range-slider-values {
+    text-align: center;
+}
+
+.range-slider-values input {
+    width: 60px;
+    text-align: center;
+}
+
+.price-range {
+    margin: $spacingSmall 0 $spacingSmall 0;
+}
+
+.price-range .ui-slider-range {
+    padding: 0;
+}
+
+.filter ul li a.selected-filter {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.filter label {
+    line-height: 18px;
+}
+
+.filter ul {
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+.filter > ul {
+    padding: 0 0 $spacingSmall 0;
+}
+
+.filter ul li {
+    padding: $spacingExtraSmall $spacingSmall $spacingExtraSmall 28px;
+    margin: 0;
+
+    display: block;
+
+    list-style: none;
+    background-colour: $colourGreyExtraLight;
+    border-bottom: 1px solid $colourGreyLight;
+    color: $colourBlack;
+    position: relative;
+}
+
+.jstree a {
+    font-size: 11px;
+    line-height: 18px;
+}
+
+.jstree li,
+.jstree ins {
+    background-image: url("#{$pluginsPath}/jstree/resources/images/jstree_d.png");
+    background-repeat: no-repeat;
+    background-color: transparent;
+    background-size: 108px 18px;
+}
+
+.jstree li {
+    background-position: -90px 0;
+    background-repeat: repeat-y;
+}
+
+.jstree .jstree-open > ins {
+    background-position: -36px 0;
+}
+
+.jstree .jstree-closed > ins {
+    background-position: -18px 0;
+}
+
+.jstree .jstree-leaf > ins {
+    background-position: 0 0;
+}
+
+.jstree .jstree-no-dots li {
+    background-position: -108px 0;
+}
+
+.jstree .jstree-no-dots .jstree-open > ins {
+    background-position: -72px 0;
+}
+
+.jstree .jstree-no-dots .jstree-closed > ins {
+    background-position: -54px 0;
+}
+
+.jstree li,
+.jstree ins {
+    _background-image: url("#{$pluginsPath}/jstree/resources/images/jstree_d.gif");
+}
+
+.jstree .jstree-open ins {
+    _background-position: -36px 0;
+}
+
+.jstree .jstree-closed ins {
+    _background-position: -18px 0;
+}
+
+.jstree .jstree-leaf ins {
+    _background-position: 0 0;
+}
+
+.jstree a > ins {
+    display: none;
+}
+
+@media
+screen and (-webkit-min-device-pixel-ratio: 1.25),
+screen and (-webkit-min-device-pixel-ratio: 1.3),
+screen and (-webkit-min-device-pixel-ratio: 1.5),
+screen and (-webkit-min-device-pixel-ratio: 2),
+screen and (min--moz-device-pixel-ratio: 1.25),
+screen and (min--moz-device-pixel-ratio: 1.3),
+screen and (min--moz-device-pixel-ratio: 1.5),
+screen and (min--moz-device-pixel-ratio: 2),
+screen and (-o-min-device-pixel-ratio: 1.25/1),
+screen and (-o-min-device-pixel-ratio: 1.3/1),
+screen and (-o-min-device-pixel-ratio: 1.5/1),
+screen and (-o-min-device-pixel-ratio: 2/1),
+screen and (min-device-pixel-ratio: 1.25),
+screen and (min-device-pixel-ratio: 1.3),
+screen and (min-device-pixel-ratio: 1.5),
+screen and (min-device-pixel-ratio: 2),
+screen and (min-resolution: 120dpi),
+screen and (min-resolution: 124.8dpi),
+screen and (min-resolution: 144dpi),
+screen and (min-resolution: 192dpi),
+screen and (min-resolution: 1.25dppx),
+screen and (min-resolution: 1.3dppx),
+screen and (min-resolution: 1.5dppx),
+screen and (min-resolution: 2dppx) {
+    .jstree li,
+    .jstree ins {
+        background-image:url("#{$pluginsPath}/jstree/resources/images/jstree_d@2x.png");
+    }
+}
+
+.department-filter ul {
+    padding: 0 0 0 18px !important;
+}
+
+.department-filter > ul {
+    padding: $spacingMedium $spacingSmall !important;
+}
+
+.department-filter ul li {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+
+    background-color: transparent;
+    border: 0;
+}
+
+.department-filter > ul > li {
+    margin: 0;
+}
+
+.department-filter ul li a {
+    border: 0 none;
+    @include ellipsis;
+    text-decoration: none;
+}
+
+.department-filter ul li a:hover {
+    text-decoration: underline;
+}
+
+.department-filter ul li ins {
+    width: 18px;
+    height: 18px;
+
+    float: left;
+    overflow: hidden;
+
+    background-repeat: no-repeat;
+    background-size: 108px 18px;
+    cursor: pointer;
+}
+
+.filter ul li .checker {
+    position: absolute;
+    top: $spacingExtraSmall;
+    left: $spacingSmall;
+}
+
+.filter ul li.filter-sub-department {
+    padding: $spacingExtraSmall $spacingSmall $spacingExtraSmall 60px !important;
+}
+
+.filter ul li.filter-sub-department .checker {
+    left: 32px;
+}
+
+.filter ul li.filter-feature-group {
+    padding: $spacingSmall 26px $spacingSmall $spacingSmall !important;
+
+    position: relative;
+
+    border-bottom: 1px solid $colourGreyLight !important;
+    cursor: pointer;
+    color: $colourGreyDark;
+    @include verticalGradientWhite;
+}
+
+.filter ul li.filter-feature-group .ui-icon {
+    position: absolute;
+    top: 4px;
+    right: $spacingSmall;
+}
+
+.filter ul li label {
+    @include fontSize($fontSizeExtraSmall);
+    cursor: pointer;
+}
+
+.filter ul li label a {
+    color: $colourBlack;
+    cursor: pointer;
+}
+
+.filter ul li.filter-sub-department label {
+    @include fontSize($fontSizeSmall);
+}
+
+.filter ul li .checker {
+    margin: 0 $spacingSmall 0 0 !important;
+}
+
+.filter ul li span.fr {
+    width: 30px;
+
+    line-height: 20px;
+    @include fontSize($fontSizeMedium);
+    display: block;
+    text-align: right;
+    color: $colourGrey;
+}
+
+.add-to-basket {
+    width: 136px;
+    height: 38px;
+    margin: 0;
+
+    display: block;
+    position: relative;
+}
+
+.add-to-basket input.quantity {
+    width: 40px;
+    height: 38px;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    text-align: center;
+    @include borderRadius($radiusSize, 0, 0, $radiusSize);
+}
+
+.add-to-basket .buy {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.add-to-basket .increase-quantity,
+.add-to-basket .decrease-quantity {
+    position: absolute;
+    left: 40px;
+}
+
+.add-to-basket .increase-quantity .ui-button-text,
+.add-to-basket .decrease-quantity .ui-button-text {
+    width: 10px;
+    height: 12px;
+    padding: 0 $spacingExtraSmall;
+
+    display: block;
+
+    line-height: 12px;
+    text-align: center;
+}
+
+.add-to-basket .increase-quantity {
+    top: 1px;
+
+    @include borderRadius(0, $radiusSize, 0, 0);
+}
+
+.add-to-basket .decrease-quantity {
+    bottom: 1px;
+
+    @include borderRadius(0, 0, $radiusSize, 0);
+}
+
+.add-to-basket .buy .ui-button-text {
+    padding: 0 $spacingSmall;
+}
+
+.product td .form-helper {
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+}
+
+.product td p {
+    line-height: 150%;
+    margin: 0;
+}
+
+.ui-widget-content p {
+    line-height: 150%;
+}
+
+.product-image-container {
+    padding: $spacingMedium;
+    margin: 0 $spacingMedium 0 0;
+
+    background: $colourWhite;
+    @include boxShadow($colourGreyMedium, 0, 0, $spacingMedium);
+}
+
+.product .border-bottom-separator {
+    border-bottom: 1px solid $colourGreyExtraLight;
+    @include noBoxShadow;
+}
+
+.product-listing-header {
+    @include verticalGradientWhiteReversed;
+}
+
+.product-listing-header h1 {
+    padding: $spacingMedium;
+    margin: 0 -#{$spacingMedium} $spacingMedium -#{$spacingMedium};
+
+    float: left;
+
+    color: $colourWhite;
+    @include alphaBackground($colourGreyDark, 0.8);
+    font-family: $primaryFontFamily;
+    @include fontSize($fontSizeExtraExtraExtraLarge);
+    @include textShadow($colourBlack, 0, 1px);
+    font-weight: normal;
+}
+
+.product-listing-header p {
+    padding: 0 0 $spacingMedium 0;
+    margin: 0;
+
+    @include fontSize($fontSizeSmall);
+    line-height: 16px;
+}
+
+.product-cheaper-alternative {
+    position: absolute;
+    bottom: 5px;
+    right: -7px;
+}
+
+.product-images .product-cheaper-alternative {
+    top: 5px;
+}
+
+.product-cheaper-alternative a {
+    padding: 3px;
+
+    display: block;
+    color: $colourWhite;
+    text-align: center;
+    @include fontSize(9);
+    line-height: 10px;
+    @include highlightedVerticalGradientOrange;
+    @include boxGlow($colourGreyDark, 3px);
+    @include equalBorderRadius($radiusSize);
+}
+
+.product-cheaper-alternative a:hover {
+    @include highlightedVerticalGradientOrangeReversed;
+}
+
+.product-cheaper-alternative .price-small {
+    height: auto !important;
+}
+
+.product-cheaper-alternative .price-small span.currency-sign,
+.product-cheaper-alternative .price-small span.currency-integer,
+.product-cheaper-alternative .price-small span.currency-decimal {
+    color: $colourWhite;
+    @include textShadow($colourOrange, 0, 1px);
+    font-family: $primaryFontFamily;
+}
+
+.product-cheaper-alternative .price-small span.currency-sign {
+    @include fontSize(10);
+    line-height: 10px;
+}
+
+.product-cheaper-alternative .price-small span.currency-integer {
+    @include fontSize(16);
+    font-weight: bold;
+    line-height: 18px;
+}
+
+.product-cheaper-alternative .price-small span.currency-decimal {
+    @include fontSize(9);
+    line-height: 9px;
+}
+
+.summary-specification li {
+    margin: 0 0 0 20px !important;
+    font-size: 12px !important;
+    font-size: 1.2rem !important;
+    line-height: 150% !important;
+}
+
+.tick-list,
+.tick-list li {
+    list-style: none;
+}
+
+.tick-list li {
+    padding: 0 0 0 26px;
+    background-repeat: no-repeat;
+    background-size: 16px 12px;
+    background-image: url("#{$cssPath}/resources/images/icons/green-tick.png");
+    line-height: 16px;
+}

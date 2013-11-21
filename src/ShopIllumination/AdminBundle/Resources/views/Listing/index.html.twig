@@ -1,0 +1,437 @@
+{% extends 'ShopIlluminationAdminBundle::base.html.twig' %}
+
+{% if department is not null and brand is null %}
+    {% set title = department.description.pageTitle %}
+{% elseif department is null and brand is not null %}
+    {% set title = brand.description.pageTitle %}
+{% elseif department is not null and brand is not null %}
+    {% set title = department.description.pageTitle ~ ' | ' ~ brand.description.pageTitle %}
+{% else %}
+    {% set title = 'Products' %}
+{% endif %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block metatags %}
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="-1">
+    <meta name="description" content="{{ department.metaDescription }}">
+    <meta name="keywords" content="{{ department.metaKeywords }}">
+    <meta name="fragment" content="!">
+{% endblock %}
+
+{% block admin_submenu %}
+    <a class="button button-small icon-grey mrs" data-icon-primary="icon-278" href="{{ path('listing_products') }}">Products</a>
+    <a class="button button-small icon-grey mrs" data-icon-primary="icon-1122" href="{{ path('products_new') }}">New Product</a>
+    <a class="button button-small icon-grey mrs" data-icon-primary="icon-1103" href="{{ path('products_import_prices') }}">Import Prices</a>
+    <a class="button button-small icon-grey mrs" data-icon-primary="icon-1370" href="{{ path('admin_brands') }}">Brands</a>
+    <a class="button button-small icon-grey mrs" data-icon-primary="icon-1122" href="{{ path('admin_brands_add') }}">New Brand</a>
+    <a class="button button-small icon-grey mrs" data-icon-primary="icon-399" href="{{ path('departments_index') }}">Departments</a>
+    <a class="button button-small icon-grey mrs" data-icon-primary="icon-1122" href="{{ path('departments_new') }}">New Department</a>
+{% endblock %}
+
+{% block header %}
+    <div class="widget-group clearfix mbm">
+        <div class="widget widget-7-of-8">
+            <ul class="breadcrumbs">
+                <li style="z-index: {{ department.parents|length > 0 ? department.parents|length + 1 : "99" }};" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a itemprop="url" href="{{ path('homepage') }}"><span itemprop="title">Kitchen Appliances</span></a></li>
+                {% for parent in department.parents %}
+                    {% if parent.parent != null and parent.level != 0  %}
+                        {% if brand %}
+                            <li style="z-index: {{ loop.revindex + 1 }};" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+                            {% set url = get_listing_url('brand_with_department', brand.id, parent.id) %}
+                            {% if not url%}
+                                <a href="{{ path('listing_department_brand', {'departmentId': department.id, 'brandId': brandId}|merge(app.request.query.all)) }}" itemprop="url"><span itemprop="title">{{ department.description.menuTitle }}</span></a>
+                            {% else %}
+                                <a href="{{ path('routing', {'url': url}|merge(app.request.query.all)) }}" itemprop="url"><span itemprop="title">{{ department.description.menuTitle }}</span></a>
+                            {% endif %}
+                            </li>
+                        {% else %}
+                            <li style="z-index: {{ loop.revindex + 1 }};" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+                                <a href="{{ parent.url != '' ? path('routing', {'url': parent.url}) : '404' }}" itemprop="url"><span itemprop="title">{{ parent.description.menuTitle }}</span></a>
+                            </li>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+                <li style="z-index: 1;" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span itemprop="title">{{ brand ? brand.description.header ~ " " : "" }}{{ department.description.menuTitle }}</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    {% if department is not null and brand is null and department.description.description %}
+        {% set overview = department.description.description %}
+    {% elseif department is null and brand is not null and brand.description.description %}
+        {% set overview = brand.description.description %}
+    {% elseif department is not null and brand is not null and (brand.description.description or department.description.description) %}
+        {% set overview = "" %}
+        {% if brand.description.description %}
+            {% set overview = overview ~ brand.description.description %}
+        {% elseif department.description.description %}
+            {% set overview = overview ~ department.description.description %}
+        {% endif %}
+    {% else %}
+        {% set overview = "" %}
+    {% endif %}
+    {% if overview and overview != "" %}
+        <button type="button" class="button actionToggleMoreInfo button-small fr icon-grey" data-icon-secondary="icon-466">More Info</button>
+    {% endif %}
+    {% if department is not null and brand is null %}
+        <h1>{{ department.description.header }}</h1>
+    {% elseif department is null and brand is not null %}
+        <h1>{{ brand.description.header }}</h1>
+    {% elseif department is not null and brand is not null %}
+        <h1>{{ brand.description.header }} {{ department.description.header }}</h1>
+    {% else %}
+        <h1>Products</h1>
+    {% endif %}
+    <div class="clear"></div>
+    {% if app.request.query.get('q', '') is not empty %}
+        <h2>Searching for "{{ app.request.query.get('q', '') }}"</h2>
+    {% endif %}
+    {% if overview and overview != "" %}
+        <div class="ui-helper-hidden more-info-container widget-group clearfix mbl">
+            <div class="widget widget-1-of-1">
+                <div class="ui-widget">
+                    <section class="ui-widget-content ui-corner-all ptn pbs clearfix">
+                        <div class="ptm">{{ overview|raw }}</div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block top_reviews %}{% endblock %}
+
+{% block body %}
+    <section class="clearfix">
+        {% if pagination.totalItemCount is defined %}
+            {% set totalItemCount = pagination.totalItemCount %}
+        {% else %}
+            {% set totalItemCount = 0 %}
+        {% endif %}
+        <div class="widget-group clearfix mbl">
+            <div class="widget widget-1-of-1">
+                <div class="ui-widget">
+                    <section class="ui-widget-content ui-corner-all ptn pbn clearfix">
+                        {% if brand %}
+                            {{ render_esi(controller('ShopIlluminationAdminBundle:Listing:popularProducts', { 'departmentIds': department.id, 'brandIds': brand.id })) }}
+                        {% else %}
+                            {% if showMaiaPromotion %}
+                                {% include 'ShopIlluminationAdminBundle:Maia:maiaPromotion.html.twig' %}
+                            {% else %}
+                                {{ render_esi(controller('ShopIlluminationAdminBundle:Listing:popularProducts', { 'departmentIds': department.id })) }}
+                                {{ render_esi(controller('ShopIlluminationAdminBundle:Listing:popularBrands', { 'departmentId': department.id })) }}
+                            {% endif %}
+                        {% endif %}
+                    </section>
+                </div>
+            </div>
+        </div>
+        <div class="widget-group clearfix">
+            <form id="formFilter" class="form" method="GET">
+                <div class="widget widget-2-of-7">
+                    <div class="ui-widget mbn">
+                        <section class="ui-widget-content ui-corner-all">
+                            <div class="widget-group product-filtering-container clearfix">
+                                <div class="widget widget-1-of-1">
+                                    <span class="fl"><strong>Narrow Search By</strong></span>
+                                    <button type="button" class="fr button button-grey icon-grey actionResetAllFilters" data-icon-primary="icon-1113">Reset All</button>
+
+                                </div>
+                            </div>
+                            <div class="filters">
+                                <div class="ui-widget pr mtm">
+                                    <header class="ui-widget-header ui-corner-top">
+                                        <h2>Price</h2>
+                                    </header>
+                                    <section class="ui-widget-content pan ui-corner-bottom">
+                                        <div id="filterPrice" class="filter price-range-filter">
+                                            <div class="range-slider-values">
+                                                <span>&pound;</span>
+                                                <input type="text" name="filter[low_price]" id="filterLowPrice" value="{{ app.request.get('filter[low_price]', '%.0f'|format(stats.getResult('low_price').min|default(0)), true) }}" />
+                                                <span>&nbsp;-&nbsp;</span>
+                                                <input type="text" name="filter[high_price]" id="filterHighPrice" value="{{ app.request.get('filter[high_price]', '%.0f'|format(stats.getResult('high_price').max|default(9999)), true) }}" />
+                                            </div>
+                                            <div id="priceRangeSlider" class="price-range pan"></div>
+                                        </div>
+                                    </section>
+                                    <div class="filter-header-buttons-container">
+                                        <button type="button" data-filter="Price" class="fr button button-small button-grey icon-grey actionShowHideFilter" data-icon-primary="icon-467" data-icon-only="true">Hide</button>
+                                        <button type="button" data-filter="Price" class="fr button button-small button-grey icon-grey actionResetFilter" data-icon-primary="icon-1113" data-icon-only="true">Reset</button>
+                                    </div>
+                                </div>
+
+                                {{ render_esi(controller('ShopIlluminationAdminBundle:Listing:departmentTree', {'departmentId': department.id, 'brandId': brand.id})) }}
+
+                                {% if brand is null %}
+                                    <div class="ui-widget pr mtm">
+                                        <header class="ui-widget-header ui-corner-top">
+                                            <h2>Brand</h2>
+                                        </header>
+                                        <section class="ui-widget-content pan ui-corner-bottom">
+                                            <div id="filterBrand" class="filter">
+                                                <ul>
+                                                    {% for brand, count in facets.facet('brands') %}
+                                                        <li>
+                                                            <input{% if brand in app.request.get('filter[brand]', null, true) %} checked="checked"{% endif %} name="filter[brand][]" type="checkbox" value="{{ brand }}" id="filter-brand-{{ loop.index }}" />
+                                                            <label for="filter-brand-{{ loop.index }}"><span class="fr">({{ count }})</span>{{ brand }}</label>
+                                                        </li>
+                                                    {% endfor %}
+                                                </ul>
+                                            </div>
+                                        </section>
+                                        <div class="filter-header-buttons-container">
+                                            <button type="button" data-filter="Brand" class="fr button button-small button-grey icon-grey actionShowHideFilter" data-icon-primary="icon-467" data-icon-only="true">Hide</button>
+                                            <button type="button" data-filter="Brand" class="fr button button-small button-grey icon-grey actionResetFilter" data-icon-primary="icon-1113" data-icon-only="true">Reset</button>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                                {% if featureGroups|length > 0 %}
+                                    <div class="ui-widget pr mtm">
+                                        <header class="ui-widget-header ui-corner-top">
+                                            <h2>Features</h2>
+                                        </header>
+                                        <section class="ui-widget-content pan ui-corner-bottom">
+                                            <div id="filterFeature" class="filter">
+                                                <ul>
+                                                    {% for featureGroup in featureGroups %}
+                                                        {% if facets.facet('feature_'~featureGroup[0]) is not null and facets.facet('feature_'~featureGroup[0]).count > 0 %}
+                                                            <li data-feature-group="{{ loop.index }}" class="filter-feature-group"><span class="ui-button-icon-primary ui-icon ui-icon-triangle-1-n"></span>{{ featureGroup[1] }}</li>
+                                                            {% for feature, count in facets.facet('feature_'~featureGroup[0]) %}
+                                                                <li>
+                                                                    <input{% if feature in app.request.get('filter[attr_feature_'~featureGroup[0]~']', null, true) %} checked="checked"{% endif %} name="filter[attr_feature_{{ featureGroup[0] }}][]" type="checkbox" value="{{ feature }}" id="filter-{{ featureGroup[0] }}-{{ loop.index }}" />
+                                                                    <label for="filter-{{ loop.index }}"><span class="fr">({{ count }})</span>{{ feature }}</label>
+                                                                </li>
+                                                            {% endfor %}
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                </ul>
+                                            </div>
+                                            <input type="hidden" name="filter-features" id="filter-features" value="{{ departmentListing.features }}" />
+                                        </section>
+                                        <div class="filter-header-buttons-container">
+                                            <button type="button" data-filter="Feature" class="fr button button-small button-grey icon-grey actionShowHideFilter" data-icon-primary="icon-467" data-icon-only="true">Hide</button>
+                                            <button type="button" data-filter="Feature" class="fr button button-small button-grey icon-grey actionResetFilter" data-icon-primary="icon-1113" data-icon-only="true">Reset</button>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </section>
+                    </div>
+                </div>
+                <div class="widget widget-5-of-7 listing">
+                    <div class="ui-widget">
+                        <a name="viewNow"></a>
+                        <section class="ui-widget-content ui-corner-all product">
+                            <div class="widget-group product-sorting-container product-sorting-container-top mbn clearfix">
+                                <div class="widget widget-1-of-1">
+                                    <span class="fl">Sort By</span>
+                                    <div class="fl prs">
+                                        <select id="sortOrderTop" name="sort_order" class="fill fl">
+                                            <option{% if app.request.get('sort_order') == 'header_sort:asc' %} selected="selected"{% endif %} value="header_sort:asc">Alphabetically: A-Z</option>
+                                            <option{% if app.request.get('sort_order') == 'header_sort:desc' %} selected="selected"{% endif %} value="header_sort:desc">Alphabetically: Z-A</option>
+                                            <option{% if app.request.get('sort_order') == 'low_price:asc' or app.request.get('sort_order') is not defined or app.request.get('sort_order') is null %} selected="selected"{% endif %} value="low_price:asc">Price: Lowest First</option>
+                                            <option{% if app.request.get('sort_order') == 'high_price:desc' %} selected="selected"{% endif %} value="high_price:desc">Price: Highest First</option>
+                                            <option{% if app.request.get('sort_order') == 'created_at:desc' %} selected="selected"{% endif %} value="created_at:desc">Latest</option>
+                                        </select>
+                                    </div>
+                                    <span class="fl">Show</span>
+                                    <div class="fl prs">
+                                        <select id="limitTop" name="limit" class="fill fl">
+                                            <option{% if app.request.get('limit') == '9' %} selected="selected"{% endif %} value="9">9</option>
+                                            <option{% if app.request.get('limit') == '21' or app.request.get('limit') is not defined or app.request.get('limit') is null %} selected="selected"{% endif %} value="21">21</option>
+                                            <option{% if app.request.get('limit') == '51' %} selected="selected"{% endif %} value="51">51</option>
+                                            <option{% if app.request.get('limit') == '102' %} selected="selected"{% endif %} value="102">102</option>
+                                            <option{% if app.request.get('limit') == '99999999' %} selected="selected"{% endif %} value="99999999">All</option>
+                                        </select>
+                                    </div>
+                                    <span class="fl">of <strong>{{ totalItemCount }}</strong> Product{{ totalItemCount == 1 ? '' : 's' }}</span>
+                                    <div class="fr">
+                                        {{ knp_pagination_render(pagination) }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="products">
+                                <div class="widget-group product clearfix">
+                                    {% if is_granted("ROLE_ADMIN") %}
+                                        <div class="tabs mtm">
+                                            <ul>
+                                                <li><a href="#admin">Admin Mode</a></li>
+                                                <li><a href="#customer">Customer View</a></li>
+                                            </ul>
+                                            <div id="admin">
+                                                {% include 'ShopIlluminationAdminBundle:Listing/Includes:adminProducts.html.twig' with {'pagination': pagination} %}
+                                                <div class="clear"></div>
+                                            </div>
+                                            <div id="customer">
+                                                {% include 'ShopIlluminationAdminBundle:Listing/Includes:products.html.twig' with {'pagination': pagination} %}
+                                                <div class="clear"></div>
+                                            </div>
+                                        </div>
+                                    {% else %}
+                                        {% include 'ShopIlluminationAdminBundle:Listing/Includes:products.html.twig' with {'pagination': pagination} %}
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="widget-group product-sorting-container product-sorting-container-bottom mtn clearfix">
+                                <div class="widget widget-1-of-1">
+                                    <span class="fl">Sort By</span>
+                                    <div class="fl prs">
+                                        <select id="sortOrderBottom" class="fill fl">
+                                            <option{% if app.request.get('sort_order') == 'header_sort:asc' %} selected="selected"{% endif %} value="header_sort:asc">Alphabetically: A-Z</option>
+                                            <option{% if app.request.get('sort_order') == 'header_sort:desc' %} selected="selected"{% endif %} value="header_sort:desc">Alphabetically: Z-A</option>
+                                            <option{% if app.request.get('sort_order') == 'low_price:asc' or app.request.get('sort_order') is not defined or app.request.get('sort_order') is null %} selected="selected"{% endif %} value="low_price:asc">Price: Lowest First</option>
+                                            <option{% if app.request.get('sort_order') == 'high_price:desc' %} selected="selected"{% endif %} value="high_price:desc">Price: Highest First</option>
+                                            <option{% if app.request.get('sort_order') == 'created_at:desc' %} selected="selected"{% endif %} value="created_at:desc">Latest</option>
+                                        </select>
+                                    </div>
+                                    <span class="fl">Show</span>
+                                    <div class="fl prs">
+                                        <select id="limitBottom" class="fill fl">
+                                            <option{% if app.request.get('limit') == '9' %} selected="selected"{% endif %} value="9">9</option>
+                                            <option{% if app.request.get('limit') == '21' or app.request.get('limit') is not defined or app.request.get('limit') is null %} selected="selected"{% endif %} value="21">21</option>
+                                            <option{% if app.request.get('limit') == '51' %} selected="selected"{% endif %} value="51">51</option>
+                                            <option{% if app.request.get('limit') == '102' %} selected="selected"{% endif %} value="102">102</option>
+                                            <option{% if app.request.get('limit') == '99999999' %} selected="selected"{% endif %} value="99999999">All</option>
+                                        </select>
+                                    </div>
+                                    <span class="fl">of <strong>{{ totalItemCount }}</strong> Product{{ totalItemCount == 1 ? '' : 's' }}</span>
+                                    <div class="fr">
+                                        {{ knp_pagination_render(pagination) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	{% include 'KACShopBundle:Departments:indexScript.js.twig' with {'noAjax': noAjax, 'url': url, 'brand': brand, 'group': group, 'departmentListing': departmentListing, 'department': department, 'level': 1} %}
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var $treeView = $("#filterDepartment");
+            $treeView.jstree({
+                "core": {
+                    "initially_open": ["root"]
+                },
+                "plugins": ["themes", "html_data"],
+                "themes": {
+                    "theme": false,
+                    "dots": true,
+                    "icons": false
+                }
+            });
+
+            {# If the user has selected a filter then scroll directly to the results #}
+            {% if app.request.query.has('filter') %}
+            var $target = $("a[name=viewNow]");
+            $('html, body').stop().animate({
+                'scrollTop': $target.offset().top
+            });
+            {% endif %}
+
+
+            $("#sortOrderBottom").live('change', function() {
+                $("#sortOrderTop").val($("#sortOrderBottom").val());
+                $.uniform.update("#sortOrderTop");
+            });
+
+            $("#limitBottom").live('change', function() {
+                $("#limitTop").val($("#limitBottom").val());
+                $.uniform.update("#limitTop");
+            });
+
+            $(":input:not(.no-filter)", "#formFilter").live('change', function() {
+                $(this).closest("form").submit();
+            });
+            $(".actionResetAllFilters", "#formFilter").live("click", function() {
+                $(".filter").each(function(key, el) {
+                    resetFilterWithoutSubmit($(el));
+                });
+                $(this).closest("form").submit();
+            });
+            $(".actionResetFilter", "#formFilter").live("click", function() {
+                resetFilter($("#filter"+$(this).data("filter")));
+            });
+
+            $(".actionShowHideFilter").live("click", function() {
+                var $buttonIcon = $(this).find(".ui-icon");
+                var $widget = $(this).closest(".filter-header-buttons-container").closest(".ui-widget");
+                var $filterHeader = $widget.find("header");
+                var $filter = $widget.find("section > div");
+                if ($buttonIcon.hasClass("icon-467")) {
+                    $filter.hide();
+                    $buttonIcon.removeClass("icon-467");
+                    $buttonIcon.addClass("icon-466");
+                    $filterHeader.removeClass("ui-corner-top");
+                    $filterHeader.addClass("ui-corner-all");
+                } else {
+                    $filter.show();
+                    $buttonIcon.removeClass("icon-466");
+                    $buttonIcon.addClass("icon-467");
+                    $filterHeader.removeClass("ui-corner-all");
+                    $filterHeader.addClass("ui-corner-top");
+                }
+            });
+            $(document).on('click', '.actionPriceUpdate', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                var $el = $(this);
+                $.ajax({
+                    type: "POST",
+                    url: $el.attr("data-url"),
+                    data: {
+                        price: $el.parent().parent().parent().find("input.product-price-update").val()
+                    }
+                });
+            });
+
+            $("#priceRangeSlider").slider({
+                range: true,
+                min: parseInt({{ stats.getResult('low_price').min|default(0) }}, 10),
+                max: parseInt({{ stats.getResult('high_price').max|default(9999) }}, 10),
+                values: [parseInt('{{ app.request.get('filter[low_price]', stats.getResult('low_price').min|default(0), true) }}', 10), parseInt('{{ app.request.get('filter[high_price]', stats.getResult('high_price').max|default(9999), true) }}', 10)],
+                slide: function(event, ui) {
+                    $("#filterLowPrice").val(ui.values[0]);
+                    $("#filterHighPrice").val(ui.values[1]);
+                },
+                change: function(event, ui) {
+                    $(this).closest("form").submit();
+                }
+            });
+
+            function resetFilter($filterContainer)
+            {
+                resetFilterWithoutSubmit($filterContainer);
+                $(this).closest("form").submit();
+            }
+
+            function resetFilterWithoutSubmit($filterContainer)
+            {
+                // Check if the filter is a price
+                if ($filterContainer.attr("id") === "filterPrice") {
+                    var $priceRangeSlider = $("#priceRangeSlider", $filterContainer);
+                    var $filterLowPrice = $("#filterLowPrice", $filterContainer);
+                    var $filterHighPrice = $("#filterHighPrice", $filterContainer);
+                    $filterLowPrice.unbind("change");
+                    $filterHighPrice.unbind("change");
+                    $filterLowPrice.val($priceRangeSlider.slider("option", "min"));
+                    $filterHighPrice.val($priceRangeSlider.slider("option", "max"));
+                } else {
+                    $(":input", $filterContainer)
+                            .not(":button, :submit, :reset, :hidden")
+                            .val("")
+                            .removeAttr("checked")
+                            .removeAttr("selected");
+                }
+            }
+        });
+    </script>
+{% endblock %}

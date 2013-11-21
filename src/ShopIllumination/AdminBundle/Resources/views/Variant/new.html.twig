@@ -1,0 +1,40 @@
+{% extends 'ShopIlluminationAdminBundle::base.html.twig' %}
+
+{% block title %}Add New Variant | {{ parent() }}{% endblock %}
+
+{% block header %}
+    <header>
+        {{ parent() }}
+        <h1>Add New Variant</h1>
+    </header>
+{% endblock %}
+{% block body %}
+    <section>
+        <div class="widget-group clearfix">
+            <div class="widget widget-2-of-7">
+                {% include 'ShopIlluminationAdminBundle:Variant:newLeftMenu.html.twig' %}
+            </div>
+            <div class="widget widget-5-of-7">
+                {% if flow.getCurrentStepNumber() == 1 %}
+                    {% include 'ShopIlluminationAdminBundle:Variant:new_Step1.html.twig' %}
+                {% elseif flow.getCurrentStepNumber() == 2 %}
+                    {% include 'ShopIlluminationAdminBundle:Variant:new_Step2.html.twig' %}
+                {% elseif flow.getCurrentStepNumber() == 3 %}
+                    {% include 'ShopIlluminationAdminBundle:Variant:new_Step3.html.twig' %}
+                {% elseif flow.getCurrentStepNumber() == 4 %}
+                    {% include 'ShopIlluminationAdminBundle:Variant:new_Step4.html.twig' %}
+                {% elseif flow.getCurrentStepNumber() == 5 %}
+                    {% include 'ShopIlluminationAdminBundle:Variant:new_Step5.html.twig' %}
+                {% elseif flow.getCurrentStepNumber() == 6 %}
+                    {% include 'ShopIlluminationAdminBundle:Variant:new_Step6.html.twig' %}
+                {% elseif flow.getCurrentStepNumber() == 7 %}
+                    {% include 'ShopIlluminationAdminBundle:Variant:new_Step7.html.twig' %}
+                {% elseif flow.getCurrentStepNumber() == 8 %}
+                    {% include 'ShopIlluminationAdminBundle:Variant:new_Step8.html.twig' %}
+                {% elseif flow.getCurrentStepNumber() == 9 %}
+                    {% include 'ShopIlluminationAdminBundle:Variant:new_Step9.html.twig' %}
+                {% endif %}
+            </div>
+        </div>
+    </section>
+{% endblock %}

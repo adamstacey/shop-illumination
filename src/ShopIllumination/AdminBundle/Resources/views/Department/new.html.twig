@@ -1,0 +1,33 @@
+{# Forms #}
+{% extends 'ShopIlluminationAdminBundle:Department:base.html.twig' %}
+
+{% block title %}Add New Department | {{ parent() }}{% endblock %}
+
+{% block header %}
+    <header>
+        {{ parent() }}
+        <h1 class="ptm">Add New Department</h1>
+    </header>
+{% endblock %}
+{% block body %}
+    <section>
+        <div class="widget-group clearfix">
+            <div class="widget widget-2-of-7">
+                {% include 'ShopIlluminationAdminBundle:Department:newLeftMenu.html.twig' %}
+            </div>
+            <div class="widget widget-5-of-7">
+                {% if flow.getCurrentStepNumber() == 1 %}
+                    {% include 'ShopIlluminationAdminBundle:Department:new_Step1.html.twig' %}
+                {% elseif flow.getCurrentStepNumber() == 2 %}
+                    {% include 'ShopIlluminationAdminBundle:Department:new_Step2.html.twig' %}
+                {% elseif flow.getCurrentStepNumber() == 3 %}
+                    {% include 'ShopIlluminationAdminBundle:Department:new_Step3.html.twig' %}
+                {% elseif flow.getCurrentStepNumber() == 4 %}
+                    {% include 'ShopIlluminationAdminBundle:Department:new_Step4.html.twig' %}
+                {% elseif flow.getCurrentStepNumber() == 5 %}
+                    {% include 'ShopIlluminationAdminBundle:Department:new_Step5.html.twig' %}
+                {% endif %}
+            </div>
+        </div>
+    </section>
+{% endblock %}

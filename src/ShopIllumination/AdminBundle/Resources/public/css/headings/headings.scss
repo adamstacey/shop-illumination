@@ -1,0 +1,79 @@
+@import "compass";
+@import "../includes/base";
+
+h1,
+.h1 {
+    @include fontSize($fontSizeExtraExtraLarge);
+    font-weight: normal;
+    font-style: normal;
+    line-height: 32px;
+    color: $colourGreyDark;
+    @include textShadow($colourWhite, 0, 1px);
+}
+
+h2,
+.h2 {
+    @include fontSize($fontSizeExtraLarge);
+    font-weight: normal;
+    font-style: normal;
+    color: $colourGreyDark;
+    @include textShadow($colourWhite, 0, 1px);
+}
+
+h3,
+.h3 {
+    @include fontSize($fontSizeLarge);
+    font-weight: normal;
+    font-style: normal;
+    color: $primaryColour;
+}
+
+h3.separator {
+    padding: $spacingMedium;
+    margin: 0 -#{$spacingMedium} $spacingMedium -#{$spacingMedium};
+    @include verticalGradientGreyLight;
+    color: $colourGrey;
+    @include textShadow($colourWhite, 0, 1px);
+    border-top: 1px solid $colourGreyLight;
+    border-bottom: 1px solid $colourGreyLight;
+}
+
+h4,
+.h4 {
+    @include fontSize($fontSizeLarge);
+    font-weight: normal;
+    font-style: normal;
+    color: $primaryColour;
+}
+
+h5,
+.h5 {
+    @include fontSize($fontSizeLarge);
+    font-weight: bold;
+    font-style: normal;
+}
+
+h6,
+.h6 {
+    @include fontSize($fontSizeLarge);
+    font-weight: normal;
+    font-style: italic;
+}
+
+header.sticky {
+    padding: $spacingSmall $spacingExtraLarge;
+    margin: 0 -#{$spacingExtraLarge} $spacingSmall -#{$spacingExtraLarge};
+    @include verticalGradientWhite;
+    @include boxShadow($colourGreyDark, 0, 1px, 5px);
+}
+
+header.sticky h1,
+header.sticky h2,
+header.sticky h3 {
+    line-height: 30px;
+    margin: 0;
+}
+
+header.stuck {
+    width: 940px;
+}

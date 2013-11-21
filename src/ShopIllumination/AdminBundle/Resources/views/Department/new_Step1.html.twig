@@ -1,0 +1,34 @@
+<form class="form" method="post" novalidate="novalidate" action="{{ path(app.request.attributes.get('_route'), app.request.query.all | craue_removeDynamicStepNavigationParameter(flow)) }}" {{ form_enctype(form) }}>
+    <div class="widget-group clearfix">
+        <div class="widget widget-1-of-1">
+            <div class="ui-widget">
+                <header class="ui-widget-header ui-corner-top">
+                    <span class="ui-button-icon-primary ui-icon icon-white icon-947"></span>
+                    <h2>1. Overview</h2>
+                </header>
+                <section class="ui-widget-content ui-corner-bottom">
+                    {% include 'ShopIlluminationAdminBundle:Includes:formErrors.html.twig' %}
+                    <fieldset>
+                        {{ form_rest(form) }}
+                    </fieldset>
+                    {% include 'CraueFormFlowBundle:FormFlow:stepField.html.twig' %}
+                    {% include 'ShopIlluminationAdminBundle:Department:newControls.html.twig' %}
+                </section>
+            </div>
+        </div>
+    </div>
+</form>
+<script>
+    $(document).ready(function() {
+        $("select.select-department").select2({
+            allowClear: true,
+            matcher: function(term, text) {
+                return text.replace(/^[\s&nbsp;]+/,'').toUpperCase().indexOf(term.toUpperCase()) >= 0;
+            }
+        });
+        $(".select2-highlighted").each(function() {
+            $(this).removeClass("select2-highlighted");
+        });
+        $(".select-department > .select2-choice > span").html("Top Level");
+    })
+</script>

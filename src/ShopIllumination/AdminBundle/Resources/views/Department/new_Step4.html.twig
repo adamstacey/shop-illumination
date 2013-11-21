@@ -1,0 +1,67 @@
+<form class="form" method="post" novalidate="novalidate" action="{{ path(app.request.attributes.get('_route'), app.request.query.all | craue_removeDynamicStepNavigationParameter(flow)) }}" {{ form_enctype(form) }}>
+    <div class="widget-group clearfix">
+        <div class="widget widget-1-of-1">
+            <div class="ui-widget">
+                <header class="ui-widget-header ui-corner-top">
+                    <span class="ui-button-icon-primary ui-icon icon-white icon-69"></span>
+                    <h2>4. Feature Templates</h2>
+                </header>
+                <section class="ui-widget-content ui-corner-bottom">
+                    <div class="message message-help">
+                        <span class="ui-button-icon-primary ui-icon icon-yellow icon-763"></span>
+                        <p>Setup what product features you want this department to include. Any product directly added to this department will then automatically include these product features.</p>
+                    </div>
+                    {% include 'ShopIlluminationAdminBundle:Includes:formErrors.html.twig' %}
+                    <table id="featureList" class="form-table sortable mbm" data-prototype="{% filter escape %}{% include 'ShopIlluminationAdminBundle::newFieldRow.html.twig' with {'form': form.features.vars.prototype} %}{% endfilter %}">
+                        <thead>
+                            <tr>
+                                <th>&nbsp;</th>
+                                <th>&nbsp;</th>
+                                <th title="Select a feature group." class="tal">Group</th>
+                                <th title="Select the default feature a product will automatically be assigned with. Leave this as 'No Default Feature' if you want to set the feature." class="tal">Default Feature</th>
+                                <th title="Do you want this feature to show up on the product filter in the listings?">Filter?</th>
+                                <th title="Do you want the feature to display on the bullets of a product on the product listings?">Listing?</th>
+                                <th title="Do you want the feature to display in the features section on the product page?">Product?</th>
+                                <th>&nbsp;</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="no-data">
+                                <td colspan="8">
+                                    <div class="message message-help mas">
+                                        <span class="ui-button-icon-primary ui-icon icon-yellow icon-383"></span>
+                                        <p>There are no features currently setup. Add a feature using the "Add Feature" button below.</p>
+                                    </div>
+                                </td>
+                            </tr>
+                            {{ form_rest(form) }}
+                        </tbody>
+                    </table>
+                    {% include 'CraueFormFlowBundle:FormFlow:stepField.html.twig' %}
+                    {% include 'ShopIlluminationAdminBundle:Department:newControls.html.twig' %}
+                </section>
+            </div>
+        </div>
+    </div>
+</form>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $(document).on('change', '.feature-group', function() {
+            var $featureGroupId = $(this).val();
+            var $selectObject = $(this).closest("tr").find(".feature");
+            $selectObject.prev("span").html("Loading Features...");
+            $.getJSON('{{ path('api_features', {'featureGroupId': '-1'}) }}'.replace(/-1/, $featureGroupId), function(data) {
+                $selectObject.val([]).empty();
+                var $option = $('<option/>', { value: '' }).text('No Default Feature');
+                $option.appendTo($selectObject);
+                for (var $feature = 0; $feature < data.features.length; $feature++) {
+                    var $option = $('<option/>', { value: data.features[$feature]['id'] }).text(data.features[$feature]['name']);
+                    $option.appendTo($selectObject);
+                }
+                $.uniform.update($selectObject);
+            });
+        });
+
+        updateRowCounts();
+    });
+</script>

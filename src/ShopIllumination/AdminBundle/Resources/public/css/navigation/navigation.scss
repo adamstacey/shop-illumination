@@ -1,0 +1,463 @@
+@import "compass";
+@import "../includes/base";
+
+a {
+  text-decoration: none;
+  color: $primaryColour;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a:focus {
+    outline: none;
+}
+
+.top-menu {
+  border-top: 3px solid $primaryColour;
+  @include verticalGradientWhite;
+}
+
+.top-menu-links {
+  float: right;
+}
+
+.top-menu-links a {
+  @include textShadow($colourWhite, 0, 1px, 2px);
+  line-height: 24px;
+  color: $textColour;
+  @include fontSize($fontSizeSmall);
+}
+
+nav.left-menu ul {
+    margin: 0;
+    padding: 0;
+}
+
+nav.left-menu ul li {
+    margin: 0 0 $spacingSmall 0;
+    padding: 0 0 0 42px;
+    width: 100%;
+
+    position: relative;
+
+    @include borderBox;
+    list-style: none;
+    border: 1px solid $colourGreyLight;
+    @include equalBorderRadius($radiusSize);
+    overflow: hidden;
+}
+
+nav.left-menu ul li.black {
+    border: 1px solid $colourBlack;
+}
+
+nav.left-menu ul li.white {
+    border: 1px solid $colourWhite;
+}
+
+nav.left-menu ul li.grey {
+    border: 1px solid $colourGrey;
+}
+
+nav.left-menu ul li.grey-dark {
+    border: 1px solid $colourGreyDark;
+}
+
+nav.left-menu ul li.grey-light {
+    border: 1px solid $colourGreyLight;
+}
+
+nav.left-menu ul li.dark-red {
+    border: 1px solid $colourDarkRed;
+}
+
+nav.left-menu ul li.red {
+    border: 1px solid $colourRed;
+}
+
+nav.left-menu ul li.brown {
+    border: 1px solid $colourBrown;
+}
+
+nav.left-menu ul li.dark-orange {
+    border: 1px solid $colourDarkOrange;
+}
+
+nav.left-menu ul li.orange {
+    border: 1px solid $colourOrange;
+}
+
+nav.left-menu ul li.yellow {
+    border: 1px solid $colourYellow;
+}
+
+nav.left-menu ul li.lime-green {
+    border: 1px solid $colourLimeGreen;
+}
+
+nav.left-menu ul li.green {
+    border: 1px solid $colourGreen;
+}
+
+nav.left-menu ul li.purple {
+    border: 1px solid $colourPurple;
+}
+
+nav.left-menu ul li .nav-icon {
+    position: absolute;
+    top: 3px;
+    left: $spacingSmall;
+}
+
+nav.left-menu .button {
+    margin: 0;
+    width: 100%;
+
+    @include noBoxShadow;
+    border: 0 none;
+    @include equalBorderRadius(0);
+    border-left: 2px solid $colourGreyLight;
+    @include borderBox;
+}
+
+nav.left-menu li.black .button {
+    border-left: 2px solid $colourBlack;
+}
+
+nav.left-menu li.white .button {
+    border-left: 2px solid $colourWhite;
+}
+
+nav.left-menu li.grey .button {
+    border-left: 2px solid $colourGrey;
+}
+
+nav.left-menu li.grey-dark .button {
+    border-left: 2px solid $colourGreyDark;
+}
+
+nav.left-menu li.grey-light .button {
+    border-left: 2px solid $colourGreyLight;
+}
+
+nav.left-menu li.dark-red .button {
+    border-left: 2px solid $colourDarkRed;
+}
+
+nav.left-menu li.red .button {
+    border-left: 2px solid $colourRed;
+}
+
+nav.left-menu li.brown .button {
+    border-left: 2px solid $colourBrown;
+}
+
+nav.left-menu li.dark-orange .button {
+    border-left: 2px solid $colourDarkOrange;
+}
+
+nav.left-menu li.orange .button {
+    border-left: 2px solid $colourOrange;
+}
+
+nav.left-menu li.yellow .button {
+    border-left: 2px solid $colourYellow;
+}
+
+nav.left-menu li.lime-green .button {
+    border-left: 2px solid $colourLimeGreen;
+}
+
+nav.left-menu li.green .button {
+    border-left: 2px solid $colourGreen;
+}
+
+nav.left-menu li.purple .button {
+    border-left: 2px solid $colourPurple;
+}
+
+nav.left-menu .button .ui-button-icon-secondary {
+    position: absolute;
+    top: 3px;
+    right: $spacingSmall;
+}
+
+nav.left-menu .ui-button-text {
+    padding: 0 $spacingSmall;
+}
+
+.main-menu {
+    border-top: 1px solid $colourGreen;
+    border-bottom: 1px solid $colourGreen;
+    height: 40px;
+    @include highlightedVerticalGradientGreen;
+}
+
+.main-menu nav {
+    width: 978px;
+    margin: 0 auto;
+
+    position: relative;
+    border-left: 1px solid $colourGreen;
+    border-right: 1px solid $colourGreen;
+}
+
+.main-menu > nav > ul {
+    margin: 0;
+    padding: 0;
+}
+
+.main-menu > nav > ul > li {
+    margin: 0;
+    padding: 0;
+
+    float: left;
+
+    list-style: none;
+}
+.main-menu nav > ul > li > a,
+.main-menu nav > ul > li > a.hover {
+    padding: 0 20px;
+    height: 40px;
+
+    display: table-cell;
+
+    text-align: center;
+    font-weight: normal;
+    text-decoration: none;
+    @include fontSize(13);
+    color: $colourWhite;
+    vertical-align: middle;
+    border-right: 1px solid $colourGreen;
+    line-height: 16px;
+}
+
+.main-menu nav > ul > li > a:hover,
+.main-menu nav > ul > li > a.hover {
+    @include boxInsetGlow($colourBlack, 30px, 0, 0.3);
+}
+
+.sf-menu {
+    position: relative;
+}
+
+.sf-menu, .sf-menu * {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sf-menu .sf-mega {
+    position: absolute;
+    display: none;
+    top: 100%;
+    left: 0;
+    width: 980px;
+    @include boxGlow($colourGreyLight, 5px, 0, 0.5);
+}
+
+.sf-menu li {
+    position: relative;
+}
+
+.sf-mega-container {
+    position: static !important;
+}
+
+.sf-menu ul {
+    position: absolute;
+    display: none;
+    top: 100%;
+    left: 0;
+}
+
+.sf-menu > li {
+    float: left;
+}
+
+.sf-menu li:hover > ul,
+.sf-menu li.sfHover > ul {
+    display: block;
+}
+
+.sf-menu a {
+    display: block;
+    position: relative;
+}
+
+.sf-menu ul ul {
+    top: 0;
+    left: 100%;
+}
+
+.sf-menu {
+    float: left;
+}
+
+.sf-menu > li > ul {
+    border-top: 1px solid $colourGreen;
+    @include boxShadow($colourBlack, 0, 5px, 10px, 0, 0.5);
+}
+
+.sf-menu > li > ul a {
+    padding: 0 20px;
+    height: 30px;
+    line-height: 30px;
+    display: block;
+    @include textShadow($colourGreyExtraExtraLight, 0, 1px, 0, 1);
+    text-align: left;
+    font-weight: normal;
+    text-decoration: none;
+    @include fontSize(12);
+    color: $textColour;
+    vertical-align: middle;
+    @include verticalGradientWhite;
+    cursor: pointer;
+}
+
+.sf-menu > li > ul a:hover {
+    @include verticalGradientGreyDark;
+    @include textShadow($colourBlack, 0, 1px, 0, 1);
+    color: $colourWhite;
+}
+
+.sf-menu ul a {
+    text-align: left;
+}
+
+.sf-menu li {
+    white-space: nowrap;
+    *white-space: normal;
+    -webkit-transition: background .2s;
+    transition: background .2s;
+}
+
+.sf-menu li:hover,
+.sf-menu li.sfHover {
+    -webkit-transition: none;
+    transition: none;
+}
+
+.sf-menu li:hover > .sf-mega,
+.sf-menu li.sfHover > .sf-mega {
+    display: block;
+}
+
+.sf-mega {
+    @include alphaBackground($colourWhite, $opacity: 0.95);
+    box-sizing: border-box;
+}
+.sf-mega-section {
+    float: left;
+    width: 8em;
+    padding: 0 1em 1em 0;
+    margin-right: 1em;
+    border-right: 1px solid #b4c8f5;
+}
+
+.sf-arrows .sf-with-ul {
+    padding-right: 30px;
+    *padding-right: 10px;
+}
+
+.sf-arrows .sf-with-ul:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    margin-top: -3px;
+    height: 0;
+    width: 0;
+    border: 5px solid transparent;
+    border-top-color: $primaryColour;
+}
+
+.sf-arrows > li > .sf-with-ul:focus:after,
+.sf-arrows > li:hover > .sf-with-ul:after,
+.sf-arrows > .sfHover > .sf-with-ul:after {
+    border-top-color: $primaryColour;
+}
+
+.sf-arrows ul .sf-with-ul:after {
+    margin-top: -5px;
+    margin-right: -3px;
+    border-color: transparent;
+    border-left-color: $primaryColour;
+}
+
+.sf-arrows ul li > .sf-with-ul:focus:after,
+.sf-arrows ul li:hover > .sf-with-ul:after,
+.sf-arrows ul .sfHover > .sf-with-ul:after {
+    border-left-color: $primaryColour;
+}
+
+.sf-menu > li > a {
+    padding-right: 20px !important;
+}
+
+.sf-menu > li > a.sf-with-ul:after {
+    right: 99999px !important;
+}
+
+.sf-mega table {
+    border-collapse: collapse;
+    border: 0 none !important;
+    table-layout: fixed !important;
+}
+
+.sf-mega table th,
+.sf-mega table td {
+    padding: $spacingLarge;
+
+    border-collapse: collapse;
+    border: 1px solid #ECECEC;
+    vertical-align: top !important;
+}
+
+.sf-mega .menu-image {
+    width: 100%;
+    height: 80px;
+    padding: 0;
+    margin: 0;
+}
+
+.sf-mega .menu-image a {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    height: 80px;
+
+    display: block;
+}
+
+.sf-mega h3 {
+    margin: 0;
+    padding: $spacingSmall 0 0 0;
+
+    color: $colourGreyDark;
+    @include fontSize(11);
+}
+
+.sf-mega h3 a {
+    margin: 0 !important;
+
+    color: $colourGrey;
+    font-weight: bold;
+    @include fontSize(11);
+}
+
+.sf-mega a {
+    margin: $spacingSmall 0 0 0;
+    padding: 0;
+    width: 100%;
+    height: 14px;
+
+    line-height: 14px;
+    display: block;
+    float: left;
+    color: $colourGrey;
+    @include fontSize(10);
+    text-decoration: none;
+}

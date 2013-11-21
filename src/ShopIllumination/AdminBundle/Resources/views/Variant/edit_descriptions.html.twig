@@ -1,0 +1,52 @@
+{% extends 'ShopIlluminationAdminBundle::base.html.twig' %}
+
+{% block title %}Description | {{ variant.description.pageTitle }}{% endblock %}
+
+{% block admin_submenu %}
+    <a class="button button-small icon-grey mrs" data-icon-primary="icon-473" href="Javascript:history.go(-1);">Back</a>
+    <a class="button button-small icon-grey mrs" data-icon-primary="icon-278" href="{{ path('listing_products') }}">Products</a>
+    <a class="button button-small icon-grey mrs" data-icon-primary="icon-1122" href="{{ path('products_new') }}">New Product</a>
+    <a class="button button-small icon-grey mrs" data-icon-primary="icon-1360" href="{{ product.url != '' ? path('routing', {'url': variant.product.url}) : '404' }}">View Product</a>
+    <a class="button button-small icon-grey mrs" data-icon-primary="icon-94" href="{{ path('products_edit', {'productId': variant.product.id}) }}">Edit Product</a>
+    <a class="button button-small icon-grey mrs" data-icon-primary="icon-51" href="{{ path('products_clone', {'productId': variant.product.id}) }}">Clone Product</a>
+    <a class="button button-small icon-red mrs" data-icon-primary="icon-851" href="{{ path('products_delete', {'productId': variant.product.id}) }}">Delete Product</a>
+{% endblock %}
+
+{% block body %}
+    <div class="widget-group clearfix">
+        <div class="widget widget-2-of-7">
+            {% include 'ShopIlluminationAdminBundle:Variant:editLeftMenu.html.twig' %}
+        </div>
+        <div class="widget widget-5-of-7">
+            <section>
+                <form class="form" id="form-edit" method="post" action="{{ path(app.request.attributes.get('_route'), {'productId': variant.product.id, 'variantId': variant.id}) }}" {{ form_enctype(form) }}>
+                    <div class="widget-group clearfix">
+                        <div class="widget widget-1-of-1">
+                            <div class="ui-widget">
+                                <header class="ui-widget-header ui-corner-top">
+                                    <span class="ui-button-icon-primary ui-icon icon-white icon-276"></span>
+                                    <h2>Product Description</h2>
+                                </header>
+                                <section class="ui-widget-content ui-corner-all">
+                                    {% include 'ShopIlluminationAdminBundle:Includes:formErrors.html.twig' %}
+                                    <fieldset>
+                                        {{ form_row(form.type) }}
+                                        {% for description in form.descriptions %}
+                                            {{ form_rest(description) }}
+                                        {% endfor %}
+                                        {% do form.descriptions.setRendered() %}
+                                    </fieldset>
+
+                                    {{ form_rest(form) }}
+                                    <div class="clearfix">
+                                        <button type="submit" class="button button-green icon-white fr" data-icon-secondary="icon-1118">Save Variant</button>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </div>
+{% endblock %}

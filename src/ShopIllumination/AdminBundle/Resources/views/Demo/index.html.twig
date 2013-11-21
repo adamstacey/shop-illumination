@@ -1,0 +1,44 @@
+{% extends 'ShopIlluminationAdminBundle::base.html.twig' %}
+{% block title %}Demo Area | {{ parent() }}{% endblock %}
+{% block breadcrumbs %}
+    <div class="widget-group clearfix">
+        <a class="fr button button-small icon-grey" data-icon-primary="icon-473" href="{{ path('homepage') }}">Go Back</a>
+        <div class="widget widget-1-of-1">
+            <ul class="breadcrumbs" itemprop="breadcrumb">
+                <li><a href="{{ path('demo_index') }}">Demo Area</a></li>
+                <li><a href="{{ path('homepage') }}">Home</a></li>
+            </ul>
+        </div>
+        <div class="clear"></div>
+    </div>
+{% endblock %}
+{% block header %}
+    <header>
+        <span class="mrm ui-button-icon-primary ui-icon icon-black icon-429"></span>
+        <h1>Demo Area</h1>
+    </header>
+{% endblock %}
+{% block body %}
+    <section>
+        <div class="widget-group clearfix mbl">
+            <div class="widget widget-1-of-1">
+                <div class="ui-widget">
+                    <header class="ui-widget-header ui-corner-top">
+                        <h2>Demo Pages</h2>
+                    </header>
+                    <section class="ui-widget-content ui-corner-bottom clearfix">
+                        <ul class="mbn">
+                            <li><a href="{{ path('demo_grids_and_portlets') }}">Grids &amp; Portlets</a></li>
+                            <li><a href="{{ path('demo_forms') }}">Forms</a></li>
+                            <li><a href="{{ path('demo_buttons') }}">Buttons</a></li>
+                            <li><a href="{{ path('demo_icons') }}">Icons</a></li>
+                            <li><a href="{{ path('demo_tabs') }}">Tabs</a></li>
+                            <li><a href="{{ path('demo_accordions') }}">Accordions</a></li>
+                            <li><a href="{{ path('demo_notifications') }}">Notifications</a></li>
+                        </ul>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

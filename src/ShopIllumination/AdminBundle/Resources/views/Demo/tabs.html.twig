@@ -1,0 +1,178 @@
+{% extends 'ShopIlluminationAdminBundle::base.html.twig' %}
+{% block title %}Demo Area: Tabs | {{ parent() }}{% endblock %}
+{% block breadcrumbs %}
+    <div class="widget-group clearfix">
+        <a class="fr button button-small icon-grey" data-icon-primary="icon-473" href="{{ path('demo_index') }}">Go Back</a>
+        <div class="widget widget-1-of-1">
+            <ul class="breadcrumbs" itemprop="breadcrumb">
+                <li><a href="{{ path('demo_tabs') }}">Tabs</a></li>
+                <li><a href="{{ path('demo_index') }}">Demo Area</a></li>
+                <li><a href="{{ path('homepage') }}">Home</a></li>
+            </ul>
+        </div>
+        <div class="clear"></div>
+    </div>
+{% endblock %}
+{% block header %}
+    <header>
+        <span class="mrm ui-button-icon-primary ui-icon icon-black icon-429"></span>
+        <h1>Demo Area: Tabs</h1>
+    </header>
+{% endblock %}
+{% block body %}
+    <section>
+        <div class="widget-group">
+            <div class="widget widget-1-of-1">
+                <header>
+                    <h2>Search Engine Optimisation (SEO)</h2>
+                </header>
+                <section>
+                    <form action="">
+                        <div class="tabs">
+                            <ul>
+                                <li><a href="#seo1">English</a></li>
+                                <li><a href="#seo2">French</a></li>
+                                <li><a href="#seo3">German</a></li>
+                            </ul>
+                            <div id="seo1">
+                                <section>
+                                    <fieldset>
+                                        <div class="form-element widget-group clearfix">
+                                            <span title="You can have an information message here about how the user should fill in the field." class="form-helper ui-button-icon-primary ui-icon-small icon-small-763"></span>
+                                            <div class="widget widget-1-of-3">
+                                                <label for="pageTitle1">Page Title</label>
+                                            </div>
+                                            <div class="widget widget-2-of-3">
+                                                <input id="pageTitle1" name="pageTitle[1]" class="fill" type="text" value="" />
+                                            </div>
+                                        </div>
+                                        <div class="form-element widget-group clearfix">
+                                            <span title="You can have an information message here about how the user should fill in the field." class="form-helper ui-button-icon-primary ui-icon-small icon-small-763"></span>
+                                            <div class="widget widget-1-of-3">
+                                                <label for="header1">Header</label>
+                                            </div>
+                                            <div class="widget widget-2-of-3">
+                                                <input id="header1" name="header[1]" class="fill" type="text" value="" />
+                                            </div>
+                                        </div>
+                                        <div class="form-element widget-group clearfix">
+                                            <span title="You can have an information message here about how the user should fill in the field." class="form-helper ui-button-icon-primary ui-icon-small icon-small-763"></span>
+                                            <div class="widget widget-1-of-3">
+                                                <label for="metaDescription1">Meta Description</label>
+                                            </div>
+                                            <div class="widget widget-2-of-3">
+                                                <textarea rows="5" id="metaDescription1" name="metaDescription[1]" class="fill"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-element widget-group clearfix pbn">
+                                            <span title="You can have an information message here about how the user should fill in the field." class="form-helper ui-button-icon-primary ui-icon-small icon-small-763"></span>
+                                            <div class="widget widget-1-of-3">
+                                                <label for="keywords1">Keywords</label>
+                                            </div>
+                                            <div class="widget widget-2-of-3">
+                                                <textarea rows="3" id="keywords1" name="keywords[1]" class="fill"></textarea>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                    <div class="button-group clearfix">
+                                        <button class="button button-green icon-white fr" data-icon-secondary="icon-1119">Save</button>
+                                    </div>
+                                </section>
+                            </div>
+                            <div id="seo2">
+                                <section>
+                                    <fieldset>
+                                        <div class="form-element widget-group clearfix">
+                                            <span title="You can have an information message here about how the user should fill in the field." class="form-helper ui-button-icon-primary ui-icon-small icon-small-763"></span>
+                                            <div class="widget widget-1-of-3">
+                                                <label for="pageTitle2">Page Title</label>
+                                            </div>
+                                            <div class="widget widget-2-of-3">
+                                                <input id="pageTitle2" name="pageTitle[2]" class="fill" type="text" value="" />
+                                            </div>
+                                        </div>
+                                        <div class="form-element widget-group clearfix">
+                                            <span title="You can have an information message here about how the user should fill in the field." class="form-helper ui-button-icon-primary ui-icon-small icon-small-763"></span>
+                                            <div class="widget widget-1-of-3">
+                                                <label for="header2">Header</label>
+                                            </div>
+                                            <div class="widget widget-2-of-3">
+                                                <input id="header2" name="header[2]" class="fill" type="text" value="" />
+                                            </div>
+                                        </div>
+                                        <div class="form-element widget-group clearfix">
+                                            <span title="You can have an information message here about how the user should fill in the field." class="form-helper ui-button-icon-primary ui-icon-small icon-small-763"></span>
+                                            <div class="widget widget-1-of-3">
+                                                <label for="metaDescription2">Meta Description</label>
+                                            </div>
+                                            <div class="widget widget-2-of-3">
+                                                <textarea rows="5" id="metaDescription2" name="metaDescription[2]" class="fill"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-element widget-group clearfix pbn">
+                                            <span title="You can have an information message here about how the user should fill in the field." class="form-helper ui-button-icon-primary ui-icon-small icon-small-763"></span>
+                                            <div class="widget widget-1-of-3">
+                                                <label for="keywords2">Keywords</label>
+                                            </div>
+                                            <div class="widget widget-2-of-3">
+                                                <textarea rows="3" id="keywords2" name="keywords[2]" class="fill"></textarea>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                    <div class="button-group clearfix">
+                                        <button class="button button-green icon-white fr" data-icon-secondary="icon-1119">Save</button>
+                                    </div>
+                                </section>
+                            </div>
+                            <div id="seo3">
+                                <section>
+                                    <fieldset>
+                                        <div class="form-element widget-group clearfix">
+                                            <span title="You can have an information message here about how the user should fill in the field." class="form-helper ui-button-icon-primary ui-icon-small icon-small-763"></span>
+                                            <div class="widget widget-1-of-3">
+                                                <label for="pageTitle3">Page Title</label>
+                                            </div>
+                                            <div class="widget widget-2-of-3">
+                                                <input id="pageTitle3" name="pageTitle[1]" class="fill" type="text" value="" />
+                                            </div>
+                                        </div>
+                                        <div class="form-element widget-group clearfix">
+                                            <span title="You can have an information message here about how the user should fill in the field." class="form-helper ui-button-icon-primary ui-icon-small icon-small-763"></span>
+                                            <div class="widget widget-1-of-3">
+                                                <label for="header3">Header</label>
+                                            </div>
+                                            <div class="widget widget-2-of-3">
+                                                <input id="header3" name="header[3]" class="fill" type="text" value="" />
+                                            </div>
+                                        </div>
+                                        <div class="form-element widget-group clearfix">
+                                            <span title="You can have an information message here about how the user should fill in the field." class="form-helper ui-button-icon-primary ui-icon-small icon-small-763"></span>
+                                            <div class="widget widget-1-of-3">
+                                                <label for="metaDescription1">Meta Description</label>
+                                            </div>
+                                            <div class="widget widget-2-of-3">
+                                                <textarea rows="5" id="metaDescription3" name="metaDescription[3]" class="fill"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-element widget-group clearfix pbn">
+                                            <span title="You can have an information message here about how the user should fill in the field." class="form-helper ui-button-icon-primary ui-icon-small icon-small-763"></span>
+                                            <div class="widget widget-1-of-3">
+                                                <label for="keywords3">Keywords</label>
+                                            </div>
+                                            <div class="widget widget-2-of-3">
+                                                <textarea rows="3" id="keywords3" name="keywords[3]" class="fill"></textarea>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                    <div class="button-group clearfix">
+                                        <button class="button button-green icon-white fr" data-icon-secondary="icon-1119">Save</button>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </form>
+                </section>
+            </div>
+        </div>
+    </section>
+{% endblock %}

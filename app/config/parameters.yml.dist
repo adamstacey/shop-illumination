@@ -1,15 +1,32 @@
 parameters:
     database_driver:   pdo_mysql
-    database_host:     127.0.0.1
+    database_host:     localhost
     database_port:     ~
-    database_name:     symfony
-    database_user:     root
+    database_name:     si_brickhunter
+    database_user:     si_brickhunter
     database_password: ~
 
-    mailer_transport:  smtp
-    mailer_host:       127.0.0.1
-    mailer_user:       ~
-    mailer_password:   ~
+    solr_host: localhost
+    solr_port: 8080
+    solr_path: /solr4
 
-    locale:            en
-    secret:            ThisTokenIsNotSoSecretChangeIt
+    mailer_transport: smtp
+    mailer_host:      smtp.sendgrid.net
+    mailer_user:      brickhunter
+    mailer_password:  ~
+
+    locale: en
+    secret: 90f229762b755dda3c62e49b328f84cd9c126a22
+
+    host:         http://admin.brickhunter.dev
+    ssl_host:     http://admin.brickhunter.dev
+    cdn_host:     http://admin.brickhunter.dev
+    cdn_ssl_host: http://admin.brickhunter.dev
+
+    company.name:        Brick Hunter
+    company.web_address: www.brickhunter.com
+    company.url:         http://www.brickhunter.com
+
+    assetic.filter.compass.images_dir: %kernel.root_dir%/../web/
+    assetic.filter.compass.http_path:  /
+    assetic.filter.compass.generated_images_path: %kernel.root_dir%/../web/

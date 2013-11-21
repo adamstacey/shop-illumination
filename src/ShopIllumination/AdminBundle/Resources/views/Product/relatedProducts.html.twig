@@ -1,0 +1,137 @@
+{% if products|length > 0 %}
+    <h3 class="separator mtm">You may also be interested in</h3>
+    <div class="widget-group product clearfix">
+        {% for product in products|slice(0, 5) %}
+            <div itemscope itemtype="http://schema.org/Product" class="widget widget-1-of-5 product">
+                <div class="pr">
+                    <div class="product-image-container man pr">
+                        <a href="{{ product.url != '' ? path('routing', {'url': product.url}) : '' }}">
+                            <img class="product-image" itemprop="image" src="{{ asset(product.images[0].publicPath | apply_filter('product_thumbnail')) }}" border="0" alt="{{ product.description.header|raw }}" width="100%" />
+                        </a>
+                        {% set hobDepartmentIds = [936, 937, 1120, 939, 940, 951, 952, 1123, 1124, 953, 1125, 948, 1126, 949, 950, 1127, 1056, 177, 66, 941, 942, 943, 944, 68, 1057, 1058, 67, 80, 92, 1170] %}
+                        {% if product.cheaperAlternative %}
+                            {{ render_esi(controller('ShopIlluminationAdminBundle:Listing:cheaperAlternative', { 'productId': product.id })) }}
+                        {% elseif product.department.department.id in hobDepartmentIds %}
+                            <div class="sash sash-small sash-br sash-orange">30% OFF<br />PAN SETS</div>
+                        {% endif %}
+                        {% if product.brand.id == 7 %}{# CDA #}
+                            <div class="sash sash-bl sash-red">10% OFF</div>
+                        {% elseif product.brand.id == 59 %}{# Caple #}
+                            <div class="sash sash-bl sash-red">10% OFF</div>
+                        {% endif %}
+                    </div>
+                    <div class="pts pr">
+                        {% if not brand %}
+                            {% if product.brand.description.logoImage.publicPath != '' %}
+                                <img class="small-brand-logo-image mts" src="{{ asset(product.brand.description.logoImage.publicPath | apply_filter('logo_thumbnail')) }}" alt="{{ product.brand.description.name }}" height="25" />
+                            {% endif %}
+                        {% endif %}
+                        <div itemprop="offers" itemscope itemtype="{% if product.priceRange.low == product.priceRange.high %}http://schema.org/Offer{% else %}http://schema.org/AggregateOffer{% endif %}">
+                            {% if product.hidePrices == 0 %}
+                                <a href="{{ path('routing', {'url': product.url}) }}">
+                                    {% if (product.priceRange.low == product.priceRange.high) and (product.priceRange.low != product.recommendedRetailPriceRange.low) and (product.recommendedRetailPriceRange.low > 0) %}
+                                        <span itemprop="price" class="price-small">{{ product.priceRange.low|currency('GBP', true, true, '')|raw }}</span>
+                                        <span itemprop="price" class="was-price-small">was <span class="strikethrough">{{ product.recommendedRetailPriceRange.low|currency('GBP', true, true, '')|raw }}</span> save {{ (product.recommendedRetailPriceRange.low - product.priceRange.low)|currency('GBP', true, true, '')|raw }}</span>
+                                    {% else %}
+                                        <span itemprop="price" class="price-small">
+                                            {% if product.priceRange.low != product.priceRange.high %}
+                                                <span class="currency-prefix">from </span>
+                                            {% endif %}
+                                            {{ product.priceRange.low|currency('GBP', true, true, '')|raw }}
+                                        </span>
+                                        <span class="price-tax">
+                                            <span class="currency-tax">(inc. VAT)</span>
+                                        </span>
+                                    {% endif %}
+                                </a>
+                            {% else %}
+                                <a href="{{ path('content_contact_us') }}">CONTACT US</a>
+                            {% endif %}
+                        </div>
+                        <div class="product-listing-name mbs">
+                            <a itemprop="name" href="{{ path('routing', {'url': product.url}) }}">{{ product.description.header|raw }}</a>
+                        </div>
+                        <div class="product-listing-colour">
+                            {% for feature in product.variants[0].features %}
+                                {% if feature.featureGroup.name == 'Colour' %}
+                                    {% if feature.feature.name != 'N/A' %}
+                                        {{ feature.feature.name }}
+                                    {% endif %}
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+{% if products|length > 5 %}
+    <h3 class="separator mtm">You may also be interested in</h3>
+    <div class="widget-group product clearfix">
+        {% for product in products|slice(5, 5) %}
+            <div itemscope itemtype="http://schema.org/Product" class="widget widget-1-of-5 product">
+                <div class="pr">
+                    <div class="product-image-container man pr">
+                        <a href="{{ product.url != '' ? path('routing', {'url': product.url}) : '' }}">
+                            <img class="product-image" itemprop="image" src="{{ asset(product.images[0].publicPath | apply_filter('product_thumbnail')) }}" border="0" alt="{{ product.description.header|raw }}" width="100%" />
+                        </a>
+                        {% set hobDepartmentIds = [936, 937, 1120, 939, 940, 951, 952, 1123, 1124, 953, 1125, 948, 1126, 949, 950, 1127, 1056, 177, 66, 941, 942, 943, 944, 68, 1057, 1058, 67, 80, 92, 1170] %}
+                        {% if product.cheaperAlternative %}
+                            {{ render_esi(controller('ShopIlluminationAdminBundle:Listing:cheaperAlternative', { 'productId': product.id })) }}
+                        {% elseif product.department.department.id in hobDepartmentIds %}
+                            <div class="sash sash-small sash-br sash-orange">30% OFF<br />PAN SETS</div>
+                        {% endif %}
+                        {% if product.brand.id == 7 %}{# CDA #}
+                            <div class="sash sash-bl sash-red">10% OFF</div>
+                        {% elseif product.brand.id == 59 %}{# Caple #}
+                            <div class="sash sash-bl sash-red">10% OFF</div>
+                        {% endif %}
+                    </div>
+                    <div class="pts pr">
+                        {% if not brand %}
+                            {% if product.brand.description.logoImage.publicPath != '' %}
+                                <img class="small-brand-logo-image mts" src="{{ asset(product.brand.description.logoImage.publicPath | apply_filter('logo_thumbnail')) }}" alt="{{ product.brand.description.name }}" height="25" />
+                            {% endif %}
+                        {% endif %}
+                        <div itemprop="offers" itemscope itemtype="{% if product.priceRange.low == product.priceRange.high %}http://schema.org/Offer{% else %}http://schema.org/AggregateOffer{% endif %}">
+                            {% if product.hidePrices == 0 %}
+                                <a href="{{ path('routing', {'url': product.url}) }}">
+                                    {% if (product.priceRange.low == product.priceRange.high) and (product.priceRange.low != product.recommendedRetailPriceRange.low) and (product.recommendedRetailPriceRange.low > 0) %}
+                                        <span itemprop="price" class="price-small">{{ product.priceRange.low|currency('GBP', true, true, '')|raw }}</span>
+                                        <span itemprop="price" class="was-price-small">was <span class="strikethrough">{{ product.recommendedRetailPriceRange.low|currency('GBP', true, true, '')|raw }}</span> save {{ (product.recommendedRetailPriceRange.low - product.priceRange.low)|currency('GBP', true, true, '')|raw }}</span>
+                                    {% else %}
+                                        <span itemprop="price" class="price-small">
+                                            {% if product.priceRange.low != product.priceRange.high %}
+                                                <span class="currency-prefix">from </span>
+                                            {% endif %}
+                                            {{ product.priceRange.low|currency('GBP', true, true, '')|raw }}
+                                        </span>
+                                        <span class="price-tax">
+                                            <span class="currency-tax">(inc. VAT)</span>
+                                        </span>
+                                    {% endif %}
+                                </a>
+                            {% else %}
+                                <a href="{{ path('content_contact_us') }}">CONTACT US</a>
+                            {% endif %}
+                        </div>
+                        <div class="product-listing-name mbs">
+                            <a itemprop="name" href="{{ path('routing', {'url': product.url}) }}">{{ product.description.header|raw }}</a>
+                        </div>
+                        <div class="product-listing-colour">
+                            {% for feature in product.variants[0].features %}
+                                {% if feature.featureGroup.name == 'Colour' %}
+                                    {% if feature.feature.name != 'N/A' %}
+                                        {{ feature.feature.name }}
+                                    {% endif %}
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+

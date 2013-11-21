@@ -1,0 +1,214 @@
+@import "compass";
+@import "../includes/base";
+
+$zIndex: 0;
+
+$zIndex: $zIndex + 1;
+.document > section.container {
+  z-index: $zIndex;
+}
+
+$zIndex: $zIndex + 1;
+.content {
+    z-index: $zIndex;
+}
+
+$zIndex: $zIndex + 1;
+.footer {
+    z-index: $zIndex;
+}
+
+$zIndex: $zIndex + 1;
+.sub-menu {
+    z-index: $zIndex;
+}
+
+$zIndex: $zIndex + 1;
+.flash-message {
+    z-index: $zIndex;
+}
+
+$zIndex: $zIndex + 1;
+.accordion-header-buttons {
+    z-index: $zIndex;
+}
+
+$zIndex: $zIndex + 1;
+.ui-slider .ui-slider-range {
+    z-index: $zIndex;
+}
+
+$zIndex: $zIndex + 1;
+.ui-slider .ui-slider-handle {
+    z-index: $zIndex;
+}
+
+$zIndex: $zIndex + 1;
+.ui-front {
+    z-index: $zIndex;
+}
+
+.ui-selectable-helper {
+    z-index: $zIndex;
+}
+
+$zIndex: $zIndex + 1;
+.slider-wrapper h1 {
+    z-index: $zIndex;
+}
+
+.slider-wrapper img.logo {
+    z-index: $zIndex;
+}
+
+$zIndex: $zIndex + 1;
+.rhino-btn {
+    z-index: $zIndex;
+}
+
+.rhino-bullets {
+    z-index: $zIndex;
+}
+
+$zIndex: $zIndex + 1;
+.etalage-inset {
+    z-index: $zIndex;
+}
+
+$zIndex: $zIndex + 1;
+.etalage_zoom_area {
+    z-index: $zIndex;
+}
+
+$zIndex: $zIndex + 1;
+.etalage_zoom_area div {
+    z-index: $zIndex;
+}
+
+$zIndex: $zIndex + 1;
+.etalage_zoom_preview {
+    z-index: $zIndex;
+}
+
+$zIndex: $zIndex + 1;
+.etalage_zoom_img,
+.etalage_hint {
+    z-index: $zIndex;
+}
+
+div.etalage_description {
+    z-index: $zIndex;
+}
+
+$zIndex: $zIndex + 1;
+#basket-summary {
+    z-index: $zIndex;
+}
+
+$zIndex: $zIndex + 1;
+.ui-tooltip {
+    z-index: $zIndex;
+}
+
+$zIndex: $zIndex + 1;
+.select2-drop-mask {
+    z-index: $zIndex;
+}
+
+$zIndex: $zIndex + 1;
+.select2-drop {
+    z-index: $zIndex;
+}
+
+$zIndex: $zIndex + 1;
+.select2-search {
+    z-index: $zIndex;
+}
+
+$zIndex: $zIndex + 1;
+.inline-error {
+    z-index: $zIndex;
+}
+
+$zIndex: $zIndex + 1;
+.document > header {
+  z-index: $zIndex;
+}
+
+$zIndex: $zIndex + 1;
+.submenu-brands {
+    z-index: $zIndex;
+}
+
+$zIndex: $zIndex + 1;
+.submenu-container {
+    z-index: $zIndex;
+}
+
+$zIndex: $zIndex + 1;
+header.sticky {
+    z-index: $zIndex;
+}
+
+$zIndex: $zIndex + 1;
+.sticky-wrapper {
+    z-index: $zIndex;
+}
+
+$zIndex: $zIndex + 1;
+header.stuck {
+    z-index: $zIndex;
+}
+
+$zIndex: $zIndex + 1;
+.sf-menu .sf-mega {
+    z-index: $zIndex;
+}
+
+.sf-menu ul {
+    z-index: $zIndex;
+}
+
+$zIndex: $zIndex + 1;
+.jquery-lightbox-mode-image .jquery-lightbox-html {
+    z-index: $zIndex;
+}
+
+$zIndex: $zIndex + 1;
+.jquery-lightbox-background {
+    z-index: $zIndex;
+}
+
+$zIndex: $zIndex + 1;
+.jquery-lightbox-border-top-left,
+.jquery-lightbox-border-top-right,
+.jquery-lightbox-border-bottom-left,
+.jquery-lightbox-border-bottom-right {
+    z-index: $zIndex;
+}
+
+.jquery-lightbox-border-top-middle {
+    z-index: $zIndex;
+}
+
+.jquery-lightbox-border-bottom-middle {
+    z-index: $zIndex;
+}
+
+.jquery-lightbox-title {
+    z-index: $zIndex;
+}
+
+.jquery-lightbox-html {
+    z-index: $zIndex;
+}
+
+$zIndex: $zIndex + 1;
+.jquery-lightbox-buttons {
+    z-index: $zIndex;
+}
+
+$zIndex: $zIndex + 1;
+.jquery-lightbox-mode-image .jquery-lightbox-button-close {
+    z-index: $zIndex;
+}

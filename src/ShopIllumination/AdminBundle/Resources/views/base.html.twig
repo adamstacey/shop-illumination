@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html class="no-js">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+            <title>{% block title %}{{ company_name }} Admin System{% endblock %}</title>
+        {% block stylesheets %}
+            {% include 'ShopIlluminationAdminBundle:Includes:stylesheets.html.twig' %}
+        {% endblock %}
+        {% block scripts %}
+            {% include 'ShopIlluminationAdminBundle:Includes:scripts.html.twig' %}
+        {% endblock %}
+        <link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <link rel="apple-touch-icon" href="{{ asset('apple-touch-icon.png') }}">
+    </head>
+    <body itemscope itemtype="http://schema.org/WebPage">
+        <div class="document clearfix">
+            <header class="clearfix">
+                <div class="header">
+                    <div class="header-contents">
+                        {% include 'ShopIlluminationAdminBundle:Includes:logo.html.twig' %}
+                        {% include 'ShopIlluminationAdminBundle:Includes:search.html.twig' %}
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                {% include 'ShopIlluminationAdminBundle:Includes:mainMenu.html.twig' %}
+            </header>
+            {% include 'ShopIlluminationAdminBundle:Includes:flashMessages.html.twig' %}
+            <section class="container">
+                <div class="content">
+                    {% block breadcrumbs %}{% endblock %}
+                    {% block header %}{% endblock %}
+                    {% block body %}{% endblock %}
+                </div>
+            </section>
+        </div>
+        {% include 'ShopIlluminationAdminBundle:Includes:footer.html.twig' %}
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

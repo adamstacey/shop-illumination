@@ -1,0 +1,162 @@
+{% extends 'ShopIlluminationAdminBundle:Product:base.html.twig' %}
+
+{% block title %}Documents | {{ product.description.pageTitle }}{% endblock %}
+
+{% block admin_submenu %}
+    <a class="button button-small icon-grey mrs" data-icon-primary="icon-473" href="Javascript:history.go(-1);">Back</a>
+    <a class="button button-small icon-grey mrs" data-icon-primary="icon-278" href="{{ path('listing_products') }}">Products</a>
+    <a class="button button-small icon-grey mrs" data-icon-primary="icon-1122" href="{{ path('products_new') }}">New Product</a>
+    <a class="button button-small icon-grey mrs" data-icon-primary="icon-1360" href="{{ product.url != '' ? path('routing', {'url': product.url}) : '404' }}">View Product</a>
+    <a class="button button-small icon-grey mrs" data-icon-primary="icon-51" href="{{ path('products_clone', {'productId': product.id}) }}">Clone Product</a>
+    <a class="button button-small icon-red mrs" data-icon-primary="icon-851" href="{{ path('products_delete', {'productId': product.id}) }}">Delete Product</a>
+{% endblock %}
+
+{% block body %}
+    <div class="widget-group mtm clearfix">
+        <div class="widget widget-2-of-7">
+            {% include 'ShopIlluminationAdminBundle:Product:editLeftMenu.html.twig' %}
+        </div>
+        <div class="widget widget-5-of-7">
+            <section>
+                <form class="form" id="form-edit" novalidate="novalidate" method="post" action="{{ path(app.request.attributes.get('_route'), {'productId': product.id}) }}" {{ form_enctype(form) }}>
+                    <div class="widget-group clearfix">
+                        <div class="widget widget-1-of-1">
+                            <div class="ui-widget mbl">
+                                <header class="ui-widget-header ui-corner-top">
+                                    <span class="nav-icon ui-button-icon-primary ui-icon icon-white icon-69"></span>
+                                    <h2>Documents</h2>
+                                </header>
+                                <section class="ui-widget-content ui-corner-bottom">
+                                    {% include 'ShopIlluminationAdminBundle:Includes:formErrors.html.twig' %}
+
+                                    <fieldset class="fileupload">
+                                        <div class="accordion mbm">
+                                            <div class="accordion-item documentupload">
+                                                <div class="accordion-header-buttons">
+                                                    <button type="button" class="fileinput-button fr mlm button button-grey-dark icon-white" data-icon-secondary="icon-1121">Add Files<input class="no-uniform" type="file" name="form[file]" multiple></button>
+                                                </div>
+                                                <h3>Document Uploads</h3>
+                                                <div>
+                                                    <table class="form-table files mbm">
+                                                        <thead>
+                                                        <tr>
+                                                            <th width="1">&nbsp;</th>
+                                                            <th title="The title of the document.">Title</th>
+                                                            <th>&nbsp;</th>
+                                                            <th width="1">&nbsp;</th>
+                                                            <th width="1">&nbsp;</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <tr class="no-files">
+                                                            <td colspan="5">
+                                                                <div class="message message-help mas">
+                                                                    <span class="ui-button-icon-primary ui-icon-small icon-small-yellow icon-small-383"></span>
+                                                                    <p>There are no documents currently saved. Add a document using the "Add Files" button above.</p>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                {{ form_widget(form.temporaryDocuments) }}
+                                            </div>
+                                    </fieldset>
+
+                                    {{ form_rest(form) }}
+                                    {% include 'CraueFormFlowBundle:FormFlow:stepField.html.twig' %}
+                                    {% include 'ShopIlluminationAdminBundle:Product:newControls.html.twig' %}
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                {% include 'ShopIlluminationAdminBundle:Documents:documentUpload.html.twig' %}
+                {% include 'ShopIlluminationAdminBundle:Documents:documentDownload.html.twig' %}
+                <script>
+                    $(function () {
+                        'use strict';
+
+                        $('.fileupload').each(function () {
+                            var that = this;
+
+                            $(this).fileupload({
+                                url: '{{ path('api_documents_new_document') }}',
+                                dropZone: $(this),
+                                formData: [],
+                                maxFileSize: 10485760,
+                                uploadTemplateId: "templateDocumentUpload",
+                                downloadTemplateId: "templateDocumentDownload"
+                            }).bind("fileuploadadd", function (e, data) {
+                                        $(that).find("tr.no-files").hide();
+                            }).bind("fileuploadsubmit", function (e, data) {
+                                // Add type field to form
+                                var titleField = $(".document-title", data.context);
+                                data.formData = {
+                                    "form[objectType]": "product",
+                                    "form[title]": titleField.val()
+                                };
+                            }).bind('fileuploaddcompleted', function (e, data) {
+                                // Update hidden field
+                                var $documents = [];
+                                $(that).find("tr.template-download").each(function(key, row) {
+                                    $documents.push($(row).attr("data-id"));
+                                });
+                                $(that).find("input[type=hidden]").val($documents.join(","));
+                                generateButtons($(that).find(".files"));
+                                return true;
+                            }).bind('fileuploaddone', function (e, data) {
+                                var documents = $(that).find('input[type=hidden]').val();
+
+                                $.each(data.result.files, function (index, file) {
+                                    if (documents === "") {
+                                        documents = [];
+                                    } else {
+                                        documents = documents.split(',');
+                                    }
+
+                                    documents.push(file.id);
+                                });
+
+                                $(that).find('input[type=hidden]').val(documents.join(','));
+                                return true;
+                            });
+
+                            // Add event handler for updating document type
+                            $(".files").on("change", ".template-download .document-title", function() {
+                                var id = $(this).parents(".template-download").attr("data-id");
+                                $.ajax({
+                                    type: 'POST',
+                                    url: '{{ path('api_documents_edit_document', {'id': '-1'}) }}'.replace('-1', id),
+                                    data: {
+                                        form: {"title": $(this).val()}
+                                    }
+                                });
+                            });
+
+                            // On page load fetch the info for any existing files
+                            var documentIds = $(that).find('input[type=hidden]').val();
+                            if(documentIds != "") {
+                                $.getJSON('{{ path('api_documents_get_multiple', {'ids': '-1'}) }}'.replace('-1', documentIds), function(data) {
+                                    var template = tmpl("templateDocumentDownload");
+                                    var result = template({
+                                        files: data.files,
+                                        formatFileSize: this._formatFileSize,
+                                        options: this.options
+                                    });
+                                    $(that).find(".no-files").hide();
+                                    $(that).find('.files tbody').append(result);
+                                    $(that).find(".lightbox").lightbox();
+                                });
+                            }
+                        });
+                        $(document).bind('drop dragover', function (e) {
+                            e.preventDefault();
+                        });
+                    });
+
+                </script>
+            </section>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'ShopIlluminationAdminBundle::base.html.twig' %}
+{% block top_reviews %}{% endblock %}
+{% block body %}
+    <header>
+        <h1 class="ptm">Security</h1>
+    </header>
+    <div class="widget-group clearfix">
+        <div class="widget widget-1-of-1">
+            <div class="ui-widget">
+                <header class="ui-widget-header ui-corner-top">
+                    <h2>{% block page_header %}{% endblock %}</h2>
+                </header>
+                <section class="ui-widget-content ui-corner-all">
+                    {% block fos_user_content %}{% endblock %}
+                </section>
+            </div>
+        </div>
+    </div>
+{% endblock %}

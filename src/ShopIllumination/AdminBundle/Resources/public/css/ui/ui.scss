@@ -1,0 +1,1285 @@
+@import "compass";
+@import "../includes/base";
+
+.ui-helper-hidden {
+    display: none;
+}
+
+.ui-helper-hidden-accessible {
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+
+    position: absolute;
+    overflow: hidden;
+
+    border: 0;
+    clip: rect(0 0 0 0);
+}
+
+.ui-helper-reset {
+    margin: 0;
+    padding: 0;
+
+    border: 0;
+    outline: 0;
+    line-height: 100%;
+    text-decoration: none;
+    font-size: 100%;
+    list-style: none;
+}
+
+.ui-helper-clearfix:before,
+.ui-helper-clearfix:after {
+    display: table;
+
+    content: "";
+}
+
+.ui-helper-clearfix:after {
+    clear: both;
+}
+
+.ui-helper-clearfix {
+    min-height: 0;
+}
+
+.ui-helper-zfix {
+    width: 100%;
+    height: 100%;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    @include opacity(0);
+}
+
+.ui-state-disabled {
+    cursor: default !important;
+}
+
+.ui-widget-overlay {
+    width: 100%;
+    height: 100%;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.ui-resizable {
+    position: relative;
+}
+
+.ui-resizable-handle {
+    position: absolute;
+    display: block;
+
+    font-size: 0.1px;
+}
+
+.ui-resizable-disabled .ui-resizable-handle,
+.ui-resizable-autohide .ui-resizable-handle {
+    display: none;
+}
+
+.ui-resizable-n {
+    width: 100%;
+    height: 7px;
+
+    top: -5px;
+    left: 0;
+
+    cursor: n-resize;
+}
+
+.ui-resizable-s {
+    width: 100%;
+    height: 7px;
+
+    bottom: -5px;
+    left: 0;
+
+    cursor: s-resize;
+}
+
+.ui-resizable-e {
+    width: 7px;
+    height: 100%;
+
+    top: 0;
+    right: -5px;
+
+    cursor: e-resize;
+}
+
+.ui-resizable-w {
+    width: 7px;
+    height: 100%;
+
+    top: 0;
+    left: -5px;
+
+    cursor: w-resize;
+}
+
+.ui-resizable-se {
+    width: 12px;
+    height: 12px;
+
+    bottom: 1px;
+    right: 1px;
+
+    cursor: se-resize;
+}
+
+.ui-resizable-sw {
+    width: 9px;
+    height: 9px;
+
+    bottom: -5px;
+    left: -5px;
+
+    cursor: sw-resize;
+}
+
+.ui-resizable-nw {
+    width: 9px;
+    height: 9px;
+
+    top: -5px;
+    left: -5px;
+
+    cursor: nw-resize;
+}
+
+.ui-resizable-ne {
+    width: 9px;
+    height: 9px;
+
+    top: -5px;
+    right: -5px;
+
+    cursor: ne-resize;
+}
+
+.ui-selectable-helper {
+    position: absolute;
+
+    border: 1px dotted $colourBlack;
+}
+
+.accordion-item {
+    position: relative;
+    border: 1px solid $colourGreyExtraLight;
+    @include boxGlow($colourGreyLight, 5px, 0, 0.5);
+    @include equalBorderRadius($radiusSize);
+}
+
+.ui-accordion {
+    border: 0 none !important;
+}
+
+.ui-accordion .ui-accordion-header {
+    min-height: 0;
+    margin-top: $spacingExtraSmall;
+    padding: $spacingLarge;
+
+    position: relative;
+    display: block;
+
+    cursor: pointer;
+    @include fontSize(18);
+    font-weight: normal;
+}
+
+.ui-accordion h3.ui-state-active {
+    border-bottom: 3px solid $primaryColour;
+}
+
+.ui-accordion .ui-accordion-noicons {
+    padding-left: $spacingSmall;
+}
+
+.ui-accordion .ui-accordion-icons .ui-accordion-icons {
+    padding-left: $spacingExtraLarge;
+}
+
+.ui-accordion .ui-accordion-header .ui-accordion-header-icon {
+    position: absolute;
+    right: $spacingMedium;
+    top: 50%;
+    margin-top: -16px;
+}
+
+.ui-accordion .ui-accordion-content {
+    padding: $spacingLarge $spacingLarge $spacingSmall $spacingLarge;
+    border-top: 0;
+}
+
+.ui-accordion .ui-accordion-content ul {
+    margin-left: $spacingLarge;
+}
+.ui-autocomplete {
+    position: absolute;
+    top: 0;
+    left: 0;
+    cursor: default;
+}
+
+.ui-datepicker {
+    padding: $spacingSmall !important;
+    display: none;
+}
+
+.ui-datepicker .ui-datepicker-header {
+    position: relative;
+    padding: $spacingSmall 0;
+}
+
+.ui-datepicker .ui-datepicker-prev,
+.ui-datepicker .ui-datepicker-next {
+    position: absolute;
+    top: $spacingExtraSmall;
+    width: $spacingLarge;
+    height: $spacingLarge;
+}
+
+.ui-datepicker .ui-datepicker-prev-hover,
+.ui-datepicker .ui-datepicker-next-hover {
+    top: $spacingExtraExtraSmall;
+}
+
+.ui-datepicker .ui-datepicker-prev {
+    left: $spacingExtraSmall;
+}
+
+.ui-datepicker .ui-datepicker-next {
+    right: $spacingExtraSmall;
+}
+
+.ui-datepicker .ui-datepicker-prev-hover {
+    left: $spacingExtraExtraSmall;
+}
+
+.ui-datepicker .ui-datepicker-next-hover {
+    right: $spacingExtraExtraSmall;
+}
+
+.ui-datepicker .ui-datepicker-prev span,
+.ui-datepicker .ui-datepicker-next span {
+    display: block;
+    position: absolute;
+    left: 50%;
+    margin-left: -8px;
+    top: 50%;
+    margin-top: -8px;
+}
+
+.ui-datepicker .ui-datepicker-title {
+    margin: 0 $spacingExtraLarge;
+    line-height: $spacingExtraLarge;
+    text-align: center;
+}
+
+.ui-datepicker .ui-datepicker-title select {
+    @include fontSize($fontSizeMedium);
+    margin: $spacingExtraSmall 0;
+}
+
+.ui-datepicker select.ui-datepicker-month-year {
+    width: 100%;
+}
+
+.ui-datepicker select.ui-datepicker-month,
+.ui-datepicker select.ui-datepicker-year {
+    width: 49%;
+}
+
+.ui-datepicker table {
+    width: 100%;
+    @include fontSize($fontSizeSmall);
+    border-collapse: collapse;
+    margin: 0;
+}
+
+.ui-datepicker th {
+    padding: $spacingSmall;
+    text-align: center;
+    font-weight: bold;
+    border: 0;
+}
+
+.ui-datepicker td {
+    border: 0;
+    padding: $spacingSmall;
+}
+
+.ui-datepicker td span,
+.ui-datepicker td a {
+    display: block;
+    padding: 0;
+    text-align: right;
+    text-decoration: none;
+}
+
+.ui-datepicker .ui-datepicker-buttonpane {
+    background-image: none;
+    margin: $spacingSmall 0 0 0;
+    padding: 0 $spacingSmall;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 0;
+}
+
+.ui-datepicker .ui-datepicker-buttonpane button {
+    float: right;
+    margin: $spacingSmall;
+    cursor: pointer;
+    padding: $spacingSmall;
+    width: auto;
+    overflow: visible;
+}
+
+.ui-datepicker .ui-datepicker-buttonpane button.ui-datepicker-current {
+    float: left;
+}
+
+/* with multiple calendars */
+.ui-datepicker.ui-datepicker-multi {
+    width: auto;
+}
+
+.ui-datepicker-multi .ui-datepicker-group {
+    float: left;
+}
+
+.ui-datepicker-multi .ui-datepicker-group table {
+    width: 95%;
+    margin: 0 auto $spacingSmall;
+}
+
+.ui-datepicker-multi-2 .ui-datepicker-group {
+    width: 50%;
+}
+
+.ui-datepicker-multi-3 .ui-datepicker-group {
+    width: 33.3%;
+}
+
+.ui-datepicker-multi-4 .ui-datepicker-group {
+    width: 25%;
+}
+
+.ui-datepicker-multi .ui-datepicker-group-last .ui-datepicker-header,
+.ui-datepicker-multi .ui-datepicker-group-middle .ui-datepicker-header {
+    border-left-width: 0;
+}
+
+.ui-datepicker-multi .ui-datepicker-buttonpane {
+    clear: left;
+}
+
+.ui-datepicker-row-break {
+    clear: both;
+    width: 100%;
+    font-size: 0;
+}
+
+/* RTL support */
+.ui-datepicker-rtl {
+    direction: rtl;
+}
+
+.ui-datepicker-rtl .ui-datepicker-prev {
+    right: 2px;
+    left: auto;
+}
+
+.ui-datepicker-rtl .ui-datepicker-next {
+    left: 2px;
+    right: auto;
+}
+
+.ui-datepicker-rtl .ui-datepicker-prev:hover {
+    right: 1px;
+    left: auto;
+}
+
+.ui-datepicker-rtl .ui-datepicker-next:hover {
+    left: 1px;
+    right: auto;
+}
+
+.ui-datepicker-rtl .ui-datepicker-buttonpane {
+    clear: right;
+}
+
+.ui-datepicker-rtl .ui-datepicker-buttonpane button {
+    float: left;
+}
+
+.ui-datepicker-rtl .ui-datepicker-buttonpane button.ui-datepicker-current,
+.ui-datepicker-rtl .ui-datepicker-group {
+    float: right;
+}
+
+.ui-datepicker-rtl .ui-datepicker-group-last .ui-datepicker-header,
+.ui-datepicker-rtl .ui-datepicker-group-middle .ui-datepicker-header {
+    border-right-width: 0;
+    border-left-width: 1px;
+}
+
+.content-image {
+    margin: 0 auto;
+
+    @include boxGlow($colourGreyLight, 10px, 0, 1);
+}
+
+.ui-dialog {
+    padding: 0;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    background: $colourGreyLight;
+    outline: 0;
+    @include boxGlow($primaryColour, 10px);
+}
+
+.ui-dialog .ui-dialog-titlebar {
+    position: relative;
+
+    @include verticalGradientGreyLight;
+    @include boxInsetShadow($colourWhite, 0, 1px, 0, 0, 0.7);
+    @include borderRadius($radiusSize, $radiusSize, 0, 0);
+    border-bottom: 3px solid $primaryColour;
+}
+
+.ui-widget-header .ui-icon {
+    position: absolute;
+    top: 3px;
+    right: $spacingMedium;
+}
+
+.ui-dialog .ui-dialog-title {
+    margin: 0;
+    padding: $spacingMedium;
+
+    @include textShadow($colourBlack, 0, 1px);
+    color: $colourWhite;
+    @include ellipsis;
+    @include fontSize($fontSizeExtraLarge);
+}
+
+.ui-dialog .ui-dialog-titlebar-close {
+    width: 38px;
+    height: 38px;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    outline: none!important;
+    @include borderRadius(0, $radiusSize, 0, 0);
+    @include noBoxShadow;
+    border: 0 none;
+}
+
+.ui-dialog .ui-dialog-titlebar-close .ui-icon-closethick {
+    position: absolute;
+    top: 7px;
+    right: 7px;
+}
+
+.ui-dialog .ui-dialog-titlebar-close .ui-icon-closethick:hover {
+    @include noBoxShadow;
+}
+
+.ui-dialog .ui-dialog-content {
+    position: relative;
+    border: 0;
+    padding: 0;
+    background: $colourGreyLight;
+    overflow: auto;
+}
+
+.ui-dialog .ui-dialog-buttonpane {
+    margin: 0 0 -2px 0;
+    padding: $spacingSmall 0 $spacingSmall $spacingSmall;
+
+    @include highlightedVerticalGradientGrey;
+    @include borderRadius(0, 0, $radiusSize, $radiusSize);
+    @include boxInsetGlow($colourGreyDark, 10px, 0, 1);
+    border-top: 3px solid $colourGreyDark;
+
+}
+
+.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset {
+    float: right;
+}
+
+.ui-dialog .ui-dialog-buttonpane button {
+    margin: 0 $spacingSmall 0 0;
+    cursor: pointer;
+    outline: none !important;
+}
+
+.ui-dialog .ui-resizable-se {
+    width: 12px;
+    height: 12px;
+    right: -5px;
+    bottom: -5px;
+    background-position: 16px 16px;
+}
+
+.ui-draggable .ui-dialog-titlebar {
+    cursor: move;
+}
+
+.ui-menu {
+    list-style: none;
+    padding: 2px;
+    margin: 0;
+    display: block;
+    outline: none;
+}
+
+.ui-menu .ui-menu {
+    margin-top: -3px;
+    position: absolute;
+}
+
+.ui-menu .ui-menu-item {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.ui-menu .ui-menu-divider {
+    margin: 5px -2px 5px -2px;
+    height: 0;
+    font-size: 0;
+    line-height: 0;
+    border-width: 1px 0 0 0;
+}
+
+.ui-menu .ui-menu-item a {
+    text-decoration: none;
+    display: block;
+    padding: $spacingExtraSmall $spacingSmall;
+    line-height: 1.5;
+    min-height: 0;
+    font-weight: normal;
+}
+
+.ui-menu .ui-menu-item a.ui-state-focus,
+.ui-menu .ui-menu-item a.ui-state-active {
+    font-weight: normal;
+    margin: -1px;
+}
+
+.ui-menu .ui-state-disabled {
+    font-weight: normal;
+    margin: $spacingSmall 0 $spacingSmall 0;
+    line-height: 1.5;
+}
+
+.ui-menu .ui-state-disabled a {
+    cursor: default;
+}
+
+.ui-menu-icons {
+    position: relative;
+}
+
+.ui-menu-icons .ui-menu-item a {
+    position: relative;
+    padding-left: $spacingExtraLarge;
+}
+
+/* left-aligned */
+.ui-menu .ui-icon {
+    position: absolute;
+    top: $spacingSmall;
+    left: $spacingSmall;
+}
+
+/* right-aligned */
+.ui-menu .ui-menu-icon {
+    position: static;
+    float: right;
+}
+
+.ui-progressbar {
+    height: $spacingExtraLarge;
+    text-align: left;
+    overflow: hidden;
+}
+
+.ui-progressbar .ui-progressbar-value {
+    margin: -1px;
+    height: 100%;
+}
+
+.ui-progressbar .ui-progressbar-overlay {
+    background: url("images/animated-overlay.gif");
+    height: 100%;
+    filter: alpha(opacity=25);
+    opacity: 0.25;
+}
+
+.ui-progressbar-indeterminate .ui-progressbar-value {
+    background-image: none;
+}
+
+.progress-bar {
+    position: relative;
+    margin: 0;
+    padding: $spacingSmall !important;
+    height: 30px;
+
+    background-color: $colourGreyDark !important;
+    @include equalBorderRadius($radiusSize);
+    @include boxInsetShadow($colourGreyDark, 0, $spacingSmall);
+}
+
+.progress-bar div {
+    display: inline-block;
+    height: 100%;
+    margin: 0 !important;
+
+    @include equalBorderRadius($radiusSize);
+    @include boxInsetShadow($colourBlack, 0, 0, $spacingSmall, 0, 0.7);
+    background-color: $primaryColour;
+    @include transition(width, .4s, ease-in-out);
+    @include backgroundSize(40px, 40px);
+    background-repeat: repeat !important;
+    background-image: -webkit-gradient(linear, left top, right bottom,
+        color-stop(.25, rgba(255, 255, 255, .15)), color-stop(.25, transparent),
+        color-stop(.5, transparent), color-stop(.5, rgba(255, 255, 255, .15)),
+        color-stop(.75, rgba(255, 255, 255, .15)), color-stop(.75, transparent),
+        to(transparent));
+    background-image: -webkit-linear-gradient(135deg, rgba(255, 255, 255, .15) 25%, transparent 25%,
+        transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%,
+        transparent 75%, transparent);
+    background-image: -moz-linear-gradient(135deg, rgba(255, 255, 255, .15) 25%, transparent 25%,
+        transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%,
+        transparent 75%, transparent);
+    background-image: -ms-linear-gradient(135deg, rgba(255, 255, 255, .15) 25%, transparent 25%,
+        transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%,
+        transparent 75%, transparent);
+    background-image: -o-linear-gradient(135deg, rgba(255, 255, 255, .15) 25%, transparent 25%,
+        transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%,
+        transparent 75%, transparent);
+    background-image: linear-gradient(135deg, rgba(255, 255, 255, .15) 25%, transparent 25%,
+        transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%,
+        transparent 75%, transparent);
+    @include transition(animate-stripes, 3s, linear infinite);
+}
+
+.progress-bar-caption-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.progress-bar-caption {
+    padding: $spacingSmall $spacingLarge;
+
+    overflow: hidden;
+    white-space: nowrap;
+
+    line-height: 40px;
+    color: $colourWhite;
+    @include fontSize($fontSizeExtraSmall);
+    @include ellipsis;
+}
+
+.progress-error {
+    color: $colourRed;
+    @include fontSize($fontSizeSmall);
+    font-weight: bold;
+}
+
+@-webkit-keyframes animate-stripes {
+    0% {background-position: 0 0;} 100% {background-position: 76px 0;}
+}
+
+@-moz-keyframes animate-stripes {
+    0% {background-position: 0 0;} 100% {background-position: 76px 0;}
+}
+
+.ui-slider {
+    position: relative;
+    text-align: left;
+}
+
+.ui-slider .ui-slider-handle {
+    position: absolute;
+    width: $spacingLarge;
+    height: $spacingLarge;
+    cursor: default;
+
+    border: 1px solid $colourGreyDark;
+}
+
+.ui-slider .ui-slider-range {
+    position: absolute;
+    @include fontSize($fontSizeMedium);
+    display: block;
+    border: 0;
+    background-position: 0 0;
+}
+
+.ui-slider.ui-state-disabled .ui-slider-handle,
+.ui-slider.ui-state-disabled .ui-slider-range {
+    filter: inherit;
+}
+
+.ui-slider-horizontal {
+    height: $spacingMedium;
+}
+
+.ui-slider-horizontal .ui-slider-handle {
+    top: -3px;
+    margin-left: -#{$spacingMedium};
+}
+
+.ui-slider-horizontal .ui-slider-range {
+    top: 0;
+    height: 100%;
+}
+
+.ui-slider-horizontal .ui-slider-range-min {
+    left: 0;
+}
+
+.ui-slider-horizontal .ui-slider-range-max {
+    right: 0;
+}
+
+.ui-slider-vertical {
+    width: $spacingMedium;
+    height: 100px;
+}
+
+.ui-slider-vertical .ui-slider-handle {
+    left: -#{$spacingMedium};
+    margin-left: 0;
+    margin-bottom: -#{$spacingMedium};
+}
+
+.ui-slider-vertical .ui-slider-range {
+    left: 0;
+    width: 100%;
+}
+
+.ui-slider-vertical .ui-slider-range-min {
+    bottom: 0;
+}
+
+.ui-slider-vertical .ui-slider-range-max {
+    top: 0;
+}
+
+.ui-spinner {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    padding: 0;
+    vertical-align: middle;
+}
+
+.ui-spinner-input {
+    border: none;
+    background: none;
+    color: inherit;
+    padding: 0;
+    margin: $spacingMedium 0;
+    vertical-align: middle;
+    margin-left: $spacingMedium;
+    margin-right: $spacingExtraLarge;
+}
+
+.ui-spinner-button {
+    width: 16px;
+    height: 50%;
+    @include fontSize($fontSizeMedium);
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    position: absolute;
+    cursor: default;
+    display: block;
+    overflow: hidden;
+    right: 0;
+}
+/* more specificity required here to overide default borders */
+.ui-spinner a.ui-spinner-button {
+    border-top: none;
+    border-bottom: none;
+    border-right: none;
+}
+/* vertical centre icon */
+.ui-spinner .ui-icon {
+    position: absolute;
+    margin-top: -8px;
+    top: 50%;
+    left: 0;
+}
+
+.ui-spinner-up {
+    top: 0;
+}
+
+.ui-spinner-down {
+    bottom: 0;
+}
+
+/* TR overrides */
+.ui-spinner .ui-icon-triangle-1-s {
+    /* need to fix icons sprite */
+    background-position: -65px -16px;
+}
+
+.ui-tabs {
+    position: relative;/* position: relative prevents IE scroll bug (element with position: relative inside container with overflow: auto appear as "fixed") */
+    padding: $spacingMedium;
+}
+
+.ui-tabs .ui-tabs-nav {
+    margin: -#{$spacingMedium} -#{$spacingMedium} 0 -#{$spacingMedium};
+    padding: $spacingMedium $spacingMedium 0;
+
+    -webkit-border-bottom-right-radius: 0;
+    -moz-border-bottom-right-radius: 0;
+    border-bottom-right-radius: 0;
+    -webkit-border-bottom-left-radius: 0;
+    -moz-border-bottom-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.ui-tabs .ui-tabs-nav li {
+    list-style: none;
+    float: left;
+    position: relative;
+    top: 0;
+    margin: $spacingExtraSmall $spacingExtraSmall 0 0;
+    border: 1px solid $colourGreyExtraLight;
+    border-bottom: 2px solid $colourGreyExtraLight;
+    padding: 0;
+    white-space: nowrap;
+}
+
+.ui-tabs .ui-tabs-nav li a {
+    float: left;
+    padding: $spacingMedium;
+    text-decoration: none;
+}
+
+.ui-tabs .ui-tabs-nav li.ui-tabs-active {
+    border-bottom: 2px solid $primaryColour;
+}
+
+.ui-tabs .ui-tabs-nav li.ui-tabs-active a,
+.ui-tabs .ui-tabs-nav li.ui-state-disabled a,
+.ui-tabs .ui-tabs-nav li.ui-tabs-loading a {
+    cursor: text;
+}
+
+.ui-tabs .ui-tabs-nav li a, /* first selector in group seems obsolete, but required to overcome bug in Opera applying cursor: text overall if defined elsewhere... */
+.ui-tabs-collapsible .ui-tabs-nav li.ui-tabs-active a {
+    cursor: pointer;
+}
+
+.ui-tabs .ui-tabs-panel {
+    display: block;
+    border-width: 0;
+    padding: $spacingMedium 0 0 0;
+    background: none;
+}
+
+.ui-tabs-vertical {
+    width: 55em;
+}
+
+.ui-tabs-vertical .ui-tabs-nav {
+    padding: .2em .1em .2em .2em;
+    float: left;
+    width: 12em;
+}
+
+.ui-tabs-vertical .ui-tabs-nav li {
+    clear: left;
+    width: 100%;
+    border-bottom-width: 1px !important;
+    border-right-width: 0 !important;
+    margin: 0 -1px .2em 0;
+}
+
+.ui-tabs-vertical .ui-tabs-nav li a {
+    display: block;
+}
+
+.ui-tabs-vertical .ui-tabs-nav li.ui-tabs-active {
+    padding-bottom: 0;
+    padding-right: .1em;
+    border-right-width: 1px;
+    border-right-width: 1px;
+}
+
+.ui-tabs-vertical .ui-tabs-panel {
+    padding: 1em;
+    float: right;
+    width: 40em;
+}
+
+.ui-tooltip {
+    padding: $spacingMedium;
+
+    position: absolute;
+
+    max-width: 400px;
+    @include boxGlow($colourGreyDark, 10px, 0, 0.7);
+    @include fontSize($fontSizeMedium);
+    background: $helpBackgroundColour;
+    line-height: 150%;
+    border: 0 none;
+}
+
+body .ui-tooltip {
+    border-width: 2px;
+}
+
+.ui-widget {
+    @include boxGlow($colourGreyLight, 5px, 0, 0.5);
+    border: 1px solid $colourGreyExtraLight;
+    @include equalBorderRadius($radiusSize);
+}
+
+.ui-widget .ui-widget {
+    @include fontSize($fontSizeMedium);
+}
+
+.ui-widget-content {
+    background: $colourWhite;
+    color: $textColour;
+    padding: $spacingMedium;
+}
+
+.ui-dialog.ui-widget-content {
+    padding: 0;
+}
+
+.ui-widget-content a {
+    color: $colourPurpleMedium;
+}
+
+.ui-widget-content ul {
+    margin-left: $spacingExtraLarge;
+}
+
+.ui-widget-content li {
+    line-height: 120%;
+}
+
+.ui-widget-header {
+    position: relative;
+
+    border-bottom: 1px solid $colourGreyExtraLight;
+    @include verticalGradientWhite;
+    @include boxInsetShadow($colourWhite, 0, 1px, 0, 0, 0.7);
+}
+
+.ui-widget-header > .ui-icon {
+    position: absolute;
+    top: 3px;
+    right: $spacingMedium;
+}
+
+.ui-widget-header h2 {
+    margin: 0;
+    padding: $spacingMedium;
+
+    @include textShadow($colourGreyExtraExtraLight, 0, 1px);
+    letter-spacing: 0;
+    color: $textColour;
+    font-family: $primaryFontFamily;
+}
+
+.ui-widget-header a {
+    color: $colourGreyDark;
+}
+
+.accordion {
+    @include noBoxShadow;
+    @include equalBorderRadius(0);
+}
+
+.accordion-header-buttons {
+    position: absolute;
+    top: 4px;
+    right: 52px;
+}
+
+.accordion-header-buttons button {
+    padding: 0 3px;
+}
+
+.ui-state-default {
+    @include verticalGradientGreyLight;
+    font-weight: bold;
+    color: $colourGreyDark;
+    @include textShadow($colourGreyLight, 0, 1px);
+}
+
+.ui-state-default a,
+.ui-state-default a:link,
+.ui-state-default a:visited {
+    color: $colourGreyDark;
+    @include textShadow($colourGreyLight, 0, 1px);
+    text-decoration: none;
+}
+
+.ui-state-hover,
+.ui-state-focus {
+    font-weight: bold;
+    color: $colourBlack;
+    @include textShadow($colourGreyLight, 0, 1px);
+}
+
+.ui-state-hover a,
+.ui-state-hover a:hover,
+.ui-state-hover a:link,
+.ui-state-hover a:visited {
+    color: $colourBlack;
+    @include textShadow($colourGreyLight, 0, 1px);
+    text-decoration: none;
+}
+
+.ui-state-active {
+    @include verticalGradientWhite;
+    font-weight: bold;
+    color: $colourBlack;
+    @include textShadow($colourWhite, 0, 1px);
+}
+
+.ui-state-active a,
+.ui-state-active a:link,
+.ui-state-active a:visited {
+    color: $colourBlack;
+    @include textShadow($colourWhite, 0, 1px);
+    text-decoration: none;
+}
+
+/* Interaction Cues
+----------------------------------*/
+.ui-state-highlight {
+    border: 1px solid #fed22f;
+    background: #ffe45c url(images/ui-bg_highlight-soft_75_ffe45c_1x100.png) 50% top repeat-x;
+    color: #363636;
+}
+
+.ui-state-highlight a {
+    color: #363636;
+}
+
+.ui-state-error {
+    border: 1px solid #cd0a0a;
+    background: #b81900 url(images/ui-bg_diagonals-thick_18_b81900_40x40.png) 50% 50% repeat;
+    color: #ffffff;
+}
+
+.ui-state-error a {
+    color: #ffffff;
+}
+
+.ui-state-error-text {
+    color: #ffffff;
+}
+
+.ui-priority-primary {
+    font-weight: bold;
+}
+
+.ui-priority-secondary {
+    opacity: .7;
+    filter:Alpha(Opacity=70);
+    font-weight: normal;
+}
+
+.ui-state-disabled {
+    opacity: .35;
+    filter:Alpha(Opacity=35);
+    background-image: none;
+}
+
+.ui-state-disabled .ui-icon {
+    filter:Alpha(Opacity=35); /* For IE8 - See #6059 */
+}
+
+/* Icons
+----------------------------------*/
+
+/* states and images */
+.ui-corner-all,
+.ui-corner-top,
+.ui-corner-left,
+.ui-corner-tl {
+    -webkit-border-top-left-radius: $radiusSize;
+    -moz-border-top-left-radius: $radiusSize;
+    border-top-left-radius: $radiusSize;
+}
+
+.ui-corner-all,
+.ui-corner-top,
+.ui-corner-right,
+.ui-corner-tr {
+    -webkit-border-top-right-radius: $radiusSize;
+    -moz-border-top-right-radius: $radiusSize;
+    border-top-right-radius: $radiusSize;
+}
+
+.ui-corner-all,
+.ui-corner-bottom,
+.ui-corner-left,
+.ui-corner-bl {
+    -webkit-border-bottom-left-radius: $radiusSize;
+    -moz-border-bottom-left-radius: $radiusSize;
+    border-bottom-left-radius: $radiusSize;
+}
+
+.ui-corner-all,
+.ui-corner-bottom,
+.ui-corner-right,
+.ui-corner-br {
+    -webkit-border-bottom-right-radius: $radiusSize;
+    -moz-border-bottom-right-radius: $radiusSize;
+    border-bottom-right-radius: $radiusSize;
+}
+
+.ui-corner-none,
+.ui-corner-none-top,
+.ui-corner-none-left,
+.ui-corner-none-tl {
+    -webkit-border-top-left-radius: 0 !important;
+    -moz-border-top-left-radius: 0 !important;
+    border-top-left-radius: 0 !important;
+}
+
+.ui-corner-none,
+.ui-corner-none-top,
+.ui-corner-none-right,
+.ui-corner-none-tr {
+    -webkit-border-top-right-radius: 0 !important;
+    -moz-border-top-right-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+}
+
+.ui-corner-none,
+.ui-corner-none-bottom,
+.ui-corner-none-left,
+.ui-corner-none-bl {
+    -webkit-border-bottom-left-radius: 0 !important;
+    -moz-border-bottom-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+}
+
+.ui-corner-none,
+.ui-corner-none-bottom,
+.ui-corner-none-right,
+.ui-corner-none-br {
+    -webkit-border-bottom-right-radius: 0 !important;
+    -moz-border-bottom-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+}
+
+.ui-widget-overlay {
+    @include alphaBackground($colourBlack, 0.8);
+}
+
+.ui-widget-shadow {
+    margin: -#{$spacingSmall} 0 0 -#{$spacingSmall};
+    padding: $spacingSmall;
+    @include boxGlow($primaryColour, 10px);
+    @include equalBorderRadius($radiusSize);
+}
+
+.header-buttons-container {
+    position: absolute;
+    top: 3px;
+    right: 3px;
+}
+
+.popular-department {
+    width: 100%;
+    padding: 0 0 15px 0;
+    height: 137px;
+    margin: 0 0 10px 0;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+.popular-department h5 {
+    margin: 0 0 5px 0;
+    padding: 0;
+
+    line-height: 12px;
+    text-align: center;
+    color: $colourLimeGreen;
+    @include fontSize(12);
+}
+
+.popular-department h5 a {
+    line-height: 12px;
+    text-align: center;
+    color: $colourLimeGreen;
+    @include fontSize(12);
+    text-decoration: none;
+}
+
+.popular-department img {
+    position: absolute;
+    top: 17px;
+    left: 0;
+}
+
+.popular-department ul.button-list {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+ul.button-list,
+ul.button-list li {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+
+    list-style: none;
+}
+
+ul.button-list li a {
+    padding: 0 $spacingSmall;
+
+    display: block;
+    line-height: $spacingExtraLarge;
+    @include verticalGradientWhite;
+    border: 1px solid $colourGreyLight;
+    text-decoration: none;
+    color: $textColour;
+    @include fontSize($fontSizeSmall);
+    @include ellipsis;
+}
+
+ul.button-list li a:hover {
+    @include highlightedVerticalGradientDarkOrange;
+    color: $colourWhite;
+    border: 1px solid $colourLimeGreen;
+}

@@ -1,0 +1,258 @@
+{% extends 'form_div_layout.html.twig' %}
+
+{% block form_label %}
+    {% spaceless %}
+        {% if label is not sameas(false) %}
+            {% if not compound %}
+                {% set label_attr = label_attr|merge({'for': id}) %}
+            {% endif %}
+            {% if label is empty %}
+                {% set label = name|humanize %}
+            {% endif %}
+            <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+                {% if required %}
+                    <em class="required" title="This field is required">*</em>&nbsp;
+                {% endif %}
+                {{ label|trans({}, translation_domain)|raw }}
+            </label>
+        {% endif %}
+    {% endspaceless %}
+{% endblock form_label %}
+
+{% block form_row %}
+    {% spaceless %}
+        {% if form.vars.block_prefixes.1 == 'checkbox' %}
+            <div class="form-element{% if form.vars.valid is sameas(false) %} form-element-error{% endif %} widget-group clearfix">
+                {% if help is defined %}
+                    <span title="{{ help }}" class="form-helper ui-button-icon-primary ui-icon-small icon-small-763"></span>
+                {% elseif form.vars.attr['data-help'] is defined %}
+                    <span title="{{ child.vars.attr['data-help'] }}" class="form-helper ui-button-icon-primary ui-icon-small icon-small-763"></span>
+                {% endif %}
+                <div class="widget widget-1-of-3">
+                    {{ form_label(form) }}
+                </div>
+                <div class="widget widget-2-of-3">
+                    <div class="clearfix mtm{% if form.vars.valid is sameas(false) %} error{% endif %}">
+                        {{ form_widget(form) }}
+                        {% if form.vars.valid is sameas(false) %}
+                            <div class="clear"></div>
+                            <small>{{ form_errors(form) }}</small>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% else %}
+                <div class="form-element{% if form.vars.valid is sameas(false) %} form-element-error{% endif %} widget-group clearfix">
+                    {% if help is defined %}
+                        <span title="{{ help }}" class="form-helper ui-button-icon-primary ui-icon-small icon-small-763"></span>
+                    {% elseif form.vars.attr['data-help'] is defined %}
+                        <span title="{{ form.vars.attr['data-help'] }}" class="form-helper ui-button-icon-primary ui-icon-small icon-small-763"></span>
+                    {% endif %}
+                    <div class="widget widget-1-of-3">
+                        {{ form_label(form) }}
+                    </div>
+                    <div class="widget widget-2-of-3">
+                        {{ form_widget(form) }}
+                        {% if form.vars.attr['data-apply-to-all'] is defined %}
+                            <button type="button" data-apply-to-all-field="{{ form.vars.attr['data-apply-to-all'] }}" class="actionApplyToAll button button-small ui-corner-none-top mlm fr">Apply to All</button>
+                        {% endif %}
+                        {% if errors %}
+                            <small>{{ form_errors(form) }}</small>
+                        {% endif %}
+                        {% if form.vars.attr['data-character-help'] is defined %}
+                            <small data-recommended-characters="{{ form.vars.attr['data-character-help'] }}" class="recommended-characters">Updating...</small>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endif %}
+    {% endspaceless %}
+{% endblock form_row %}
+
+{% block checkbox_row %}
+    {% spaceless %}
+        {% if form.vars.attr['data-single-checkbox'] == true %}
+            <div class="form-element{% if form.vars.valid is sameas(false) %} form-element-error{% endif %} widget-group clearfix">
+                {% if help is defined %}
+                    <span title="{{ help }}" class="form-helper ui-button-icon-primary ui-icon-small icon-small-763"></span>
+                {% elseif form.vars.attr['data-help'] is defined %}
+                    <span title="{{ child.vars.attr['data-help'] }}" class="form-helper ui-button-icon-primary ui-icon-small icon-small-763"></span>
+                {% endif %}
+                <div class="widget widget-1-of-3">
+                    {{ form_label(form) }}
+                </div>
+                <div class="widget widget-2-of-3">
+                    <div class="clearfix mtm{% if form.vars.valid is sameas(false) %} error{% endif %}">
+                        {{ form_widget(form) }}
+                        {% if form.vars.valid is sameas(false) %}
+                            <div class="clear"></div>
+                            <small>{{ form_errors(form) }}</small>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div class="clearfix{% if form.vars.valid is sameas(false) %} error{% endif %}">
+                {{ form_widget(form) }}{{ form_label(form) }}
+                {% if help is defined %}
+                    <small>{{ help }}</small>
+                {% elseif form.vars.attr['data-help'] is defined %}
+                    <small>{{ form.vars.attr['data-help'] }}</small>
+                {% endif %}
+                {% if form.vars.valid is sameas(false) %}
+                    <div class="clear"></div>
+                    <small>{{ form_errors(form) }}</small>
+                {% endif %}
+            </div>
+        {% endif %}
+    {% endspaceless %}
+{% endblock %}
+
+{% block form_rows %}
+    {% spaceless %}
+        {% for child in form %}
+            {{ form_widget(child) }}
+        {% endfor %}
+    {% endspaceless %}
+{% endblock form_rows %}
+
+{% block collection_row %}
+    {% spaceless %}
+        {% if prototype is defined %}
+            {% set attr = attr|merge({'data-prototype': prototype }) %}
+            {% for row in form %}
+                <tr>
+                    {% for child in row %}
+                        {% if child.vars.name == 'displayOrder' %}
+                            <td><img class="handle" src="{{ asset('bundles/shopilluminationadmin/images/icons/handle.png') }}" border="0" /></td>
+                        {% endif %}
+                    {% endfor %}
+                    <td class="row-count tar">{{ loop.index }}</td>
+                    {% for child in row %}
+                        {% if child.vars.block_prefixes.1 != 'hidden' %}
+                            {% set containerClass = [] %}
+                            {% if child.vars.valid is sameas(false) %}
+                                {% set containerClass = containerClass|merge(['error']) %}
+                            {% endif %}
+                            {% if child.vars.attr['data-container-class'] is defined %}
+                                {% set containerClass = containerClass|merge([child.vars.attr['data-container-class']]) %}
+                            {% endif %}
+                            <td{% if containerClass|length > 0 %} class="{{ containerClass|join(' ') }}"{% endif %}>{{ form_widget(child) }}</td>
+                            {% if child.vars.attr['data-apply-to-all'] is defined %}
+                                <td width="1" class="tar">
+                                    <button type="button" data-apply-to-all-field="{{ child.vars.attr['data-apply-to-all'] }}" title="Click to apply this value to all others." class="actionApplyToAll button icon-grey" data-icon-primary="icon-751" data-icon-only="true">Apply to All</button>
+                                </td>
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                    <td class="tac" width="1">
+                        {{ form_rest(row) }}
+                        <button type="button" class="actionDeleteFormRow button button-red icon-white" data-icon-primary="icon-1118" data-icon-only="true">Delete</button>
+                    </td>
+                </tr>
+            {% endfor %}
+        {% else %}
+            {% for row in form %}
+                {% for child in row %}
+                    {% if child.vars.block_prefixes.1 != 'hidden' %}
+                        {% if child.vars.block_prefixes.1 == 'checkbox' %}
+                            <div class="form-element{% if child.vars.valid is sameas(false) %} form-element-error{% endif %} widget-group clearfix">
+                                {% if help is defined %}
+                                    <span title="{{ help }}" class="form-helper ui-button-icon-primary ui-icon-small icon-small-763"></span>
+                                {% elseif child.vars.attr['data-help'] is defined %}
+                                    <span title="{{ child.vars.attr['data-help'] }}" class="form-helper ui-button-icon-primary ui-icon-small icon-small-763"></span>
+                                {% endif %}
+                                <div class="widget widget-1-of-3">
+                                    {{ form_label(child) }}
+                                </div>
+                                <div class="widget widget-2-of-3">
+                                    <div class="clearfix mtm{% if child.vars.valid is sameas(false) %} error{% endif %}">
+                                        {{ form_widget(child) }}
+                                        {% if child.vars.valid is sameas(false) %}
+                                            <div class="clear"></div>
+                                            <small>{{ form_errors(child) }}</small>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        {% else %}
+                            <div class="form-element{% if child.vars.valid is sameas(false) %} form-element-error{% endif %} widget-group clearfix">
+                                {% if help is defined %}
+                                    <span title="{{ help }}" class="form-helper ui-button-icon-primary ui-icon-small icon-small-763"></span>
+                                {% elseif child.vars.attr['data-help'] is defined %}
+                                    <span title="{{ child.vars.attr['data-help'] }}" class="form-helper ui-button-icon-primary ui-icon-small icon-small-763"></span>
+                                {% endif %}
+                                <div class="widget widget-1-of-3">
+                                    {{ form_label(child) }}
+                                </div>
+                                <div class="widget widget-2-of-3">
+                                    {{ form_widget(child) }}
+                                    {% if child.vars.attr['data-apply-to-all'] is defined %}
+                                        <button type="button" data-apply-to-all-field="{{ child.vars.attr['data-apply-to-all'] }}" class="actionApplyToAll button button-small ui-corner-none-top mlm fr">Apply to All</button>
+                                    {% endif %}
+                                    {% if child.vars.valid is sameas(false) %}
+                                        <small>
+                                            {{ form_errors(child) }}
+                                        </small>
+                                    {% endif %}
+                                    {% if child.vars.attr['data-character-help'] is defined %}
+                                        <small data-recommended-characters="{{ child.vars.attr['data-character-help'] }}" class="recommended-characters">Updating...</small>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% else %}
+                        {{ form_widget(child) }}
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+        {% endif %}
+    {% endspaceless %}
+{% endblock collection_row %}
+
+{% block button_errors %}
+    {{ block('form_errors') }}
+{% endblock %}
+
+{# CONFIRMED BLOCKS IN USE IN ORDER THEY ARE USED #}
+{# This block needs to be in this file so that it has access to the widget attributes block #}
+{% block _site_new_product_departments_entry_department_widget %}
+    <select {{ block('widget_attributes') }}{% if multiple %} multiple="multiple"{% endif %}>
+        {% for group_label, choice in choices %}
+            <option value="{{ choice.value }}"{% if choice is selectedchoice(value) %} selected="selected"{% endif %}>{{ choice.label|raw }}</option>
+        {% endfor %}
+    </select>
+{% endblock %}
+
+{% block _site_new_product_variants_overview_entry_widget %}
+    {% import "ShopIlluminationAdminBundle:Includes:fieldMacros.html.twig" as fields %}
+    {{ fields.product_variants_overview_widget(form) }}
+{% endblock %}
+
+{% block _site_new_product_variants_overview_entry_prices_widget %}
+    {% import "ShopIlluminationAdminBundle:Includes:fieldMacros.html.twig" as fields %}
+    {{ fields.table_prices_widget(form) }}
+{% endblock %}
+
+{% block _site_new_product_variants_images_entry_widget %}
+    {% import "ShopIlluminationAdminBundle:Includes:fieldMacros.html.twig" as fields %}
+    {{ fields.product_variants_images_widget(form) }}
+{% endblock %}
+
+{# Edit Product Blocks #}
+{% block _site_edit_product_departments_entry_department_widget %}
+    {% import "ShopIlluminationAdminBundle:Includes:fieldMacros.html.twig" as fields %}
+    {{ fields.product_departments_widget(form) }}
+{% endblock %}
+
+{# New Variant Blocks #}
+
+
+{# Edit Variant Blocks #}
+{% block _site_edit_variant_features_features_entry_widget %}
+    {% import "ShopIlluminationAdminBundle:Includes:fieldMacros.html.twig" as fields %}
+    {{ fields.table_features_widget(form) }}
+{% endblock %}
+{% block _site_edit_product_prices_prices_entry_widget %}
+    {% import "ShopIlluminationAdminBundle:Includes:fieldMacros.html.twig" as fields %}
+    {{ fields.table_prices_row(form) }}
+{% endblock %}

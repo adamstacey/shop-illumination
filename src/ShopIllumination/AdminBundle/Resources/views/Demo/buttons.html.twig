@@ -1,0 +1,327 @@
+{% extends 'ShopIlluminationAdminBundle::base.html.twig' %}
+{% block title %}Demo Area: Buttons | {{ parent() }}{% endblock %}
+{% block breadcrumbs %}
+    <div class="widget-group clearfix">
+        <a class="fr button button-small icon-grey" data-icon-primary="icon-473" href="{{ path('demo_index') }}">Go Back</a>
+        <div class="widget widget-1-of-1">
+            <ul class="breadcrumbs" itemprop="breadcrumb">
+                <li><a href="{{ path('demo_buttons') }}">Buttons</a></li>
+                <li><a href="{{ path('demo_index') }}">Demo Area</a></li>
+                <li><a href="{{ path('homepage') }}">Home</a></li>
+            </ul>
+        </div>
+        <div class="clear"></div>
+    </div>
+{% endblock %}
+{% block header %}
+    <header>
+        <span class="mrm ui-button-icon-primary ui-icon icon-black icon-429"></span>
+        <h1>Demo Area: Buttons</h1>
+    </header>
+{% endblock %}
+{% block body %}
+    <section>
+        <div class="widget-group clearfix mbl">
+            <div class="widget widget-1-of-1">
+                <div class="ui-widget">
+                    <header class="ui-widget-header ui-corner-top">
+                        <h2>Standard Buttons</h2>
+                    </header>
+                    <section class="ui-widget-content ui-corner-bottom clearfix">
+                        <div class="clearfix pbs">
+                            <button class="button icon-grey" data-icon-primary="icon-15" data-icon-only="true">Icon Only</button>
+                            <button class="button icon-grey" data-icon-primary="icon-15">Icon &amp; Text</button>
+                            <button class="button icon-grey" data-icon-secondary="icon-471">Icon &amp; Text</button>
+                            <a href="#" class="button icon-grey" data-icon-primary="icon-15" data-icon-secondary="icon-465">2 Icons &amp; Text</a>
+                            <button class="button icon-grey" data-icon-primary="icon-15" data-icon-secondary="icon-465" data-icon-only="true">2 Icons Only</button>
+                            <button class="button">Text Only</button>
+                            <button class="button icon-grey" data-icon-primary="icon-701" data-icon-only="true" data-notification="7">Icon Only with Notification</button>
+                            <button class="button icon-grey" data-icon-primary="   icon-981" data-notification="3">Icon &amp; Text with Notification</button>
+                        </div>
+                        <div class="clearfix">
+                            <button class="button button-small icon-grey">Small</button>
+                            <button class="button button-small icon-grey" data-icon-primary="icon-701" data-icon-only="true">Small</button>
+                            <a href="#" class="button button-small icon-grey" data-icon-primary="icon-701" data-icon-only="true">Small</a>
+                            <button class="button button-small icon-grey" data-icon-primary="icon-701">Small with Icon</button>
+                            <button class="button button-small icon-grey" data-icon-primary="icon-15" data-icon-secondary="icon-465">2 Icons &amp; Text</button>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <div class="widget-group clearfix mbl">
+            <div class="widget widget-1-of-1">
+                <div class="ui-widget">
+                    <header class="ui-widget-header ui-corner-top">
+                        <h2>Button Icons</h2>
+                    </header>
+                    <section class="ui-widget-content ui-corner-bottom clearfix">
+                        <div class="clearfix pbs">
+                            <button class="button icon-black" data-icon-primary="icon-1118">Black Icon</button>
+                            <button class="button icon-grey" data-icon-primary="icon-1118">Grey Icon</button>
+                            <button class="button button-grey-dark icon-white" data-icon-primary="icon-1118">White Icon</button>
+                            <button class="button icon-dark-red" data-icon-primary="icon-1118">Dark Red Icon</button>
+                            <button class="button icon-red" data-icon-primary="icon-1118">Red Icon</button>
+                            <button class="button icon-brown" data-icon-primary="icon-1118">Brown Icon</button>
+                        </div>
+                        <div class="clearfix">
+                            <button class="button icon-dark-orange" data-icon-primary="icon-1118">Dark Orange Icon</button>
+                            <button class="button icon-orange" data-icon-primary="icon-1118">Orange Icon</button>
+                            <button class="button button-grey-dark icon-yellow" data-icon-primary="icon-1118">Yellow Icon</button>
+                            <button class="button icon-lime-green" data-icon-primary="icon-1118">Lime Green Icon</button>
+                            <button class="button icon-green" data-icon-primary="icon-1118">Green Icon</button>
+                            <button class="button icon-purple" data-icon-primary="icon-1118">Purple Icon</button>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <div class="widget-group clearfix mbl">
+            <div class="widget widget-1-of-1">
+                <div class="ui-widget">
+                    <header class="ui-widget-header ui-corner-top">
+                        <h2>Black Buttons</h2>
+                    </header>
+                    <section class="ui-widget-content ui-corner-bottom clearfix">
+                        <button class="button button-black icon-white" data-icon-primary="icon-15" data-icon-only="true">Icon Only</button>
+                        <button class="button button-black icon-white" data-icon-primary="icon-15">Icon &amp; Text</button>
+                        <button class="button button-black icon-white" data-icon-secondary="icon-471">Icon &amp; Text</button>
+                        <button class="button button-black icon-white" data-icon-primary="icon-15" data-icon-secondary="icon-465">2 Icons &amp; Text</button>
+                        <button class="button button-black icon-white" data-icon-primary="icon-15" data-icon-secondary="icon-465" data-icon-only="true">2 Icons Only</button>
+                        <button class="button button-black">Text Only</button>
+                        <button class="button button-black icon-white" data-icon-primary="icon-701" data-icon-only="true" data-notification="7">Icon Only with Notification</button>
+                        <button class="button button-black icon-white" data-icon-primary="icon-981" data-notification="3">Icon &amp; Text with Notification</button>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <div class="widget-group clearfix mbl">
+            <div class="widget widget-1-of-1">
+                <div class="ui-widget">
+                    <header class="ui-widget-header ui-corner-top">
+                        <h2>Dark Grey Buttons</h2>
+                    </header>
+                    <section class="ui-widget-content ui-corner-bottom clearfix">
+                        <button class="button button-grey-dark icon-white" data-icon-primary="icon-15" data-icon-only="true">Icon Only</button>
+                        <button class="button button-grey-dark icon-white" data-icon-primary="icon-15">Icon &amp; Text</button>
+                        <button class="button button-grey-dark icon-white" data-icon-secondary="icon-471">Icon &amp; Text</button>
+                        <button class="button button-grey-dark icon-white" data-icon-primary="icon-15" data-icon-secondary="icon-465">2 Icons &amp; Text</button>
+                        <button class="button button-grey-dark icon-white" data-icon-primary="icon-15" data-icon-secondary="icon-465" data-icon-only="true">2 Icons Only</button>
+                        <button class="button button-grey-dark">Text Only</button>
+                        <button class="button button-grey-dark icon-white" data-icon-primary="icon-701" data-icon-only="true" data-notification="7">Icon Only with Notification</button>
+                        <button class="button button-grey-dark icon-white" data-icon-primary="icon-981" data-notification="3">Icon &amp; Text with Notification</button>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <div class="widget-group clearfix mbl">
+            <div class="widget widget-1-of-1">
+                <div class="ui-widget">
+                    <header class="ui-widget-header ui-corner-top">
+                        <h2>Grey Buttons</h2>
+                    </header>
+                    <section class="ui-widget-content ui-corner-bottom clearfix">
+                        <button class="button button-grey icon-black" data-icon-primary="icon-15" data-icon-only="true">Icon Only</button>
+                        <button class="button button-grey icon-black" data-icon-primary="icon-15">Icon &amp; Text</button>
+                        <button class="button button-grey icon-black" data-icon-secondary="icon-471">Icon &amp; Text</button>
+                        <button class="button button-grey icon-black" data-icon-primary="icon-15" data-icon-secondary="icon-465">2 Icons &amp; Text</button>
+                        <button class="button button-grey icon-black" data-icon-primary="icon-15" data-icon-secondary="icon-465" data-icon-only="true">2 Icons Only</button>
+                        <button class="button button-grey">Text Only</button>
+                        <button class="button button-grey icon-black" data-icon-primary="icon-701" data-icon-only="true" data-notification="7">Icon Only with Notification</button>
+                        <button class="button button-grey icon-black" data-icon-primary="icon-981" data-notification="3">Icon &amp; Text with Notification</button>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <div class="widget-group clearfix mbl">
+            <div class="widget widget-1-of-1">
+                <div class="ui-widget">
+                    <header class="ui-widget-header ui-corner-top">
+                        <h2>Light Grey Buttons</h2>
+                    </header>
+                    <section class="ui-widget-content ui-corner-bottom clearfix">
+                        <button class="button button-grey-light icon-grey" data-icon-primary="icon-15" data-icon-only="true">Icon Only</button>
+                        <button class="button button-grey-light icon-grey" data-icon-primary="icon-15">Icon &amp; Text</button>
+                        <button class="button button-grey-light icon-grey" data-icon-secondary="icon-471">Icon &amp; Text</button>
+                        <button class="button button-grey-light icon-grey" data-icon-primary="icon-15" data-icon-secondary="icon-465">2 Icons &amp; Text</button>
+                        <button class="button button-grey-light icon-grey" data-icon-primary="icon-15" data-icon-secondary="icon-465" data-icon-only="true">2 Icons Only</button>
+                        <button class="button button-grey-light">Text Only</button>
+                        <button class="button button-grey-light icon-grey" data-icon-primary="icon-701" data-icon-only="true" data-notification="7">Icon Only with Notification</button>
+                        <button class="button button-grey-light icon-grey" data-icon-primary="icon-981" data-notification="3">Icon &amp; Text with Notification</button>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <div class="widget-group clearfix mbl">
+            <div class="widget widget-1-of-1">
+                <div class="ui-widget">
+                    <header class="ui-widget-header ui-corner-top">
+                        <h2>Dark Red Buttons</h2>
+                    </header>
+                    <section class="ui-widget-content ui-corner-bottom clearfix">
+                        <button class="button button-dark-red icon-white" data-icon-primary="icon-15" data-icon-only="true">Icon Only</button>
+                        <button class="button button-dark-red icon-white" data-icon-primary="icon-15">Icon &amp; Text</button>
+                        <button class="button button-dark-red icon-white" data-icon-secondary="icon-471">Icon &amp; Text</button>
+                        <button class="button button-dark-red icon-white" data-icon-primary="icon-15" data-icon-secondary="icon-465">2 Icons &amp; Text</button>
+                        <button class="button button-dark-red icon-white" data-icon-primary="icon-15" data-icon-secondary="icon-465" data-icon-only="true">2 Icons Only</button>
+                        <button class="button button-dark-red">Text Only</button>
+                        <button class="button button-dark-red icon-white" data-icon-primary="icon-701" data-icon-only="true" data-notification="7">Icon Only with Notification</button>
+                        <button class="button button-dark-red icon-white" data-icon-primary="icon-981" data-notification="3">Icon &amp; Text with Notification</button>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <div class="widget-group clearfix mbl">
+            <div class="widget widget-1-of-1">
+                <div class="ui-widget">
+                    <header class="ui-widget-header ui-corner-top">
+                        <h2>Red Buttons</h2>
+                    </header>
+                    <section class="ui-widget-content ui-corner-bottom clearfix">
+                        <button class="button button-red icon-white" data-icon-primary="icon-15" data-icon-only="true">Icon Only</button>
+                        <button class="button button-red icon-white" data-icon-primary="icon-15">Icon &amp; Text</button>
+                        <button class="button button-red icon-white" data-icon-secondary="icon-471">Icon &amp; Text</button>
+                        <button class="button button-red icon-white" data-icon-primary="icon-15" data-icon-secondary="icon-465">2 Icons &amp; Text</button>
+                        <button class="button button-red icon-white" data-icon-primary="icon-15" data-icon-secondary="icon-465" data-icon-only="true">2 Icons Only</button>
+                        <button class="button button-red">Text Only</button>
+                        <button class="button button-red icon-white" data-icon-primary="icon-701" data-icon-only="true" data-notification="7">Icon Only with Notification</button>
+                        <button class="button button-red icon-white" data-icon-primary="icon-981" data-notification="3">Icon &amp; Text with Notification</button>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <div class="widget-group clearfix mbl">
+            <div class="widget widget-1-of-1">
+                <div class="ui-widget">
+                    <header class="ui-widget-header ui-corner-top">
+                        <h2>Brown Buttons</h2>
+                    </header>
+                    <section class="ui-widget-content ui-corner-bottom clearfix">
+                        <button class="button button-brown icon-white" data-icon-primary="icon-15" data-icon-only="true">Icon Only</button>
+                        <button class="button button-brown icon-white" data-icon-primary="icon-15">Icon &amp; Text</button>
+                        <button class="button button-brown icon-white" data-icon-secondary="icon-471">Icon &amp; Text</button>
+                        <button class="button button-brown icon-white" data-icon-primary="icon-15" data-icon-secondary="icon-465">2 Icons &amp; Text</button>
+                        <button class="button button-brown icon-white" data-icon-primary="icon-15" data-icon-secondary="icon-465" data-icon-only="true">2 Icons Only</button>
+                        <button class="button button-brown">Text Only</button>
+                        <button class="button button-brown icon-white" data-icon-primary="icon-701" data-icon-only="true" data-notification="7">Icon Only with Notification</button>
+                        <button class="button button-brown icon-white" data-icon-primary="icon-981" data-notification="3">Icon &amp; Text with Notification</button>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <div class="widget-group clearfix mbl">
+            <div class="widget widget-1-of-1">
+                <div class="ui-widget">
+                    <header class="ui-widget-header ui-corner-top">
+                        <h2>Dark Orange Buttons</h2>
+                    </header>
+                    <section class="ui-widget-content ui-corner-bottom clearfix">
+                        <button class="button button-dark-orange icon-white" data-icon-primary="icon-15" data-icon-only="true">Icon Only</button>
+                        <button class="button button-dark-orange icon-white" data-icon-primary="icon-15">Icon &amp; Text</button>
+                        <button class="button button-dark-orange icon-white" data-icon-secondary="icon-471">Icon &amp; Text</button>
+                        <button class="button button-dark-orange icon-white" data-icon-primary="icon-15" data-icon-secondary="icon-465">2 Icons &amp; Text</button>
+                        <button class="button button-dark-orange icon-white" data-icon-primary="icon-15" data-icon-secondary="icon-465" data-icon-only="true">2 Icons Only</button>
+                        <button class="button button-dark-orange">Text Only</button>
+                        <button class="button button-dark-orange icon-white" data-icon-primary="icon-701" data-icon-only="true" data-notification="7">Icon Only with Notification</button>
+                        <button class="button button-dark-orange icon-white" data-icon-primary="icon-981" data-notification="3">Icon &amp; Text with Notification</button>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <div class="widget-group clearfix mbl">
+            <div class="widget widget-1-of-1">
+                <div class="ui-widget">
+                    <header class="ui-widget-header ui-corner-top">
+                        <h2>Orange Buttons</h2>
+                    </header>
+                    <section class="ui-widget-content ui-corner-bottom clearfix">
+                        <button class="button button-orange icon-black" data-icon-primary="icon-15" data-icon-only="true">Icon Only</button>
+                        <button class="button button-orange icon-black" data-icon-primary="icon-15">Icon &amp; Text</button>
+                        <button class="button button-orange icon-black" data-icon-secondary="icon-471">Icon &amp; Text</button>
+                        <button class="button button-orange icon-black" data-icon-primary="icon-15" data-icon-secondary="icon-465">2 Icons &amp; Text</button>
+                        <button class="button button-orange icon-black" data-icon-primary="icon-15" data-icon-secondary="icon-465" data-icon-only="true">2 Icons Only</button>
+                        <button class="button button-orange">Text Only</button>
+                        <button class="button button-orange icon-black" data-icon-primary="icon-701" data-icon-only="true" data-notification="7">Icon Only with Notification</button>
+                        <button class="button button-orange icon-black" data-icon-primary="icon-981" data-notification="3">Icon &amp; Text with Notification</button>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <div class="widget-group clearfix mbl">
+            <div class="widget widget-1-of-1">
+                <div class="ui-widget">
+                    <header class="ui-widget-header ui-corner-top">
+                        <h2>Yellow Buttons</h2>
+                    </header>
+                    <section class="ui-widget-content ui-corner-bottom clearfix">
+                        <button class="button button-yellow icon-black" data-icon-primary="icon-15" data-icon-only="true">Icon Only</button>
+                        <button class="button button-yellow icon-black" data-icon-primary="icon-15">Icon &amp; Text</button>
+                        <button class="button button-yellow icon-black" data-icon-secondary="icon-471">Icon &amp; Text</button>
+                        <button class="button button-yellow icon-black" data-icon-primary="icon-15" data-icon-secondary="icon-465">2 Icons &amp; Text</button>
+                        <button class="button button-yellow icon-black" data-icon-primary="icon-15" data-icon-secondary="icon-465" data-icon-only="true">2 Icons Only</button>
+                        <button class="button button-yellow">Text Only</button>
+                        <button class="button button-yellow icon-black" data-icon-primary="icon-701" data-icon-only="true" data-notification="7">Icon Only with Notification</button>
+                        <button class="button button-yellow icon-black" data-icon-primary="icon-981" data-notification="3">Icon &amp; Text with Notification</button>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <div class="widget-group clearfix mbl">
+            <div class="widget widget-1-of-1">
+                <div class="ui-widget">
+                    <header class="ui-widget-header ui-corner-top">
+                        <h2>Lime Green Buttons</h2>
+                    </header>
+                    <section class="ui-widget-content ui-corner-bottom clearfix">
+                        <button class="button button-lime-green icon-black" data-icon-primary="icon-15" data-icon-only="true">Icon Only</button>
+                        <button class="button button-lime-green icon-black" data-icon-primary="icon-15">Icon &amp; Text</button>
+                        <button class="button button-lime-green icon-black" data-icon-secondary="icon-471">Icon &amp; Text</button>
+                        <button class="button button-lime-green icon-black" data-icon-primary="icon-15" data-icon-secondary="icon-465">2 Icons &amp; Text</button>
+                        <button class="button button-lime-green icon-black" data-icon-primary="icon-15" data-icon-secondary="icon-465" data-icon-only="true">2 Icons Only</button>
+                        <button class="button button-lime-green">Text Only</button>
+                        <button class="button button-lime-green icon-black" data-icon-primary="icon-701" data-icon-only="true" data-notification="7">Icon Only with Notification</button>
+                        <button class="button button-lime-green icon-black" data-icon-primary="icon-981" data-notification="3">Icon &amp; Text with Notification</button>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <div class="widget-group clearfix mbl">
+            <div class="widget widget-1-of-1">
+                <div class="ui-widget">
+                    <header class="ui-widget-header ui-corner-top">
+                        <h2>Green Buttons</h2>
+                    </header>
+                    <section class="ui-widget-content ui-corner-bottom clearfix">
+                        <button class="button button-green icon-white" data-icon-primary="icon-15" data-icon-only="true">Icon Only</button>
+                        <button class="button button-green icon-white" data-icon-primary="icon-15">Icon &amp; Text</button>
+                        <button class="button button-green icon-white" data-icon-secondary="icon-471">Icon &amp; Text</button>
+                        <button class="button button-green icon-white" data-icon-primary="icon-15" data-icon-secondary="icon-465">2 Icons &amp; Text</button>
+                        <button class="button button-green icon-white" data-icon-primary="icon-15" data-icon-secondary="icon-465" data-icon-only="true">2 Icons Only</button>
+                        <button class="button button-green">Text Only</button>
+                        <button class="button button-green icon-white" data-icon-primary="icon-701" data-icon-only="true" data-notification="7">Icon Only with Notification</button>
+                        <button class="button button-green icon-white" data-icon-primary="icon-981" data-notification="3">Icon &amp; Text with Notification</button>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <div class="widget-group clearfix">
+            <div class="widget widget-1-of-1">
+                <div class="ui-widget">
+                    <header class="ui-widget-header ui-corner-top">
+                        <h2>Purple Buttons</h2>
+                    </header>
+                    <section class="ui-widget-content ui-corner-bottom clearfix">
+                        <button class="button button-purple icon-white" data-icon-primary="icon-15" data-icon-only="true">Icon Only</button>
+                        <button class="button button-purple icon-white" data-icon-primary="icon-15">Icon &amp; Text</button>
+                        <button class="button button-purple icon-white" data-icon-secondary="icon-471">Icon &amp; Text</button>
+                        <button class="button button-purple icon-white" data-icon-primary="icon-15" data-icon-secondary="icon-465">2 Icons &amp; Text</button>
+                        <button class="button button-purple icon-white" data-icon-primary="icon-15" data-icon-secondary="icon-465" data-icon-only="true">2 Icons Only</button>
+                        <button class="button button-purple">Text Only</button>
+                        <button class="button button-purple icon-white" data-icon-primary="icon-701" data-icon-only="true" data-notification="7">Icon Only with Notification</button>
+                        <button class="button button-purple icon-white" data-icon-primary="icon-981" data-notification="3">Icon &amp; Text with Notification</button>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

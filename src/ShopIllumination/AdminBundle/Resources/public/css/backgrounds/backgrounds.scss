@@ -1,0 +1,609 @@
+@import "compass";
+@import "../includes/base";
+
+.gradient-black,
+.vertical-gradient-black {
+    @include verticalGradientBlack;
+}
+
+.highlighted-vertical-gradient-black {
+    @include highlightedVerticalGradientBlack;
+}
+
+.gradient-black-reversed,
+.vertical-gradient-black-reversed {
+    @include verticalGradientBlackReversed;
+}
+
+.highlighted-vertical-gradient-black-reversed {
+    @include highlightedVerticalGradientBlackReversed;
+}
+
+.gradient-grey-dark,
+.vertical-gradient-grey-dark {
+    @include verticalGradientGreyDark;
+}
+
+.highlighted-vertical-gradient-grey-dark {
+    @include highlightedVerticalGradientGreyDark;
+}
+
+.gradient-grey-dark-reversed,
+.vertical-gradient-grey-dark-reversed {
+    @include verticalGradientGreyDarkReversed;
+}
+
+.highlighted-vertical-gradient-grey-dark-reversed {
+    @include highlightedVerticalGradientGreyDarkReversed;
+}
+
+.gradient-grey,
+.vertical-gradient-grey {
+    @include verticalGradientGrey;
+}
+
+.highlighted-vertical-gradient-grey {
+    @include highlightedVerticalGradientGrey;
+}
+
+.gradient-grey-reversed,
+.vertical-gradient-grey-reversed {
+    @include verticalGradientGreyReversed;
+}
+
+.highlighted-vertical-gradient-grey-reversed {
+    @include highlightedVerticalGradientGreyReversed;
+}
+
+.gradient-grey-light,
+.vertical-gradient-grey-light {
+    @include verticalGradientGreyLight;
+}
+
+.highlighted-vertical-gradient-grey-light {
+    @include highlightedVerticalGradientGreyLight;
+}
+
+.gradient-grey-light-reversed,
+.vertical-gradient-grey-light-reversed {
+    @include verticalGradientGreyLightReversed;
+}
+
+.highlighted-vertical-gradient-grey-light-reversed {
+    @include highlightedVerticalGradientGreyLightReversed;
+}
+
+.gradient-white,
+.vertical-gradient-white {
+    @include verticalGradientWhite;
+}
+
+.highlighted-vertical-gradient-white {
+    @include highlightedVerticalGradientWhite;
+}
+
+.gradient-white-reversed,
+.vertical-gradient-white-reversed {
+    @include verticalGradientWhiteReversed;
+}
+
+.highlighted-vertical-gradient-white-reversed {
+    @include highlightedVerticalGradientWhiteReversed;
+}
+
+.gradient-dark-red,
+.vertical-gradient-dark-red {
+    @include verticalGradientDarkRed;
+}
+
+.highlighted-vertical-gradient-dark-red {
+    @include highlightedVerticalGradientDarkRed;
+}
+
+.gradient-dark-red-reversed,
+.vertical-gradient-dark-red-reversed {
+    @include verticalGradientDarkRedReversed;
+}
+
+.highlighted-vertical-gradient-dark-red-reversed {
+    @include highlightedVerticalGradientDarkRedReversed;
+}
+
+.gradient-red,
+.vertical-gradient-red {
+    @include verticalGradientRed;
+}
+
+.highlighted-vertical-gradient-red {
+    @include highlightedVerticalGradientRed;
+}
+
+.gradient-red-reversed,
+.vertical-gradient-red-reversed {
+    @include verticalGradientRedReversed;
+}
+
+.highlighted-vertical-gradient-red-reversed {
+    @include highlightedVerticalGradientRedReversed;
+}
+
+.gradient-brown,
+.vertical-gradient-brown {
+    @include verticalGradientBrown;
+}
+
+.highlighted-vertical-gradient-brown {
+    @include highlightedVerticalGradientBrown;
+}
+
+.gradient-brown-reversed,
+.vertical-gradient-brown-reversed {
+    @include verticalGradientBrownReversed;
+}
+
+.highlighted-vertical-gradient-brown-reversed {
+    @include highlightedVerticalGradientBrownReversed;
+}
+
+.gradient-dark-orange,
+.vertical-gradient-dark-orange {
+    @include verticalGradientDarkOrange;
+}
+
+.highlighted-vertical-gradient-dark-orange {
+    @include highlightedVerticalGradientDarkOrange;
+}
+
+.gradient-dark-orange-reversed,
+.vertical-gradient-dark-orange-reversed {
+    @include verticalGradientDarkOrangeReversed;
+}
+
+.highlighted-vertical-gradient-dark-orange-reversed {
+    @include highlightedVerticalGradientDarkOrangeReversed;
+}
+
+.gradient-orange,
+.vertical-gradient-orange {
+    @include verticalGradientOrange;
+}
+
+.highlighted-vertical-gradient-orange {
+    @include highlightedVerticalGradientOrange;
+}
+
+.gradient-orange-reversed,
+.vertical-gradient-orange-reversed {
+    @include verticalGradientOrangeReversed;
+}
+
+.highlighted-vertical-gradient-orange-reversed {
+    @include highlightedVerticalGradientOrangeReversed;
+}
+
+.gradient-yellow,
+.vertical-gradient-yellow {
+    @include verticalGradientYellow;
+}
+
+.highlighted-vertical-gradient-yellow {
+    @include highlightedVerticalGradientYellow;
+}
+
+.gradient-yellow-reversed,
+.vertical-gradient-yellow-reversed {
+    @include verticalGradientYellowReversed;
+}
+
+.highlighted-vertical-gradient-yellow-reversed {
+    @include highlightedVerticalGradientYellowReversed;
+}
+
+.gradient-lime-green,
+.vertical-gradient-lime-green {
+    @include verticalGradientLimeGreen;
+}
+
+.highlighted-vertical-gradient-lime-green {
+    @include highlightedVerticalGradientLimeGreen;
+}
+
+.gradient-lime-green-reversed,
+.vertical-gradient-lime-green-reversed {
+    @include verticalGradientLimeGreenReversed;
+}
+
+.highlighted-vertical-gradient-lime-green-reversed {
+    @include highlightedVerticalGradientLimeGreenReversed;
+}
+
+.gradient-green,
+.vertical-gradient-green {
+    @include verticalGradientGreen;
+}
+
+.highlighted-vertical-gradient-green {
+    @include highlightedVerticalGradientGreen;
+}
+
+.gradient-green-reversed,
+.vertical-gradient-green-reversed {
+    @include verticalGradientGreenReversed;
+}
+
+.highlighted-vertical-gradient-green-reversed {
+    @include highlightedVerticalGradientGreenReversed;
+}
+
+.gradient-purple,
+.vertical-gradient-purple {
+    @include verticalGradientPurple;
+}
+
+.highlighted-vertical-gradient-purple {
+    @include highlightedVerticalGradientPurple;
+}
+
+.gradient-purple-reversed,
+.vertical-gradient-purple-reversed {
+    @include verticalGradientPurpleReversed;
+}
+
+.highlighted-vertical-gradient-purple-reversed {
+    @include highlightedVerticalGradientPurpleReversed;
+}
+
+.background-black {
+    background-color: $colourBlack !important;
+}
+
+.background-white {
+    background-color: $colourWhite !important;
+}
+
+.background-grey-extra-extra-light {
+    background-color: $colourGreyExtraExtraLight !important;
+}
+
+.background-grey-extra-light {
+    background-color: $colourGreyExtraLight !important;
+}
+
+.background-grey-light {
+    background-color: $colourGreyLight !important;
+}
+
+.background-grey-medium {
+    background-color: $colourGreyMedium !important;
+}
+
+.background-grey {
+    background-color: $colourGrey !important;
+}
+
+.background-grey-dark {
+    background-color: $colourGreyDark !important;
+}
+
+.background-dark-red-extra-light {
+    background-color: $colourDarkRedExtraLight !important;
+}
+
+.background-dark-red-light {
+    background-color: $colourDarkRedLight !important;
+}
+
+.background-dark-red-medium {
+    background-color: $colourDarkRedMedium !important;
+}
+
+.background-dark-red {
+    background-color: $colourDarkRed !important;
+}
+
+.background-dark-red-dark {
+    background-color: $colourDarkRedDark !important;
+}
+
+.background-red-extra-light {
+    background-color: $colourRedExtraLight !important;
+}
+
+.background-red-light {
+    background-color: $colourRedLight !important;
+}
+
+.background-red-medium {
+    background-color: $colourRedMedium !important;
+}
+
+.background-red {
+    background-color: $colourRed !important;
+}
+
+.background-red-dark {
+    background-color: $colourRedDark !important;
+}
+
+.background-brown-extra-light {
+    background-color: $colourBrownExtraLight !important;
+}
+
+.background-brown-light {
+    background-color: $colourBrownLight !important;
+}
+
+.background-brown-medium {
+    background-color: $colourBrownMedium !important;
+}
+
+.background-brown {
+    background-color: $colourBrown !important;
+}
+
+.background-brown-dark {
+    background-color: $colourBrownDark !important;
+}
+
+.background-dark-orange-extra-light {
+    background-color: $colourDarkOrangeExtraLight !important;
+}
+
+.background-dark-orange-light {
+    background-color: $colourDarkOrangeLight !important;
+}
+
+.background-dark-orange-medium {
+    background-color: $colourDarkOrangeMedium !important;
+}
+
+.background-dark-orange {
+    background-color: $colourDarkOrange !important;
+}
+
+.background-dark-orange-dark {
+    background-color: $colourDarkOrangeDark !important;
+}
+
+.background-orange-extra-light {
+    background-color: $colourOrangeExtraLight !important;
+}
+
+.background-orange-light {
+    background-color: $colourOrangeLight !important;
+}
+
+.background-orange-medium {
+    background-color: $colourOrangeMedium !important;
+}
+
+.background-orange {
+    background-color: $colourOrange !important;
+}
+
+.background-orange-dark {
+    background-color: $colourOrangeDark !important;
+}
+
+.background-yellow-extra-light {
+    background-color: $colourYellowExtraLight !important;
+}
+
+.background-yellow-light {
+    background-color: $colourYellowLight !important;
+}
+
+.background-yellow-medium {
+    background-color: $colourYellowMedium !important;
+}
+
+.background-yellow {
+    background-color: $colourYellow !important;
+}
+
+.background-yellow-dark {
+    background-color: $colourYellowDark !important;
+}
+
+.background-lime-green-extra-light {
+    background-color: $colourLimeGreenExtraLight !important;
+}
+
+.background-lime-green-light {
+    background-color: $colourLimeGreenLight !important;
+}
+
+.background-lime-green-medium {
+    background-color: $colourLimeGreenMedium !important;
+}
+
+.background-lime-green {
+    background-color: $colourLimeGreen !important;
+}
+
+.background-lime-green-dark {
+    background-color: $colourLimeGreenDark !important;
+}
+
+.background-green-extra-light {
+    background-color: $colourGreenExtraLight !important;
+}
+
+.background-green-light {
+    background-color: $colourGreenLight !important;
+}
+
+.background-green-medium {
+    background-color: $colourGreenMedium !important;
+}
+
+.background-green {
+    background-color: $colourGreen !important;
+}
+
+.background-green-dark {
+    background-color: $colourGreenDark !important;
+}
+
+.background-purple-extra-light {
+    background-color: $colourPurpleExtraLight !important;
+}
+
+.background-purple-light {
+    background-color: $colourPurpleLight !important;
+}
+
+.background-purple-medium {
+    background-color: $colourPurpleMedium !important;
+}
+
+.background-purple {
+    background-color: $colourPurple !important;
+}
+
+.background-purple-dark {
+    background-color: $colourPurpleDark !important;
+}
+
+.gradient-grey,
+.vertical-gradient-grey,
+.highlighted-vertical-gradient-grey,
+.gradient-grey-reversed,
+.vertical-gradient-grey-reversed,
+.highlighted-vertical-gradient-grey-reversed,
+.gradient-grey-light,
+.vertical-gradient-grey-light,
+.highlighted-vertical-gradient-grey-light,
+.gradient-grey-light-reversed,
+.vertical-gradient-grey-light-reversed,
+.highlighted-vertical-gradient-grey-light-reversed,
+.gradient-white,
+.vertical-gradient-white,
+.highlighted-vertical-gradient-white,
+.gradient-white-reversed,
+.vertical-gradient-white-reversed,
+.highlighted-vertical-gradient-white-reversed,
+.gradient-orange,
+.vertical-gradient-orange,
+.highlighted-vertical-gradient-orange,
+.gradient-orange-reversed,
+.vertical-gradient-orange-reversed,
+.highlighted-vertical-gradient-orange-reversed,
+.gradient-yellow,
+.vertical-gradient-yellow,
+.highlighted-vertical-gradient-yellow,
+.gradient-yellow-reversed,
+.vertical-gradient-yellow-reversed,
+.highlighted-vertical-gradient-yellow-reversed,
+.gradient-lime-green,
+.vertical-gradient-lime-green,
+.highlighted-vertical-gradient-lime-green,
+.gradient-lime-green-reversed,
+.vertical-gradient-lime-green-reversed,
+.highlighted-vertical-gradient-lime-green-reversed,
+.background-white,
+.background-grey-extra-extra-light,
+.background-grey-extra-light,
+.background-grey-light,
+.background-grey-medium,
+.background-dark-red-extra-light,
+.background-dark-red-light,
+.background-red-extra-light,
+.background-red-light,
+.background-brown-extra-light,
+.background-brown-light,
+.background-dark-orange-extra-light,
+.background-dark-orange-light,
+.background-orange-extra-light,
+.background-orange-light,
+.background-orange-medium,
+.background-orange,
+.background-yellow-extra-light,
+.background-yellow-light,
+.background-yellow-medium,
+.background-yellow,
+.background-lime-green-extra-light,
+.background-lime-green-light,
+.background-lime-green-medium,
+.background-lime-green,
+.background-green-extra-light,
+.background-green-light,
+.background-purple-extra-light,
+.background-purple-light {
+    color: $colourGreyDark;
+}
+
+.gradient-black,
+.vertical-gradient-black,
+.highlighted-vertical-gradient-black,
+.gradient-black-reversed,
+.vertical-gradient-black-reversed,
+.highlighted-vertical-gradient-black-reversed,
+.gradient-grey-dark,
+.vertical-gradient-grey-dark,
+.highlighted-vertical-gradient-grey-dark,
+.gradient-grey-dark-reversed,
+.vertical-gradient-grey-dark-reversed,
+.highlighted-vertical-gradient-grey-dark-reversed,
+.gradient-dark-red,
+.vertical-gradient-dark-red,
+.highlighted-vertical-gradient-dark-red,
+.gradient-dark-red-reversed,
+.vertical-gradient-dark-red-reversed,
+.highlighted-vertical-gradient-dark-red-reversed,
+.gradient-red,
+.vertical-gradient-red,
+.highlighted-vertical-gradient-red,
+.gradient-red-reversed,
+.vertical-gradient-red-reversed,
+.highlighted-vertical-gradient-red-reversed,
+.gradient-brown,
+.vertical-gradient-brown,
+.highlighted-vertical-gradient-brown,
+.gradient-brown-reversed,
+.vertical-gradient-brown-reversed,
+.highlighted-vertical-gradient-brown-reversed,
+.gradient-dark-orange,
+.vertical-gradient-dark-orange,
+.highlighted-vertical-gradient-dark-orange,
+.gradient-dark-orange-reversed,
+.vertical-gradient-dark-orange-reversed,
+.highlighted-vertical-gradient-dark-orange-reversed,
+.gradient-green,
+.vertical-gradient-green,
+.highlighted-vertical-gradient-green,
+.gradient-green-reversed,
+.vertical-gradient-green-reversed,
+.highlighted-vertical-gradient-green-reversed,
+.gradient-purple,
+.vertical-gradient-purple,
+.highlighted-vertical-gradient-purple,
+.gradient-purple-reversed,
+.vertical-gradient-purple-reversed,
+.highlighted-vertical-gradient-purple-reversed,
+.background-black,
+.background-grey,
+.background-grey-dark,
+.background-dark-red-medium,
+.background-dark-red,
+.background-dark-red-dark,
+.background-red-medium,
+.background-red,
+.background-red-dark,
+.background-brown-medium,
+.background-brown,
+.background-brown-dark,
+.background-dark-orange-medium,
+.background-dark-orange,
+.background-dark-orange-dark,
+.background-orange-dark,
+.background-yellow-dark,
+.background-lime-green-dark,
+.background-green-medium,
+.background-green,
+.background-green-dark,
+.background-purple-medium,
+.background-purple,
+.background-purple-dark {
+    color: $colourWhite;
+}

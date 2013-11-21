@@ -1,0 +1,126 @@
+{% extends 'ShopIlluminationAdminBundle::base.html.twig' %}
+{% block title %}Delivery Costs and Delivery Times{% endblock %}
+{% block metatags %}
+	<meta name="description" content="Free UK delivery on all orders where you spend over £500. Delivery times: 1-5 working days.">
+	<meta name="keywords" content="kitchen appliance centre, free uk delivery, uk mainland, kitchen appliances, delivery, quick delivery">
+{% endblock %}
+{% block top_reviews %}{% endblock %}
+{% block body %}
+    <div class="widget-group clearfix">
+        <div class="widget ptl mbl widget-1-of-1">
+            <div class="ui-widget">
+                <section class="ui-widget-content ui-corner-all clearfix">
+                    <div class="header-image">
+                        <img src="{{ asset('/bundles/webilluminationshop/images/headers/quick-delivery.jpg') }}" alt="Quick Delivery" width="940" />
+                        <h1>Quick Delivery</h1>
+                        <p>Kitchen Appliance Centre offers a variety of delivery options to suit your requirements. Please find below a list of options and our different delivery methods.</p>
+                        <div class="message message-help mbn">
+                            <span class="ui-button-icon-primary ui-icon-small icon-top icon-small-yellow icon-small-763"></span>
+                            <p>To find out how much delivery would cost to your address simply add the items you want to order to your <a href="{{ path('basket_your_basket') }}">basket</a>. From the <a href="{{ path('basket_your_basket') }}">basket</a> you can enter your postcode for an exact cost and estimated delivery times.</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+    <div class="widget-group clearfix">
+        <div class="widget widget-1-of-1">
+            <div class="tabs">
+                <ul>
+                    <li id="tab-delivery-prices"><a href="#delivery-prices">Delivery</a></li>
+                    <li id="tab-delivery-methods"><a href="#delivery-methods">Delivery Methods</a></li>
+                    <li id="tab-terms-and-conditions"><a href="#terms-and-conditions">Terms &amp; Conditions</a></li>
+                </ul>
+                <section id="delivery-prices" class="form product widget-content ui-helper-hidden">
+                    <div class="widget-group clearfix">
+                        <div class="widget widget-1-of-2">
+                            <h2>Delivery</h2>
+                            <section class="product">
+                                <h5>We Deliver Anywhere</h5>
+                                <p>We deliver nationwide across the UK and most of our products can also be delivered to Ireland and the Channel Islands. (See the map to see where we can deliver.)</p>
+                                <h5>FREE Delivery</h5>
+                                <p>Delivery is FREE on most orders to the majority of the UK. Delivery on most items is free in the yellow standard delivery area (see map).</p>
+                                <h5>DON'T Wait in all day!</h5>
+                                <p>We can deliver anywhere to suit you; to your work place, friend or neighbour, (not always wise on bulky items).</p>
+                                <h5>Delivery Instructions</h5>
+                                <p>You can add in your special delivery instructions within the check-out process.</p>
+                                <h5>Forward Order Now &amp; Save £££</h5>
+                                <p>If you're ordering large bulky items, but don't want a big delivery too soon, then we will store them in our secure warehouse for you. Simply order now at today's low prices and within our check-out process you can select a future week commencing date to suit you.</p>
+                                <p class="mtl small colour-grey"><strong>Note:</strong> Worktops are excluded from our free delivery and delivery is restricted to some areas.<br /><strong>Note:</strong> Estimated dates are subject to availability, selected delivery options and locations.</p>
+                            </section>
+                        </div>
+                        <div class="widget widget-1-of-2">
+                            <section class="product">
+                                <img width="450" height="538" src="{{ asset('/bundles/shopilluminationadmin/images/delivery-area.png') }}" border="0" alt="Our Delivery Area" />
+                            </section>
+                        </div>
+                    </div>
+                </section>
+                <section id="delivery-methods" class="form widget-content ui-helper-hidden">
+                    <h2>Delivery Methods</h2>
+                    <div class="accordion">
+                        <div class="accordion-item">
+                            <h3>Mail Service</h3>
+                            <div>
+                                <p>Our small packages are sent by mail through <a target="_blank" href="http://www.royalmail.com/">Royal Mail</a>. Once your order has been dispatched you will receive an email with details that will enable you to track and trace the delivery of your order.</p>
+                                <p><a target="_blank" href="http://track2.royalmail.com/">Track your order through Royal Mail.</a></p>
+                                <p><strong>Please Note:</strong> All mail sent through Royal Mail is sent recorded delivery. This means the recipient will be required to sign for delivery. To ensure your delivery is received on time please track your order, so the recipient is available when the order is due to be delivered.</p>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h3>Parcel Service</h3>
+                            <div>
+                                <p>The majority of our medium packages are sent by parcel through <a target="_blank" href="http://www.dpd.co.uk/">DPD</a>. On some occasions we will send parcels by <a target="_blank" href="http://www.parcelforce.com/">Parcelforce</a>.</p>
+                                <p>Once your order has been dispatched with DPD you will receive an email with details that will enable you to track and trace the delivery of your order. If you supplied a mobile number with your order you will also receive a text message from DPD on the morning of your delivery advising you of your delivery slot.</p>
+                                <p><a target="_blank" href="http://www.dpd.co.uk/">Track your order through DPD.</a></p>
+                                <p>If your order has been dispatched with Parcelforce you will receive an email with details that will enable you to track and trace the delivery of your order.</p>
+                                <p><a target="_blank" href="http://www.parcelforce.com/track-trace">Track your order through Parcelforce.</a></p>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h3>Pallet Service</h3>
+                            <div class="pam">
+                                <div class="delivery-information product">
+                                    <img class="fr mbm mlm" width="100" src="{{ asset('/bundles/shopilluminationadmin/images/pallet-delivery.png') }}" border="0" alt="Pallet Delivery" />
+                                    <p>Our pallet deliveries are subcontracted out to palletised carrier companies who use tail-lifts to lower pallets to ground level, before manoeuvring them into place with pallet trucks. In order to achieve this, you must ensure there is a hard flat surface outside your property free from grass, gravel or uneven paving. It is your responsibility to advise us of any delivery restrictions prior to goods being despatched.</p>
+                                    <p>The following checklist is provided to ensure that delivery is achieved in the easiest and safest manner for all concerned:</p>
+                                    <ul class="tick-list mtn pbm">
+                                        <li>Is access to your property suitable; not just your drive but also any roads approaching your property (weight limit restrictions, narrow lanes, etc)? Can a refuse lorry or fire engine gain access to your property easily?</li>
+                                        <li>Is the allocated drop off point on a flat level surface free from grass, gravel, uneven paving etc?</li>
+                                        <li>If ground or access is unsuitable, pallets may be left on the roadside or kerbside at the drivers discretion.</li>
+                                        <li>Will you (or a designated individual) be available to sign for the goods and be contactable on the contact number supplied?</li>
+                                    </ul>
+                                    <p>By placing an order you understand and agree that your order will be off-loaded using a tail-lift (not a crane) and you have a flat level surface free from grass or gravel as set out in our <a class="colour-grey" target="_blank" href="{{ path('content_terms_and_conditions') }}">Terms and Conditions</a>.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h3>Home Delivery Service</h3>
+                            <div>
+                                <p>Our home delivery service is provided by GHD Distribution. This is a two-man delivery service where the goods are taken into the house on the ground floor.</p>
+                                <p>We will email you to let you know when your order has been dispatched. You will then receive a phone call within 1-3 days to arrange a suitable delivery time. When you are contacted you will be able to request a courtesy call one hour before your arranged delivery slot.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section id="terms-and-conditions" class="form widget-content ui-helper-hidden">
+                    <h2>Terms &amp; Conditions</h2>
+                    <ul>
+                        <li>Once the product(s) have been checked to your satisfaction we require you to sign for the delivery. Unless otherwise stated the delivered price includes a one-man ground floor, street level, drop off delivery.</li>
+                        <li>Deliveries are booked on the condition that there is reasonable access for the safe and prompt delivery of the products(s). Any special requirements should be reported to us when ordering (for example, if you require a delivery to a flat that is not on the ground floor).</li>
+                        <li>We endeavour to meet all delivery bookings but cannot be held responsible for situations beyond our control.</li>
+                        <li>It is your responsibility to ensure that you have signed for the correct products(s) and number of products(s) delivered.</li>
+                        <li>Any delivery issues will be resolved by our Customer Services team at the point of delivery.</li>
+                        <li>We recommend that you organise the fitting date of your products(s) once they have been delivered and inspected to your satisfaction.</li>
+                        <li>If your billing address and delivery address differ, we will need to validate the information provided with our Identity Verification partner. In addition, we may require a copy of a utility bill to verify invoice address details. This will help to protect you and us against fraudulent transactions.</li>
+                        <li>When purchasing large items such as Worktops, American Fridge Freezers or Range Cookers, please ensure that you have measured the relevant doorways in your home to make sure that the product(s) will fit through when delivered. Unfortunately if the delivery fails due to this reason the actual cost of the distribution will be charged to you.</li>
+                        <li>Failed deliveries will incur an additional delivery charge if you are not present on the agreed delivery date and the actual cost of distribution will be charged to you.</li>
+                        <li>If delivery is refused due to selecting the wrong delivery method and the order is cancelled or part cancelled you will receive a refund for the cancelled amount minus our incurred delivery costs.</li>
+                        <li>Should you wish to cancel your order after we have dispatched your goods, an additional delivery charge would be levied. (Please refer to the <a href="#cancellationAndReturns">Cancellations and Returns</a> section)</li>
+                        <li>Cancellation at the point of delivery will incur a collection charge. (Please refer to the <a href="#cancellationAndReturns">Cancellations and Returns</a> section)</li>
+                    </ul>
+                </section>
+            </div>
+        </div>
+    </div>
+{% endblock %}

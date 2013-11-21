@@ -1,0 +1,27 @@
+{% if level is not defined %}
+    {% set level = 1 %}
+{% endif %}
+{% for department in departments %}
+        <li>
+            {% if brand is null %}
+                {% set url = get_listing_url('department', department.id) %}
+                {%  if url %}
+                    <a href="{{ path('routing', {'url': url}|merge(app.request.query.all)) }}">{{ department.description.header }}</a>
+                {% else %}
+                    <a href="{{ path('listing_department', {'departmentId': department.id}|merge(app.request.query.all)) }}">{{ department.description.header }}</a>
+                {% endif %}
+            {% else %}
+                {% set url = get_listing_url('brand_with_department', brand.id, department.id) %}
+                {%  if url %}
+                    <a href="{{ path('routing', {'url': url}|merge(app.request.query.all)) }}">{{ department.description.header }}</a>
+                {% else %}
+                    <a href="{{ path('listing_department_brand', {'departmentId': department.id, 'brandId': brand.id}|merge(app.request.query.all)) }}">{{ department.description.header }}</a>
+                {% endif %}
+            {% endif %}
+            {% if department.children|length > 0 %}
+                <ul>
+                    {% include _self with {'departments': department.children, 'brand': brand, 'level': level+1} %}
+                </ul>
+            {% endif %}
+        </li>
+{% endfor %}

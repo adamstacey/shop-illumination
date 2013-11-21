@@ -1,0 +1,120 @@
+{% extends 'ShopIlluminationAdminBundle:Product:base.html.twig' %}
+
+{% block title %}Links | {{ product.description.pageTitle }}{% endblock %}
+
+{% block admin_submenu %}
+    <a class="button button-small icon-grey mrs" data-icon-primary="icon-473" href="Javascript:history.go(-1);">Back</a>
+    <a class="button button-small icon-grey mrs" data-icon-primary="icon-278" href="{{ path('listing_products') }}">Products</a>
+    <a class="button button-small icon-grey mrs" data-icon-primary="icon-1122" href="{{ path('products_new') }}">New Product</a>
+    <a class="button button-small icon-grey mrs" data-icon-primary="icon-1360" href="{{ product.url != '' ? path('routing', {'url': product.url}) : '404' }}">View Product</a>
+    <a class="button button-small icon-grey mrs" data-icon-primary="icon-51" href="{{ path('products_clone', {'productId': product.id}) }}">Clone Product</a>
+    <a class="button button-small icon-red mrs" data-icon-primary="icon-851" href="{{ path('products_delete', {'productId': product.id}) }}">Delete Product</a>
+{% endblock %}
+
+{% block body %}
+    <div class="widget-group mtm clearfix">
+        <div class="widget widget-2-of-7">
+            {% include 'ShopIlluminationAdminBundle:Product:editLeftMenu.html.twig' %}
+        </div>
+        <div class="widget widget-5-of-7">
+            <section>
+                <form class="form" id="form-edit" novalidate="novalidate" method="post" action="{{ path(app.request.attributes.get('_route'), {'productId': product.id}) }}" {{ form_enctype(form) }}>
+                    <div class="widget-group clearfix">
+                        <div class="widget widget-1-of-1">
+                            <div class="ui-widget">
+                                <header class="ui-widget-header ui-corner-top">
+                                    <span class="ui-button-icon-primary ui-icon icon-white icon-276"></span>
+                                    <h2>Product Links</h2>
+                                </header>
+                                <section class="ui-widget-content ui-corner-bottom">
+                                    {% include 'ShopIlluminationAdminBundle:Includes:formErrors.html.twig' %}
+                                    <fieldset class="pbm">
+                                        <table class="form-table sortable" id="linkList" data-prototype="{% filter escape %}{% include 'ShopIlluminationAdminBundle::newFieldRow.html.twig' with {'form': form.links.vars.prototype} %}{% endfilter %}">
+                                            <thead>
+                                            <tr>
+                                                <th width="1">&nbsp;</th>
+                                                <th width="1">&nbsp;</th>
+                                                <th width="50%">Product</th>
+                                                <th>Link Type</th>
+                                                <th width="1">&nbsp;</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="no-data">
+                                                    <td colspan="5">
+                                                        <div class="message message-help mas">
+                                                            <span class="ui-button-icon-primary ui-icon-small icon-small-yellow icon-small-383"></span>
+                                                            <p>There are no product links currently setup. Add a link using the "Add" button below.</p>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                {{ form_rest(form) }}
+                                            </tbody>
+                                        </table>
+                                    </fieldset>
+
+                                    <div class="clearfix">
+                                        <button type="submit" class="button button-turquoise icon-white fr" data-icon-secondary="icon-471">Save</button>
+                                        <button type="button" data-table-object="linkList" class="actionAddFormRow mlm fr button icon-green" data-icon-secondary="icon-1121">Add</button>                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <script type="text/javascript">
+                    var productsUrl = "{{ path('api_products_get') }}";
+                    var productUrl = "{{ path('api_products_get_product', {'id': -1}) }}";
+
+                    function generateProductSelect($element) {
+                        $element.select2({
+                            placeholder: "- Select a Product -",
+                            minimumInputLength: 1,
+                            quietMillis: 100,
+                            ajax: {
+                                url: productsUrl,
+                                dataType: 'json',
+                                data: function (term, page) {
+                                    return {
+                                        q: term,
+                                        page: page
+                                    };
+                                },
+                                results: function (data, page) {
+                                    var more = (page * 10) < data.total;
+                                    return {results: data.products, more: more};
+                                }
+                            },
+                            initSelection: function(element, callback) {
+                                var id = $(element).val();
+                                if (id !== "") {
+                                    $.ajax(productUrl.replace(/-1/, id), {
+                                        dataType: "json"
+                                    }).done(function(data) { callback(data); });
+                                }
+                            },
+                            formatResult: function(product) {
+                                if (product.descriptions.length > 0) {
+                                    return product.descriptions[0].page_title;
+                                }
+                                return "";
+                            },
+                            formatSelection: function(product) {
+                                if (product.descriptions.length > 0) {
+                                    return product.descriptions[0].page_title;
+                                }
+                                return "";
+                            }
+                        });
+                    }
+
+                    $(document).ready(function() {
+                        generateProductSelect($(".select-product"));
+                        $("#linkList").on("rowadded", function() {
+                            generateProductSelect($(".select-product"));
+                        });
+                    });
+                </script>
+            </section>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'ShopIlluminationAdminBundle:Product:base.html.twig' %}
+
+{% block title %}Add New Product | {{ parent() }}{% endblock %}
+
+{% block admin_submenu %}
+    <a class="button button-small icon-grey mrs" data-icon-primary="icon-473" href="Javascript:history.go(-1);">Back</a>
+    <a class="button button-small icon-grey mrs" data-icon-primary="icon-278" href="{{ path('listing_products') }}">Products</a>
+{% endblock %}
+
+{% block header %}
+    <header>
+        {{ parent() }}
+        <h1>Add New Product</h1>
+    </header>
+{% endblock %}
+{% block body %}
+    <section>
+        <div class="widget-group clearfix">
+            <div class="widget widget-2-of-7">
+                {% include 'ShopIlluminationAdminBundle:Product:newLeftMenu.html.twig' %}
+            </div>
+            <div class="widget widget-5-of-7">
+                {% include 'ShopIlluminationAdminBundle:Product:new_Step'~flow.getCurrentStepNumber()~'.html.twig' %}
+            </div>
+        </div>
+    </section>
+{% endblock %}

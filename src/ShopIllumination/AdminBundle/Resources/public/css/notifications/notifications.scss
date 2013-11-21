@@ -1,0 +1,167 @@
+@import "compass";
+@import "../includes/base";
+
+.message {
+    padding: $spacingMedium $spacingMedium 0 34px;
+    margin: 0 0 $spacingMedium 0;
+    min-height: 22px;
+
+    position: relative;
+
+    @include equalBorderRadius($radiusSize);
+    @include boxGlow($colourGreyLight, 5px, 0, 0.5);
+}
+
+.message .ui-icon {
+    position: absolute;
+    top: 50%;
+    margin-top: -16px;
+    left: 5px;
+}
+
+.message .ui-icon-small {
+    position: absolute;
+    top: 50%;
+    margin-top: -12px;
+    left: 5px;
+}
+
+.message .icon-top {
+    top: 6px;
+    margin: 0;
+}
+
+.message p {
+    padding: 0 0 $spacingMedium $spacingSmall;
+    margin: 0;
+
+    @include fontSize($fontSizeMedium);
+    line-height: 17px;
+}
+
+.message ul {
+    padding: 0 0 $spacingSmall 0;
+    margin: 0;
+}
+
+.message li {
+    padding: 0 0 $spacingSmall 0;
+    margin: 0 0 0 $spacingExtraLarge;
+
+    @include fontSize($fontSizeMedium);
+}
+
+.message-help {
+    border: 1px solid $colourYellow;
+    @include verticalGradientYellow;
+}
+
+.message-error {
+    border: 1px solid $colourRed;
+    @include verticalGradientRed;
+}
+
+.message-warning {
+    border: 1px solid $colourDarkOrange;
+    @include verticalGradientDarkOrange;
+}
+
+.message-notice {
+    border: 1px solid $colourOrange;
+    @include verticalGradientOrange;
+}
+
+.message-success {
+    border: 1px solid $colourGreen;
+    @include verticalGradientGreen;
+}
+
+.message-help p,
+.message-help ul,
+.message-help ul li {
+    color: $colourGreyDark;
+}
+
+.message-error p,
+.message-error ul,
+.message-error ul li,
+.message-success p,
+.message-success ul,
+.message-success ul li,
+.message-warning p,
+.message-warning ul,
+.message-warning ul li,
+.message-notice p,
+.message-notice ul,
+.message-notice ul li {
+    color: $colourWhite;
+}
+
+.error-list {
+    padding: $spacingLarge $spacingMedium $spacingMedium $spacingMedium;
+    margin: -#{$spacingLarge} 0 $spacingMedium 0;
+
+    background: $colourRedLight;
+    border-radius: 0 0 4px 4px;
+    @include borderRadius(0, 0, $radiusSize, $radiusSize);
+}
+
+.error-list ul {
+    margin: 0;
+    padding: 0;
+}
+
+.error-list ul li {
+    padding: 0 0 0 22px;
+    margin: 0;
+
+    color: $colourRed;
+    @include fontSize($fontSizeSmall);
+    line-height: 18px;
+    list-style: none;
+    background: transparent url("#{$cssPath}/resources/images/icons/error_small.png") center left no-repeat;
+}
+
+.flash-message {
+    position: relative;
+}
+
+.flash-message .message {
+    margin: 0;
+    padding: 0;
+
+    position: relative;
+
+    @include equalBorderRadius(0);
+}
+
+.flash-message-content {
+    position: relative;
+    padding: $spacingSmall $spacingSmall $spacingSmall 40px;
+}
+
+.flash-message-content .icon {
+    margin: 0;
+
+    position: absolute;
+    top: $spacingSmall;
+    left: $spacingSmall;
+}
+
+.flash-message-content .close {
+    margin: 0;
+
+    position: absolute;
+    top: $spacingSmall;
+    left: auto;
+    right: $spacingSmall;
+
+    cursor: pointer;
+}
+
+.flash-message-content p {
+    padding: 0;
+    margin: 0;
+
+    line-height: 24px;
+}

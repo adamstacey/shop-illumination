@@ -1,0 +1,299 @@
+{% extends 'ShopIlluminationAdminBundle::base.html.twig' %}
+
+{% if department is not null and brand is null %}
+    {% set title = department.description.pageTitle %}
+{% elseif department is null and brand is not null %}
+    {% set title = brand.description.pageTitle %}
+{% elseif department is not null and brand is not null %}
+    {% set title = department.description.pageTitle ~ ' | ' ~ brand.description.pageTitle %}
+{% else %}
+    {% set title = 'Products' %}
+{% endif %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block metatags %}
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="-1">
+    <meta name="description" content="{{ department.metaDescription }}">
+    <meta name="keywords" content="{{ department.metaKeywords }}">
+    <meta name="fragment" content="!">
+{% endblock %}
+
+{% block admin_submenu %}
+    <a class="button button-small icon-grey mrs" data-icon-primary="icon-278" href="{{ path('listing_products') }}">Products</a>
+    <a class="button button-small icon-grey mrs" data-icon-primary="icon-1122" href="{{ path('products_new') }}">New Product</a>
+    <a class="button button-small icon-grey mrs" data-icon-primary="icon-1103" href="{{ path('products_import_prices') }}">Import Prices</a>
+    <a class="button button-small icon-grey mrs" data-icon-primary="icon-1370" href="{{ path('admin_brands') }}">Brands</a>
+    <a class="button button-small icon-grey mrs" data-icon-primary="icon-1122" href="{{ path('admin_brands_add') }}">New Brand</a>
+    <a class="button button-small icon-grey mrs" data-icon-primary="icon-399" href="{{ path('departments_index') }}">Departments</a>
+    <a class="button button-small icon-grey mrs" data-icon-primary="icon-1122" href="{{ path('departments_new') }}">New Department</a>
+{% endblock %}
+
+{% block header %}
+    <div class="widget-group clearfix mbm">
+        <div class="widget widget-7-of-8">
+            <ul class="breadcrumbs">
+                <li style="z-index: 99;" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a itemprop="url" href="{{ path('homepage') }}"><span itemprop="title">Kitchen Appliances</span></a></li>
+                <li style="z-index: 1;" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><span itemprop="title">Search Results</span></li>
+            </ul>
+        </div>
+    </div>
+    <h1>Search Results</h1>
+    {% if app.request.query.get('q', '') is not empty %}
+        <h2 class="pbm">Searching for "{{ app.request.query.get('q', '') }}"</h2>
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+    <section class="clearfix">
+        <div class="widget-group clearfix mbm">
+        </div>
+        {% if pagination.totalItemCount is defined %}
+            {% set totalItemCount = pagination.totalItemCount %}
+        {% else %}
+            {% set totalItemCount = 0 %}
+        {% endif %}
+        <div class="widget-group clearfix">
+            <form id="formFilter" class="form" method="GET">
+                <input type="hidden" name="q" value="{{ app.request.query.get('q') }}" />
+                <div class="widget widget-2-of-7">
+                    <div class="ui-widget mbn">
+                        <section class="ui-widget-content ui-corner-all">
+                            <div class="widget-group product-filtering-container clearfix">
+                                <div class="widget widget-1-of-1">
+                                    <span class="fl"><strong>Narrow Search By</strong></span>
+                                    <a class="button button-grey icon-grey fr" data-icon-primary="icon-1113" href="{# path('routing', {'url': department.url}) #}">Reset All</a>
+                                </div>
+                            </div>
+                            <div class="filters">
+                                <div class="ui-widget pr mtm">
+                                    <header class="ui-widget-header ui-corner-top">
+                                        <h2>Price</h2>
+                                    </header>
+                                    <section class="ui-widget-content pan ui-corner-bottom">
+                                        <div id="filterPrice" class="price-range-filter">
+                                            <div class="range-slider-values">
+                                                <span>&pound;</span>
+                                                <input type="text" name="filter[low_price]" id="filterLowPrice" value="{{ app.request.get('filter[low_price]', '%.0f'|format(stats.getResult('low_price').min|default(0)), true) }}" />
+                                                <span>&nbsp;-&nbsp;</span>
+                                                <input type="text" name="filter[high_price]" id="filterHighPrice" value="{{ app.request.get('filter[high_price]', '%.0f'|format(stats.getResult('high_price').max|default(9999)), true) }}" />
+                                            </div>
+                                            <div id="priceRangeSlider" class="price-range pan"></div>
+                                        </div>
+                                    </section>
+                                    <div class="filter-header-buttons-container">
+                                        <button type="button" data-filter="Price" class="fr button button-small button-grey icon-grey actionShowHideFilter" data-icon-primary="icon-467" data-icon-only="true">Hide</button>
+                                        <button type="button" data-filter="Price" class="fr button button-small button-grey icon-grey actionResetFilter" data-icon-primary="icon-1113" data-icon-only="true">Reset</button>
+                                    </div>
+                                </div>
+
+                                {% if facets.facet('departments')|length > 1 %}
+                                    <div class="ui-widget pr mtm">
+                                        <header class="ui-widget-header ui-corner-top">
+                                            <h2>Department</h2>
+                                        </header>
+                                        <section class="ui-widget-content pan ui-corner-bottom">
+                                            <div id="filterBrand" class="filter">
+                                                <ul>
+                                                    {% for department, count in facets.facet('departments') %}
+                                                        <li>
+                                                            <input{% if department in app.request.get('filter[department]', null, true) %} checked="checked"{% endif %} name="filter[department][]" type="checkbox" value="{{ department }}" id="filter-department-{{ loop.index }}" />
+                                                            <label for="filter-department-{{ loop.index }}"><span class="fr">({{ count }})</span>{{ department }}</label>
+                                                        </li>
+                                                    {% endfor %}
+                                                </ul>
+                                            </div>
+                                        </section>
+                                        <div class="filter-header-buttons-container">
+                                            <button type="button" data-filter="Brand" class="fr button button-small button-grey icon-grey actionShowHideFilter" data-icon-primary="icon-467" data-icon-only="true">Hide</button>
+                                            <button type="button" data-filter="Brand" class="fr button button-small button-grey icon-grey actionResetFilter" data-icon-primary="icon-1113" data-icon-only="true">Reset</button>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                                {% if facets.facet('brands')|length > 1 %}
+                                    <div class="ui-widget pr mtm">
+                                        <header class="ui-widget-header ui-corner-top">
+                                            <h2>Brand</h2>
+                                        </header>
+                                        <section class="ui-widget-content pan ui-corner-bottom">
+                                            <div id="filterBrand" class="filter">
+                                                <ul>
+                                                    {% for brand, count in facets.facet('brands') %}
+                                                        <li>
+                                                            <input{% if brand in app.request.get('filter[brand]', null, true) %} checked="checked"{% endif %} name="filter[brand][]" type="checkbox" value="{{ brand }}" id="filter-brand-{{ loop.index }}" />
+                                                            <label for="filter-brand-{{ loop.index }}"><span class="fr">({{ count }})</span>{{ brand }}</label>
+                                                        </li>
+                                                    {% endfor %}
+                                                </ul>
+                                            </div>
+                                        </section>
+                                        <div class="filter-header-buttons-container">
+                                            <button type="button" data-filter="Brand" class="fr button button-small button-grey icon-grey actionShowHideFilter" data-icon-primary="icon-467" data-icon-only="true">Hide</button>
+                                            <button type="button" data-filter="Brand" class="fr button button-small button-grey icon-grey actionResetFilter" data-icon-primary="icon-1113" data-icon-only="true">Reset</button>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </section>
+                    </div>
+                </div>
+                <div class="widget widget-5-of-7 listing">
+                    <div class="ui-widget">
+                        <a name="viewNow"></a>
+                        <section class="ui-widget-content ui-corner-all product">
+                            <div class="widget-group product-sorting-container product-sorting-container-top mbn clearfix">
+                                <div class="widget widget-1-of-1">
+                                    <span class="fl">Show</span>
+                                    <div class="fl prs">
+                                        <select id="limitTop" name="limit" class="fill fl">
+                                            <option{% if app.request.get('limit') == '9' %} selected="selected"{% endif %} value="9">9</option>
+                                            <option{% if app.request.get('limit') == '21' or app.request.get('limit') is not defined or app.request.get('limit') is null %} selected="selected"{% endif %} value="21">21</option>
+                                            <option{% if app.request.get('limit') == '51' %} selected="selected"{% endif %} value="51">51</option>
+                                            <option{% if app.request.get('limit') == '102' %} selected="selected"{% endif %} value="102">102</option>
+                                            <option{% if app.request.get('limit') == '99999999' %} selected="selected"{% endif %} value="99999999">All</option>
+                                        </select>
+                                    </div>
+                                    <span class="fl">of <strong>{{ totalItemCount }}</strong> Product{{ totalItemCount == 1 ? '' : 's' }}</span>
+                                    <div class="fr">
+                                        {{ knp_pagination_render(pagination) }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="products">
+                                {% if is_granted("ROLE_ADMIN") %}
+                                    <div class="tabs mtm">
+                                        <ul>
+                                            <li><a href="#admin">Admin Mode</a></li>
+                                            <li><a href="#customer">Customer View</a></li>
+                                        </ul>
+                                        <div id="admin">
+                                            {% include 'ShopIlluminationAdminBundle:Listing/Includes:adminProducts.html.twig' with {'pagination': pagination} %}
+                                            <div class="clear"></div>
+                                        </div>
+                                        <div id="customer">
+                                            {% include 'ShopIlluminationAdminBundle:Listing/Includes:products.html.twig' with {'pagination': pagination} %}
+                                            <div class="clear"></div>
+                                        </div>
+                                    </div>
+                                {% else %}
+                                    {% include 'ShopIlluminationAdminBundle:Listing/Includes:products.html.twig' with {'pagination': pagination} %}
+                                {% endif %}
+                                <div class="clear"></div>
+                            </div>
+                            <div class="widget-group product-sorting-container product-sorting-container-bottom mtn clearfix">
+                                <div class="widget widget-1-of-1">
+                                    <span class="fl">Sort By</span>
+                                    <div class="fl prs">
+                                        <select id="sortOrderBottom" class="fill fl">
+                                            <option{% if app.request.get('sort_order') == 'header_sort:asc' %} selected="selected"{% endif %} value="header_sort:asc">Alphabetically: A-Z</option>
+                                            <option{% if app.request.get('sort_order') == 'header_sort:desc' %} selected="selected"{% endif %} value="header_sort:desc">Alphabetically: Z-A</option>
+                                            <option{% if app.request.get('sort_order') == 'low_price:asc' or app.request.get('sort_order') is not defined or app.request.get('sort_order') is null %} selected="selected"{% endif %} value="low_price:asc">Price: Lowest First</option>
+                                            <option{% if app.request.get('sort_order') == 'high_price:desc' %} selected="selected"{% endif %} value="high_price:desc">Price: Highest First</option>
+                                            <option{% if app.request.get('sort_order') == 'created_at:desc' %} selected="selected"{% endif %} value="created_at:desc">Latest</option>
+                                        </select>
+                                    </div>
+                                    <span class="fl">Show</span>
+                                    <div class="fl prs">
+                                        <select id="limitBottom" class="fill fl">
+                                            <option{% if app.request.get('limit') == '9' %} selected="selected"{% endif %} value="9">9</option>
+                                            <option{% if app.request.get('limit') == '21' or app.request.get('limit') is not defined or app.request.get('limit') is null %} selected="selected"{% endif %} value="21">21</option>
+                                            <option{% if app.request.get('limit') == '51' %} selected="selected"{% endif %} value="51">51</option>
+                                            <option{% if app.request.get('limit') == '102' %} selected="selected"{% endif %} value="102">102</option>
+                                            <option{% if app.request.get('limit') == '99999999' %} selected="selected"{% endif %} value="99999999">All</option>
+                                        </select>
+                                    </div>
+                                    <span class="fl">of <strong>{{ totalItemCount }}</strong> Product{{ totalItemCount == 1 ? '' : 's' }}</span>
+                                    <div class="fr">
+                                        {{ knp_pagination_render(pagination) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            {# If the user has selected a filter then scroll directly to the results #}
+            {% if app.request.query.has('filter') %}
+            var $target = $("a[name=viewNow]");
+            $('html, body').stop().animate({
+                'scrollTop': $target.offset().top
+            });
+            {% endif %}
+            $("#sortOrderBottom").live('change', function() {
+                $("#sortOrderTop").val($("#sortOrderBottom").val());
+                $.uniform.update("#sortOrderTop");
+            });
+
+            $("#limitBottom").live('change', function() {
+                $("#limitTop").val($("#limitBottom").val());
+                $.uniform.update("#limitTop");
+            });
+
+            $(":input", "#form-settings, #formFilter").live('change', function() {
+                $(this).closest("form").submit();
+            });
+
+            $(".actionResetFilter").live("click", function() {
+                // Check if the filter is a price
+                if ($(this).data("filter") === "Price") {
+                    var $priceRangeSlider = $("#priceRangeSlider");
+                    var $filterLowPrice = $("#filterLowPrice");
+                    var $filterHighPrice = $("#filterHighPrice");
+                    $filterLowPrice.unbind("change");
+                    $filterHighPrice.unbind("change");
+                    $filterLowPrice.val($priceRangeSlider.slider("option", "min"));
+                    $filterHighPrice.val($priceRangeSlider.slider("option", "max"));
+                } else {
+                    $(":input", "#filter"+$(this).data("filter"))
+                        .not(":button, :submit, :reset, :hidden")
+                        .val("")
+                        .removeAttr("checked")
+                        .removeAttr("selected");
+                }
+                $(this).closest("form").submit();
+            });
+
+            $(".actionShowHideFilter").live("click", function() {
+                var $buttonIcon = $(this).find(".ui-icon");
+                var $widget = $(this).closest(".filter-header-buttons-container").closest(".ui-widget");
+                var $filterHeader = $widget.find("header");
+                var $filter = $widget.find("section > div");
+                if ($buttonIcon.hasClass("icon-467")) {
+                    $filter.hide();
+                    $buttonIcon.removeClass("icon-467");
+                    $buttonIcon.addClass("icon-466");
+                    $filterHeader.removeClass("ui-corner-top");
+                    $filterHeader.addClass("ui-corner-all");
+                } else {
+                    $filter.show();
+                    $buttonIcon.removeClass("icon-466");
+                    $buttonIcon.addClass("icon-467");
+                    $filterHeader.removeClass("ui-corner-all");
+                    $filterHeader.addClass("ui-corner-top");
+                }
+            });
+
+            $("#priceRangeSlider").slider({
+                range: true,
+                min: parseInt({{ stats.getResult('low_price').min|default(0) }}, 10),
+                max: parseInt({{ stats.getResult('high_price').max|default(9999) }}, 10),
+                values: [parseInt('{{ app.request.get('filter[low_price]', stats.getResult('low_price').min|default(0), true) }}', 10), parseInt('{{ app.request.get('filter[high_price]', stats.getResult('high_price').max|default(9999), true) }}', 10)],
+                slide: function(event, ui) {
+                    $("#filterLowPrice").val(ui.values[0]);
+                    $("#filterHighPrice").val(ui.values[1]);
+                },
+                change: function(event, ui) {
+                    $(this).closest("form").submit();
+                }
+            });
+        });
+    </script>
+{% endblock %}

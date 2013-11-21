@@ -1,0 +1,75 @@
+{% extends 'ShopIlluminationAdminBundle:Product:base.html.twig' %}
+
+{% block title %}Overview | {{ product.description.pageTitle }}{% endblock %}
+
+{% block admin_submenu %}
+    <a class="button button-small icon-grey mrs" data-icon-primary="icon-473" href="Javascript:history.go(-1);">Back</a>
+    <a class="button button-small icon-grey mrs" data-icon-primary="icon-278" href="{{ path('listing_products') }}">Products</a>
+    <a class="button button-small icon-grey mrs" data-icon-primary="icon-1122" href="{{ path('products_new') }}">New Product</a>
+    <a class="button button-small icon-grey mrs" data-icon-primary="icon-1360" href="{{ product.url != '' ? path('routing', {'url': product.url}) : '404' }}">View Product</a>
+    <a class="button button-small icon-grey mrs" data-icon-primary="icon-51" href="{{ path('products_clone', {'productId': product.id}) }}">Clone Product</a>
+    <a class="button button-small icon-red mrs" data-icon-primary="icon-851" href="{{ path('products_delete', {'productId': product.id}) }}">Delete Product</a>
+{% endblock %}
+
+{% block body %}
+    <div class="widget-group mtm clearfix">
+        <div class="widget widget-2-of-7">
+            {% include 'ShopIlluminationAdminBundle:Product:editLeftMenu.html.twig' %}
+        </div>
+        <div class="widget widget-5-of-7">
+            <section>
+                <form class="form" id="form-edit" novalidate="novalidate" method="post" action="{{ path(app.request.attributes.get('_route'), {'productId': product.id}) }}" {{ form_enctype(form) }}>
+                    <div class="widget-group clearfix">
+                        <div class="widget widget-1-of-1">
+                            <div class="ui-widget">
+                                <header class="ui-widget-header ui-corner-top">
+                                    <span class="ui-button-icon-primary ui-icon icon-white icon-276"></span>
+                                    <h2>1. Product Information</h2>
+                                </header>
+                                <section class="ui-widget-content ui-corner-all">
+                                    {% include 'ShopIlluminationAdminBundle:Includes:formErrors.html.twig' %}
+                                    <fieldset>
+                                        {{ form_row(form.brand) }}
+                                        {{ form_row(form.mainDepartment, {'label': 'Main Department'}) }}
+                                        {% do form.departments.setRendered(true) %}
+                                        {{ form_row(form.template) }}
+                                        {{ form_row(form.status) }}
+                                        <div class="form-element widget-group clearfix">
+                                            <div class="widget widget-1-of-3">
+                                                <label>Listing Options</label>
+                                            </div>
+                                            <div class="widget checker-group widget-2-of-3">
+                                                {{ form_row(form.availableForPurchase) }}
+                                                {{ form_row(form.featureComparison) }}
+                                                {{ form_row(form.downloadable) }}
+                                                {{ form_row(form.specialOffer) }}
+                                                {{ form_row(form.recommended) }}
+                                                {{ form_row(form.accessory) }}
+                                                {{ form_row(form.new) }}
+                                            </div>
+                                        </div>
+                                        {{ form_rest(form) }}
+                                    </fieldset>
+
+                                    <div class="clearfix">
+                                        <button type="submit" class="button button-green icon-white fr" data-icon-secondary="icon-1118">Save Product</button>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <script>
+                    $(document).ready(function() {
+                        $("#site_new_product_brand").select2();
+                        $("select.select-department").select2({
+                            matcher: function(term, text) {
+                                return text.replace(/^[\s&nbsp;]+/,'').toUpperCase().indexOf(term.toUpperCase())>=0;
+                            }
+                        });
+                    })
+                </script>
+            </section>
+        </div>
+    </div>
+{% endblock %}

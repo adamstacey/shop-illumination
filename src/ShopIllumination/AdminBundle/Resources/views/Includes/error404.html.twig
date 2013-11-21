@@ -1,0 +1,26 @@
+{% extends 'ShopIlluminationAdminBundle::base.html.twig' %}
+{% block title %}404 - Page can not be found! | {{ parent() }}{% endblock %}
+{% block top_reviews %}{% endblock %}
+{% block body %}
+    <div class="widget-group clearfix">
+        <div class="widget ptl widget-1-of-1">
+            <div class="ui-widget">
+                <section class="ui-widget-content widget-content ui-corner-all clearfix">
+                    <div class="header-image">
+                        <img src="{{ asset('/bundles/shopilluminationadmin/images/headers/page-not-found.jpg') }}" alt="Quick Delivery" width="940" />
+                        <h1>Whoops looks like we lost one!</h1>
+                        <h4>Wait, why am I here?</h4>
+                        <p>Welcome to our 404 page. You are here because the page you have requested doesn't exist, at least not at this location.</p>
+                        <p>We have been made aware of this and will be looking into this as soon as possible.</p>
+                        <p>In the mean time you could&hellip;</p>
+                        <ul>
+                            <li>Try contacting us for any advice or support. <a href="{{ path('content_contact_us') }}">Click here</a> to find out how to contact us.</a></li>
+                            <li>Try searching for what you were looking for using our search box above.</li>
+                            <li>Try looking through one of our departments using the menu above.</li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+{% endblock %}

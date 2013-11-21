@@ -1,0 +1,45 @@
+{% extends 'ShopIlluminationAdminBundle::base.html.twig' %}
+{% block title %}Demo Area: Notifications | {{ parent() }}{% endblock %}
+{% block breadcrumbs %}
+    <div class="widget-group clearfix">
+        <a class="fr button button-small icon-grey" data-icon-primary="icon-473" href="{{ path('demo_index') }}">Go Back</a>
+        <div class="widget widget-1-of-1">
+            <ul class="breadcrumbs" itemprop="breadcrumb">
+                <li><a href="{{ path('demo_notifications') }}">Notifications</a></li>
+                <li><a href="{{ path('demo_index') }}">Demo Area</a></li>
+                <li><a href="{{ path('homepage') }}">Home</a></li>
+            </ul>
+        </div>
+        <div class="clear"></div>
+    </div>
+{% endblock %}
+{% block header %}
+    <header>
+        <span class="mrm ui-button-icon-primary ui-icon icon-black icon-429"></span>
+        <h1>Demo Area: Notifications</h1>
+    </header>
+{% endblock %}
+{% block body %}
+    <section>
+        <div class="message message-help">
+            <span class="ui-button-icon-primary ui-icon-small icon-grey icon-small-763"></span>
+            <p><strong>Help:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae metus lacus. Aliquam dapibus est eu magna luctus at.</p>
+        </div>
+        <div class="message message-error">
+            <span class="ui-button-icon-primary ui-icon-small icon-white icon-small-851"></span>
+            <p><strong>Error:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae metus lacus. Aliquam dapibus est eu magna luctus at.</p>
+        </div>
+        <div class="message message-warning">
+            <span class="ui-button-icon-primary ui-icon-small icon-white icon-small-695"></span>
+            <p><strong>Warning:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae metus lacus. Aliquam dapibus est eu magna luctus at.</p>
+        </div>
+        <div class="message message-notice">
+            <span class="ui-button-icon-primary ui-icon-small icon-white icon-small-703"></span>
+            <p><strong>Notice:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae metus lacus. Aliquam dapibus est eu magna luctus at.</p>
+        </div>
+        <div class="message message-success">
+            <span class="ui-button-icon-primary ui-icon-small icon-white icon-small-1119"></span>
+            <p><strong>Success:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae metus lacus. Aliquam dapibus est eu magna luctus at.</p>
+        </div>
+    </section>
+{% endblock %}

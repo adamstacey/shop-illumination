@@ -1,0 +1,10 @@
+@import "compass";
+@import "../includes/base";
+
+.admin-container {
+    padding: $spacingMedium;
+    @include highlightedVerticalGradientDarkOrange;
+    @include boxInsetShadow($colourBlack, 0, 1px, 5px);
+    @include equalBorderRadius($radiusSize);
+}
+
