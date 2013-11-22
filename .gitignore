@@ -11,6 +11,11 @@ app/bootstrap*
 
 # Symfony directories
 /web/bundles/
+/web/css/
+/web/images/
+/web/js/
+/web/uploads/
+/web/media/
 /app/bootstrap.php.cache
 /app/cache/*
 /app/config/parameters.yml
@@ -21,3 +26,6 @@ app/bootstrap*
 /vendor/
 /bin/
 /composer.phar
+/refresh.sh
+/update-database.sh
+/build-assets.sh
