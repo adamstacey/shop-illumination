@@ -16,6 +16,7 @@ app/bootstrap*
 /web/js/
 /web/uploads/
 /web/media/
+/web/.htaccess
 /app/bootstrap.php.cache
 /app/cache/*
 /app/config/parameters.yml
