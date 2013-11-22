@@ -27,6 +27,9 @@ parameters:
     company.web_address: www.brickhunter.com
     company.url:         http://www.brickhunter.com
 
+    google_api_key: ~
+    google_dev_token: ~
+
     assetic.filter.compass.images_dir: %kernel.root_dir%/../web/
     assetic.filter.compass.http_path:  /
     assetic.filter.compass.generated_images_path: %kernel.root_dir%/../web/
