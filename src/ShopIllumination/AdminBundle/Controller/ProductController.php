@@ -1081,7 +1081,7 @@ class ProductController extends Controller {
 
         if (count($product->getDepartments()) > 0)
         {
-            $product->setMainDepartment($product->getDepartments()[0]);
+            $product->setMainDepartment($product->getDepartments()->first());
         }
 
         $form = $this->createForm(new EditProductOverviewType(), $product);
